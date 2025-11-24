@@ -37,7 +37,7 @@
         internForm.Show()
         Me.Hide()
     End Sub
-
+    '
     Private Sub btnEvaluationLog_Click(sender As Object, e As EventArgs) Handles btnEvaluationLog.Click
         Dim evalForm As New EvaluationForm()
         evalForm.Show()
