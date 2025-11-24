@@ -34,6 +34,15 @@ Partial Class StudentForm
         PictureBoxLogo = New PictureBox()
         pnlMain = New Panel()
         pnlActivitiesMain = New Panel()
+        DataGridView1 = New RoundedPanel()
+        Student_ID = New DataGridViewTextBoxColumn()
+        Student_Name = New DataGridViewTextBoxColumn()
+        Program = New DataGridViewTextBoxColumn()
+        Department = New DataGridViewTextBoxColumn()
+        Company = New DataGridViewTextBoxColumn()
+        Status = New DataGridViewTextBoxColumn()
+        Supervisor = New DataGridViewTextBoxColumn()
+        Rating = New DataGridViewTextBoxColumn()
         pnlPartnerComp = New Panel()
         lblPartnerCompCount = New Label()
         PictureBox4 = New PictureBox()
@@ -51,17 +60,12 @@ Partial Class StudentForm
         PictureBox1 = New PictureBox()
         lblTotalStudentsTitle = New Label()
         Label1 = New Label()
-        DataGridView1 = New DataGridView()
-        Student_ID = New DataGridViewTextBoxColumn()
-        Student_Name = New DataGridViewTextBoxColumn()
-        Program = New DataGridViewTextBoxColumn()
-        Department = New DataGridViewTextBoxColumn()
-        Status = New DataGridViewTextBoxColumn()
         pnlSidebar.SuspendLayout()
         pnlBottomMenu.SuspendLayout()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
         pnlMain.SuspendLayout()
         pnlActivitiesMain.SuspendLayout()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         pnlPartnerComp.SuspendLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).BeginInit()
         pnlCompIntern.SuspendLayout()
@@ -70,7 +74,6 @@ Partial Class StudentForm
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         pnlStudent.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' pnlSidebar
@@ -85,7 +88,7 @@ Partial Class StudentForm
         pnlSidebar.Dock = DockStyle.Left
         pnlSidebar.Location = New Point(0, 0)
         pnlSidebar.Name = "pnlSidebar"
-        pnlSidebar.Size = New Size(230, 977)
+        pnlSidebar.Size = New Size(230, 858)
         pnlSidebar.TabIndex = 1
         ' 
         ' pnlBottomMenu
@@ -93,7 +96,7 @@ Partial Class StudentForm
         pnlBottomMenu.Controls.Add(btnLogout)
         pnlBottomMenu.Controls.Add(btnFaculty)
         pnlBottomMenu.Dock = DockStyle.Bottom
-        pnlBottomMenu.Location = New Point(0, 838)
+        pnlBottomMenu.Location = New Point(0, 719)
         pnlBottomMenu.Name = "pnlBottomMenu"
         pnlBottomMenu.Size = New Size(230, 139)
         pnlBottomMenu.TabIndex = 5
@@ -215,7 +218,7 @@ Partial Class StudentForm
         ' PictureBoxLogo
         ' 
         PictureBoxLogo.ErrorImage = CType(resources.GetObject("PictureBoxLogo.ErrorImage"), Image)
-        PictureBoxLogo.Image = My.Resources.Resources.image_1
+        PictureBoxLogo.Image = CType(resources.GetObject("PictureBoxLogo.Image"), Image)
         PictureBoxLogo.InitialImage = CType(resources.GetObject("PictureBoxLogo.InitialImage"), Image)
         PictureBoxLogo.Location = New Point(42, 22)
         PictureBoxLogo.Name = "PictureBoxLogo"
@@ -235,16 +238,86 @@ Partial Class StudentForm
         pnlMain.Dock = DockStyle.Fill
         pnlMain.Location = New Point(230, 0)
         pnlMain.Name = "pnlMain"
-        pnlMain.Size = New Size(1192, 977)
+        pnlMain.Size = New Size(1192, 858)
         pnlMain.TabIndex = 2
         ' 
         ' pnlActivitiesMain
         ' 
         pnlActivitiesMain.Controls.Add(DataGridView1)
-        pnlActivitiesMain.Location = New Point(98, 156)
+        pnlActivitiesMain.Location = New Point(98, 146)
         pnlActivitiesMain.Name = "pnlActivitiesMain"
-        pnlActivitiesMain.Size = New Size(1014, 524)
+        pnlActivitiesMain.Size = New Size(1052, 428)
         pnlActivitiesMain.TabIndex = 5
+        ' 
+        ' DataGridView1
+        ' 
+        DataGridView1.BorderStyle = BorderStyle.None
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView1.Columns.AddRange(New DataGridViewColumn() {Student_ID, Student_Name, Program, Department, Company, Status, Supervisor, Rating})
+        DataGridView1.CornerRadius = 20
+        DataGridView1.GridColor = Color.Gray
+        DataGridView1.Location = New Point(3, 14)
+        DataGridView1.Name = "DataGridView1"
+        DataGridView1.RowHeadersVisible = False
+        DataGridView1.RowHeadersWidth = 51
+        DataGridView1.Size = New Size(997, 395)
+        DataGridView1.TabIndex = 0
+        ' 
+        ' Student_ID
+        ' 
+        Student_ID.HeaderText = "Student ID"
+        Student_ID.MinimumWidth = 6
+        Student_ID.Name = "Student_ID"
+        Student_ID.Width = 125
+        ' 
+        ' Student_Name
+        ' 
+        Student_Name.HeaderText = "Full Name"
+        Student_Name.MinimumWidth = 6
+        Student_Name.Name = "Student_Name"
+        Student_Name.Width = 125
+        ' 
+        ' Program
+        ' 
+        Program.HeaderText = "Course"
+        Program.MinimumWidth = 6
+        Program.Name = "Program"
+        Program.Width = 125
+        ' 
+        ' Department
+        ' 
+        Department.HeaderText = "Department"
+        Department.MinimumWidth = 6
+        Department.Name = "Department"
+        Department.Width = 125
+        ' 
+        ' Company
+        ' 
+        Company.HeaderText = "Company"
+        Company.MinimumWidth = 6
+        Company.Name = "Company"
+        Company.Width = 125
+        ' 
+        ' Status
+        ' 
+        Status.HeaderText = "Status"
+        Status.MinimumWidth = 6
+        Status.Name = "Status"
+        Status.Width = 125
+        ' 
+        ' Supervisor
+        ' 
+        Supervisor.HeaderText = "Supervisor"
+        Supervisor.MinimumWidth = 6
+        Supervisor.Name = "Supervisor"
+        Supervisor.Width = 125
+        ' 
+        ' Rating
+        ' 
+        Rating.HeaderText = "Rating"
+        Rating.MinimumWidth = 6
+        Rating.Name = "Rating"
+        Rating.Width = 125
         ' 
         ' pnlPartnerComp
         ' 
@@ -407,62 +480,17 @@ Partial Class StudentForm
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(98, 73)
+        Label1.Location = New Point(98, 62)
         Label1.Name = "Label1"
         Label1.Size = New Size(260, 50)
         Label1.TabIndex = 0
         Label1.Text = "Student Table"
         ' 
-        ' DataGridView1
-        ' 
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {Student_ID, Student_Name, Program, Department, Status})
-        DataGridView1.Location = New Point(33, 34)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(943, 196)
-        DataGridView1.TabIndex = 0
-        ' 
-        ' Student_ID
-        ' 
-        Student_ID.HeaderText = "Student ID"
-        Student_ID.MinimumWidth = 6
-        Student_ID.Name = "Student_ID"
-        Student_ID.Width = 125
-        ' 
-        ' Student_Name
-        ' 
-        Student_Name.HeaderText = "Full Name"
-        Student_Name.MinimumWidth = 6
-        Student_Name.Name = "Student_Name"
-        Student_Name.Width = 125
-        ' 
-        ' Program
-        ' 
-        Program.HeaderText = "Course"
-        Program.MinimumWidth = 6
-        Program.Name = "Program"
-        Program.Width = 125
-        ' 
-        ' Department
-        ' 
-        Department.HeaderText = "Department"
-        Department.MinimumWidth = 6
-        Department.Name = "Department"
-        Department.Width = 125
-        ' 
-        ' Status
-        ' 
-        Status.HeaderText = "Status"
-        Status.MinimumWidth = 6
-        Status.Name = "Status"
-        Status.Width = 125
-        ' 
         ' StudentForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1422, 977)
+        ClientSize = New Size(1422, 858)
         Controls.Add(pnlMain)
         Controls.Add(pnlSidebar)
         Name = "StudentForm"
@@ -473,6 +501,7 @@ Partial Class StudentForm
         pnlMain.ResumeLayout(False)
         pnlMain.PerformLayout()
         pnlActivitiesMain.ResumeLayout(False)
+        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         pnlPartnerComp.ResumeLayout(False)
         pnlPartnerComp.PerformLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).EndInit()
@@ -485,7 +514,6 @@ Partial Class StudentForm
         pnlStudent.ResumeLayout(False)
         pnlStudent.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -517,10 +545,13 @@ Partial Class StudentForm
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblTotalStudentsTitle As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Student_ID As DataGridViewTextBoxColumn
     Friend WithEvents Student_Name As DataGridViewTextBoxColumn
     Friend WithEvents Program As DataGridViewTextBoxColumn
     Friend WithEvents Department As DataGridViewTextBoxColumn
+    Friend WithEvents Company As DataGridViewTextBoxColumn
     Friend WithEvents Status As DataGridViewTextBoxColumn
+    Friend WithEvents Supervisor As DataGridViewTextBoxColumn
+    Friend WithEvents Rating As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridView1 As RoundedPanel
 End Class

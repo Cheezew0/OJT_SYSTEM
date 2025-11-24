@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class DashboardForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DashboardForm))
         pnlSidebar = New Panel()
         pnlBottomMenu = New Panel()
         btnLogout = New Button()
@@ -93,7 +93,7 @@ Partial Class Form1
         pnlSidebar.Dock = DockStyle.Left
         pnlSidebar.Location = New Point(0, 0)
         pnlSidebar.Name = "pnlSidebar"
-        pnlSidebar.Size = New Size(230, 977)
+        pnlSidebar.Size = New Size(230, 858)
         pnlSidebar.TabIndex = 0
         ' 
         ' pnlBottomMenu
@@ -101,7 +101,7 @@ Partial Class Form1
         pnlBottomMenu.Controls.Add(btnLogout)
         pnlBottomMenu.Controls.Add(btnFaculty)
         pnlBottomMenu.Dock = DockStyle.Bottom
-        pnlBottomMenu.Location = New Point(0, 838)
+        pnlBottomMenu.Location = New Point(0, 719)
         pnlBottomMenu.Name = "pnlBottomMenu"
         pnlBottomMenu.Size = New Size(230, 139)
         pnlBottomMenu.TabIndex = 5
@@ -223,7 +223,7 @@ Partial Class Form1
         ' PictureBoxLogo
         ' 
         PictureBoxLogo.ErrorImage = CType(resources.GetObject("PictureBoxLogo.ErrorImage"), Image)
-        PictureBoxLogo.Image = My.Resources.Resources.image_1
+        PictureBoxLogo.Image = CType(resources.GetObject("PictureBoxLogo.Image"), Image)
         PictureBoxLogo.InitialImage = CType(resources.GetObject("PictureBoxLogo.InitialImage"), Image)
         PictureBoxLogo.Location = New Point(42, 22)
         PictureBoxLogo.Name = "PictureBoxLogo"
@@ -243,7 +243,7 @@ Partial Class Form1
         pnlMain.Dock = DockStyle.Fill
         pnlMain.Location = New Point(230, 0)
         pnlMain.Name = "pnlMain"
-        pnlMain.Size = New Size(1192, 977)
+        pnlMain.Size = New Size(1192, 858)
         pnlMain.TabIndex = 1
         ' 
         ' pnlActivitiesMain
@@ -252,7 +252,7 @@ Partial Class Form1
         pnlActivitiesMain.Controls.Add(Panel2)
         pnlActivitiesMain.Controls.Add(Panel1)
         pnlActivitiesMain.Controls.Add(pnlAct1)
-        pnlActivitiesMain.Location = New Point(98, 340)
+        pnlActivitiesMain.Location = New Point(98, 264)
         pnlActivitiesMain.Name = "pnlActivitiesMain"
         pnlActivitiesMain.Size = New Size(1014, 524)
         pnlActivitiesMain.TabIndex = 5
@@ -371,7 +371,7 @@ Partial Class Form1
         pnlPartnerComp.Controls.Add(lblPartnerCompCount)
         pnlPartnerComp.Controls.Add(PictureBox4)
         pnlPartnerComp.Controls.Add(lblPartnerComp)
-        pnlPartnerComp.Location = New Point(882, 156)
+        pnlPartnerComp.Location = New Point(882, 142)
         pnlPartnerComp.Name = "pnlPartnerComp"
         pnlPartnerComp.Size = New Size(230, 92)
         pnlPartnerComp.TabIndex = 4
@@ -410,7 +410,7 @@ Partial Class Form1
         pnlCompIntern.Controls.Add(Label2)
         pnlCompIntern.Controls.Add(PictureBox3)
         pnlCompIntern.Controls.Add(lblCompIntern)
-        pnlCompIntern.Location = New Point(625, 156)
+        pnlCompIntern.Location = New Point(624, 142)
         pnlCompIntern.Name = "pnlCompIntern"
         pnlCompIntern.Size = New Size(230, 92)
         pnlCompIntern.TabIndex = 3
@@ -449,7 +449,7 @@ Partial Class Form1
         pnlActiveStud.Controls.Add(lblActStudCount)
         pnlActiveStud.Controls.Add(PictureBox2)
         pnlActiveStud.Controls.Add(lblActiveStud)
-        pnlActiveStud.Location = New Point(362, 156)
+        pnlActiveStud.Location = New Point(363, 142)
         pnlActiveStud.Name = "pnlActiveStud"
         pnlActiveStud.Size = New Size(230, 92)
         pnlActiveStud.TabIndex = 2
@@ -479,9 +479,9 @@ Partial Class Form1
         lblActiveStud.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblActiveStud.Location = New Point(32, 14)
         lblActiveStud.Name = "lblActiveStud"
-        lblActiveStud.Size = New Size(125, 23)
+        lblActiveStud.Size = New Size(136, 23)
         lblActiveStud.TabIndex = 3
-        lblActiveStud.Text = "Total Students"
+        lblActiveStud.Text = "Active Students"
         ' 
         ' pnlStudent
         ' 
@@ -489,7 +489,7 @@ Partial Class Form1
         pnlStudent.Controls.Add(lblStudCount)
         pnlStudent.Controls.Add(PictureBox1)
         pnlStudent.Controls.Add(lblTotalStudentsTitle)
-        pnlStudent.Location = New Point(98, 156)
+        pnlStudent.Location = New Point(98, 142)
         pnlStudent.Name = "pnlStudent"
         pnlStudent.Size = New Size(230, 92)
         pnlStudent.TabIndex = 1
@@ -498,6 +498,7 @@ Partial Class Form1
         ' 
         lblStudCount.AutoSize = True
         lblStudCount.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblStudCount.ForeColor = Color.Black
         lblStudCount.Location = New Point(159, 37)
         lblStudCount.Name = "lblStudCount"
         lblStudCount.Size = New Size(35, 41)
@@ -527,21 +528,21 @@ Partial Class Form1
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(98, 73)
+        Label1.Location = New Point(98, 62)
         Label1.Name = "Label1"
         Label1.Size = New Size(296, 50)
         Label1.TabIndex = 0
         Label1.Text = "Summary Cards"
         ' 
-        ' Form1
+        ' DashboardForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1422, 977)
+        ClientSize = New Size(1422, 858)
         Controls.Add(pnlMain)
         Controls.Add(pnlSidebar)
         FormBorderStyle = FormBorderStyle.FixedSingle
-        Name = "Form1"
+        Name = "DashboardForm"
         Text = "Dashboard"
         pnlSidebar.ResumeLayout(False)
         pnlBottomMenu.ResumeLayout(False)
