@@ -235,9 +235,9 @@ Partial Class Form5
         Label2.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label2.Location = New Point(36, 169)
         Label2.Name = "Label2"
-        Label2.Size = New Size(43, 23)
+        Label2.Size = New Size(79, 23)
         Label2.TabIndex = 8
-        Label2.Text = "Sex:"
+        Label2.Text = "Address:"
         ' 
         ' Form5
         ' 
