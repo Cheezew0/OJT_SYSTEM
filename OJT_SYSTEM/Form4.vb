@@ -20,7 +20,7 @@
     End Sub
 
     Private Sub pnlStudInfo_Paint(sender As Object, e As PaintEventArgs) Handles pnlStudInfo.Paint
-        pnlStudInfo.BackColor = ColorTranslator.FromHtml("#D9D9D9")
+        pnlStudInfo.BackColor = ColorTranslator.FromHtml("#F7F7f7")
         pnlStudInfo.Region = RoundCorners(pnlStudInfo, 20)
     End Sub
 
@@ -43,7 +43,7 @@
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles pnlEval.Paint
-        pnlEval.BackColor = ColorTranslator.FromHtml("#D9D9D9")
+        pnlEval.BackColor = ColorTranslator.FromHtml("#F7F7f7")
         pnlEval.Region = RoundCorners(pnlEval, 20)
     End Sub
 
@@ -69,5 +69,11 @@
         If result = DialogResult.Yes Then
             Application.Exit()
         End If
+    End Sub
+
+    Private Sub btnEvaluationLog_Click(sender As Object, e As EventArgs) Handles btnEvaluationLog.Click
+        Dim profileForm As New MyProfileForm()
+        profileForm.Show()
+        Me.Hide()
     End Sub
 End Class

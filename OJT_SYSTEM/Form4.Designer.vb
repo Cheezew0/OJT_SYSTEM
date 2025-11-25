@@ -671,8 +671,9 @@ Partial Class EvaluationForm
         ClientSize = New Size(1422, 858)
         Controls.Add(pnlMain)
         Controls.Add(pnlSidebar)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "EvaluationForm"
-        Text = "Form4"
+        Text = "Pasig Institute of Technology"
         pnlSidebar.ResumeLayout(False)
         pnlBottomMenu.ResumeLayout(False)
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).EndInit()

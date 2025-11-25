@@ -22,10 +22,10 @@
         btnLogout.BackColor = ColorTranslator.FromHtml("#1A4F5D")
 
         pnlMain.BackColor = ColorTranslator.FromHtml("#B7C0D9")
-        pnlsearch.BackColor = ColorTranslator.FromHtml("#D9D9D9")
-        pnlStudInfo.BackColor = ColorTranslator.FromHtml("#D9D9D9")
-        pnlInternInfo.BackColor = ColorTranslator.FromHtml("#D9D9D9")
-        pnlProgress.BackColor = ColorTranslator.FromHtml("#D9D9D9")
+        pnlsearch.BackColor = ColorTranslator.FromHtml("#F7F7F7")
+        pnlStudInfo.BackColor = ColorTranslator.FromHtml("#F7F7F7")
+        pnlInternInfo.BackColor = ColorTranslator.FromHtml("#F7F7F7")
+        pnlProgress.BackColor = ColorTranslator.FromHtml("#F7F7F7")
 
 
         pnlProgress.Region = RoundCorners(pnlProgress, 20)
@@ -39,7 +39,7 @@
     End Sub
 
     Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles pnlsearch.Paint
-        pnlsearch.BackColor = ColorTranslator.FromHtml("#D9D9D9")
+        pnlsearch.BackColor = ColorTranslator.FromHtml("#F7F7F7")
     End Sub
 
     Private Sub Label7_Click(sender As Object, e As EventArgs) Handles Label7.Click
@@ -94,5 +94,9 @@
         If result = DialogResult.Yes Then
             Application.Exit()
         End If
+    End Sub
+
+    Private Sub pnlStudInfo_Paint(sender As Object, e As PaintEventArgs) Handles pnlStudInfo.Paint
+
     End Sub
 End Class

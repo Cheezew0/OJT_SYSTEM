@@ -455,9 +455,9 @@ Partial Class InternForm
         pnlProgress.Controls.Add(Panel3)
         pnlProgress.Controls.Add(Label27)
         pnlProgress.Controls.Add(Label28)
-        pnlProgress.Location = New Point(802, 198)
+        pnlProgress.Location = New Point(669, 198)
         pnlProgress.Name = "pnlProgress"
-        pnlProgress.Size = New Size(348, 319)
+        pnlProgress.Size = New Size(483, 276)
         pnlProgress.TabIndex = 26
         ' 
         ' Label13
@@ -473,7 +473,7 @@ Partial Class InternForm
         ' lblEndDate
         ' 
         lblEndDate.AutoSize = True
-        lblEndDate.Location = New Point(226, 221)
+        lblEndDate.Location = New Point(328, 221)
         lblEndDate.Name = "lblEndDate"
         lblEndDate.Size = New Size(70, 20)
         lblEndDate.TabIndex = 10
@@ -500,7 +500,7 @@ Partial Class InternForm
         ' lblStartdate
         ' 
         lblStartdate.AutoSize = True
-        lblStartdate.Location = New Point(226, 176)
+        lblStartdate.Location = New Point(328, 176)
         lblStartdate.Name = "lblStartdate"
         lblStartdate.Size = New Size(97, 20)
         lblStartdate.TabIndex = 8
@@ -509,7 +509,7 @@ Partial Class InternForm
         ' Label22
         ' 
         Label22.AutoSize = True
-        Label22.Location = New Point(226, 80)
+        Label22.Location = New Point(328, 80)
         Label22.Name = "Label22"
         Label22.Size = New Size(31, 20)
         Label22.TabIndex = 16
@@ -518,7 +518,7 @@ Partial Class InternForm
         ' lblReqHrs
         ' 
         lblReqHrs.AutoSize = True
-        lblReqHrs.Location = New Point(226, 128)
+        lblReqHrs.Location = New Point(328, 128)
         lblReqHrs.Name = "lblReqHrs"
         lblReqHrs.Size = New Size(112, 20)
         lblReqHrs.TabIndex = 12
@@ -593,9 +593,9 @@ Partial Class InternForm
         pnlInternInfo.Controls.Add(lblSupervisor)
         pnlInternInfo.Controls.Add(pnlPartnerComp)
         pnlInternInfo.Controls.Add(Label9)
-        pnlInternInfo.Location = New Point(423, 198)
+        pnlInternInfo.Location = New Point(46, 528)
         pnlInternInfo.Name = "pnlInternInfo"
-        pnlInternInfo.Size = New Size(348, 319)
+        pnlInternInfo.Size = New Size(594, 279)
         pnlInternInfo.TabIndex = 25
         ' 
         ' Label25
@@ -611,7 +611,7 @@ Partial Class InternForm
         ' lblAddress
         ' 
         lblAddress.AutoSize = True
-        lblAddress.Location = New Point(226, 80)
+        lblAddress.Location = New Point(370, 80)
         lblAddress.Name = "lblAddress"
         lblAddress.Size = New Size(62, 20)
         lblAddress.TabIndex = 24
@@ -629,7 +629,7 @@ Partial Class InternForm
         ' lblStatus
         ' 
         lblStatus.AutoSize = True
-        lblStatus.Location = New Point(226, 221)
+        lblStatus.Location = New Point(370, 221)
         lblStatus.Name = "lblStatus"
         lblStatus.Size = New Size(49, 20)
         lblStatus.TabIndex = 10
@@ -656,7 +656,7 @@ Partial Class InternForm
         ' lblCompany
         ' 
         lblCompany.AutoSize = True
-        lblCompany.Location = New Point(226, 176)
+        lblCompany.Location = New Point(370, 176)
         lblCompany.Name = "lblCompany"
         lblCompany.Size = New Size(70, 20)
         lblCompany.TabIndex = 8
@@ -665,7 +665,7 @@ Partial Class InternForm
         ' lblSupervisor
         ' 
         lblSupervisor.AutoSize = True
-        lblSupervisor.Location = New Point(226, 125)
+        lblSupervisor.Location = New Point(370, 125)
         lblSupervisor.Name = "lblSupervisor"
         lblSupervisor.Size = New Size(81, 20)
         lblSupervisor.TabIndex = 12
@@ -732,13 +732,13 @@ Partial Class InternForm
         pnlStudInfo.Controls.Add(Label3)
         pnlStudInfo.Location = New Point(46, 198)
         pnlStudInfo.Name = "pnlStudInfo"
-        pnlStudInfo.Size = New Size(348, 319)
+        pnlStudInfo.Size = New Size(594, 319)
         pnlStudInfo.TabIndex = 7
         ' 
         ' lblEmail
         ' 
         lblEmail.AutoSize = True
-        lblEmail.Location = New Point(185, 221)
+        lblEmail.Location = New Point(370, 221)
         lblEmail.Name = "lblEmail"
         lblEmail.Size = New Size(49, 20)
         lblEmail.TabIndex = 22
@@ -756,7 +756,7 @@ Partial Class InternForm
         ' lblDepartment
         ' 
         lblDepartment.AutoSize = True
-        lblDepartment.Location = New Point(185, 269)
+        lblDepartment.Location = New Point(370, 269)
         lblDepartment.Name = "lblDepartment"
         lblDepartment.Size = New Size(89, 20)
         lblDepartment.TabIndex = 14
@@ -774,7 +774,7 @@ Partial Class InternForm
         ' lblCourse
         ' 
         lblCourse.AutoSize = True
-        lblCourse.Location = New Point(185, 173)
+        lblCourse.Location = New Point(370, 173)
         lblCourse.Name = "lblCourse"
         lblCourse.Size = New Size(57, 20)
         lblCourse.TabIndex = 6
@@ -792,7 +792,7 @@ Partial Class InternForm
         ' lblStudName
         ' 
         lblStudName.AutoSize = True
-        lblStudName.Location = New Point(185, 125)
+        lblStudName.Location = New Point(370, 125)
         lblStudName.Name = "lblStudName"
         lblStudName.Size = New Size(104, 20)
         lblStudName.TabIndex = 4
@@ -810,7 +810,7 @@ Partial Class InternForm
         ' lblStudID
         ' 
         lblStudID.AutoSize = True
-        lblStudID.Location = New Point(185, 78)
+        lblStudID.Location = New Point(370, 78)
         lblStudID.Name = "lblStudID"
         lblStudID.Size = New Size(79, 20)
         lblStudID.TabIndex = 2
@@ -842,8 +842,9 @@ Partial Class InternForm
         ClientSize = New Size(1422, 858)
         Controls.Add(pnlMain)
         Controls.Add(pnlSidebar)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "InternForm"
-        Text = "Form3"
+        Text = "Pasig Institute of Technology"
         pnlSidebar.ResumeLayout(False)
         pnlBottomMenu.ResumeLayout(False)
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).EndInit()
@@ -927,7 +928,6 @@ Partial Class InternForm
     Friend WithEvents Label16 As Label
     Friend WithEvents pnlInternInfo As Panel
     Friend WithEvents Label25 As Label
-    Friend WithEvents pnlProgress As Panel
     Friend WithEvents Label13 As Label
     Friend WithEvents lblEndDate As Label
     Friend WithEvents Label19 As Label
@@ -942,4 +942,5 @@ Partial Class InternForm
     Friend WithEvents Label27 As Label
     Friend WithEvents Label28 As Label
     Friend WithEvents btnSearch As Button
+    Friend Protected WithEvents pnlProgress As Panel
 End Class

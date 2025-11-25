@@ -27,7 +27,7 @@
     End Sub
 
     Private Sub Panel1_Paint_1(sender As Object, e As PaintEventArgs) Handles pnlStudent.Paint
-        pnlStudent.BackColor = ColorTranslator.FromHtml("#D9D9D9")
+        pnlStudent.BackColor = ColorTranslator.FromHtml("#f7f7f7")
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
@@ -39,15 +39,15 @@
     End Sub
 
     Private Sub pnlActiveStud_Paint(sender As Object, e As PaintEventArgs) Handles pnlActiveStud.Paint
-        pnlActiveStud.BackColor = ColorTranslator.FromHtml("#D9D9D9")
+        pnlActiveStud.BackColor = ColorTranslator.FromHtml("#f7f7f7")
     End Sub
 
     Private Sub pnlCompIntern_Paint(sender As Object, e As PaintEventArgs) Handles pnlCompIntern.Paint
-        pnlCompIntern.BackColor = ColorTranslator.FromHtml("#D9D9D9")
+        pnlCompIntern.BackColor = ColorTranslator.FromHtml("#f7f7f7")
     End Sub
 
     Private Sub pnlPartnerComp_Paint(sender As Object, e As PaintEventArgs) Handles pnlPartnerComp.Paint
-        pnlPartnerComp.BackColor = ColorTranslator.FromHtml("#D9D9D9")
+        pnlPartnerComp.BackColor = ColorTranslator.FromHtml("#f7f7f7")
     End Sub
 
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles lblCompIntern.Click
@@ -58,10 +58,10 @@
     End Sub
 
     Private Sub pnlActivities_Paint(sender As Object, e As PaintEventArgs) Handles pnlActivitiesMain.Paint
-        pnlActivitiesMain.BackColor = ColorTranslator.FromHtml("#D9D9D9")
+        pnlActivitiesMain.BackColor = ColorTranslator.FromHtml("#f7f7f7")
     End Sub
 
-    Private Sub pnlAct1_Paint(sender As Object, e As PaintEventArgs) Handles pnlAct1.Paint
+    Private Sub pnlAct1_Paint(sender As Object, e As PaintEventArgs) Handles pnlPcomp.Paint
 
     End Sub
 
