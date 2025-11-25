@@ -1,0 +1,444 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class Form6
+    Inherits System.Windows.Forms.Form
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form6))
+        Label9 = New Label()
+        Label8 = New Label()
+        lbl = New Label()
+        Label11 = New Label()
+        pnlAcadInfo = New Panel()
+        Label5 = New Label()
+        Label4 = New Label()
+        Label10 = New Label()
+        Label2 = New Label()
+        Label3 = New Label()
+        lblTotalStudentsTitle = New Label()
+        pnlPersonalInfo = New Panel()
+        Label12 = New Label()
+        btnEditProf = New Button()
+        Label6 = New Label()
+        Label7 = New Label()
+        btnCancel = New Button()
+        btnSave = New Button()
+        Label1 = New Label()
+        btnInternship = New Button()
+        btnProfile = New Button()
+        PictureBoxLogo = New PictureBox()
+        btnLogout = New Button()
+        btnFaculty = New Button()
+        pnlBottomMenu = New Panel()
+        pnlSidebar = New Panel()
+        pnlContactInfo = New Panel()
+        pnlMain = New Panel()
+        pnlAcadInfo.SuspendLayout()
+        pnlPersonalInfo.SuspendLayout()
+        CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
+        pnlBottomMenu.SuspendLayout()
+        pnlSidebar.SuspendLayout()
+        pnlContactInfo.SuspendLayout()
+        pnlMain.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label9.Location = New Point(17, 165)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(65, 23)
+        Label9.TabIndex = 12
+        Label9.Text = "Status:"
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label8.Location = New Point(17, 131)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(113, 23)
+        Label8.TabIndex = 11
+        Label8.Text = "Department:"
+        ' 
+        ' lbl
+        ' 
+        lbl.AutoSize = True
+        lbl.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lbl.Location = New Point(17, 97)
+        lbl.Name = "lbl"
+        lbl.Size = New Size(94, 23)
+        lbl.TabIndex = 9
+        lbl.Text = "Year Level:"
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Font = New Font("Segoe UI", 18F, FontStyle.Bold)
+        Label11.Location = New Point(17, 13)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(340, 41)
+        Label11.TabIndex = 23
+        Label11.Text = "Academic Information:"
+        ' 
+        ' pnlAcadInfo
+        ' 
+        pnlAcadInfo.Controls.Add(Label9)
+        pnlAcadInfo.Controls.Add(Label8)
+        pnlAcadInfo.Controls.Add(lbl)
+        pnlAcadInfo.Controls.Add(Label5)
+        pnlAcadInfo.Controls.Add(Label11)
+        pnlAcadInfo.Location = New Point(316, 372)
+        pnlAcadInfo.Name = "pnlAcadInfo"
+        pnlAcadInfo.Size = New Size(505, 215)
+        pnlAcadInfo.TabIndex = 26
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label5.Location = New Point(17, 63)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(69, 23)
+        Label5.TabIndex = 7
+        Label5.Text = "Course:"
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.Location = New Point(17, 172)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(79, 23)
+        Label4.TabIndex = 24
+        Label4.Text = "Address:"
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label10.Location = New Point(17, 20)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(323, 41)
+        Label10.TabIndex = 22
+        Label10.Text = "Personal Information:"
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Location = New Point(17, 138)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(43, 23)
+        Label2.TabIndex = 8
+        Label2.Text = "Sex:"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label3.Location = New Point(17, 104)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(96, 23)
+        Label3.TabIndex = 3
+        Label3.Text = "Full Name:"
+        ' 
+        ' lblTotalStudentsTitle
+        ' 
+        lblTotalStudentsTitle.AutoSize = True
+        lblTotalStudentsTitle.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblTotalStudentsTitle.Location = New Point(17, 70)
+        lblTotalStudentsTitle.Name = "lblTotalStudentsTitle"
+        lblTotalStudentsTitle.Size = New Size(102, 23)
+        lblTotalStudentsTitle.TabIndex = 0
+        lblTotalStudentsTitle.Text = "Student ID:"
+        ' 
+        ' pnlPersonalInfo
+        ' 
+        pnlPersonalInfo.Controls.Add(Label4)
+        pnlPersonalInfo.Controls.Add(Label10)
+        pnlPersonalInfo.Controls.Add(Label2)
+        pnlPersonalInfo.Controls.Add(Label3)
+        pnlPersonalInfo.Controls.Add(lblTotalStudentsTitle)
+        pnlPersonalInfo.Location = New Point(316, 124)
+        pnlPersonalInfo.Name = "pnlPersonalInfo"
+        pnlPersonalInfo.Size = New Size(603, 230)
+        pnlPersonalInfo.TabIndex = 25
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI", 18F, FontStyle.Bold)
+        Label12.Location = New Point(17, 13)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(313, 41)
+        Label12.TabIndex = 24
+        Label12.Text = "Contact Information:"
+        ' 
+        ' btnEditProf
+        ' 
+        btnEditProf.ForeColor = Color.Teal
+        btnEditProf.Location = New Point(1154, 124)
+        btnEditProf.Name = "btnEditProf"
+        btnEditProf.Size = New Size(181, 52)
+        btnEditProf.TabIndex = 28
+        btnEditProf.Text = "Edit Profile"
+        btnEditProf.UseVisualStyleBackColor = True
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.Location = New Point(17, 65)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(149, 23)
+        Label6.TabIndex = 10
+        Label6.Text = "Contact Number:"
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label7.Location = New Point(17, 102)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(59, 23)
+        Label7.TabIndex = 5
+        Label7.Text = "Email:"
+        ' 
+        ' btnCancel
+        ' 
+        btnCancel.Location = New Point(1154, 262)
+        btnCancel.Name = "btnCancel"
+        btnCancel.Size = New Size(181, 52)
+        btnCancel.TabIndex = 30
+        btnCancel.Text = "Cancel"
+        btnCancel.UseVisualStyleBackColor = True
+        ' 
+        ' btnSave
+        ' 
+        btnSave.ForeColor = Color.White
+        btnSave.Location = New Point(1154, 194)
+        btnSave.Name = "btnSave"
+        btnSave.Size = New Size(181, 52)
+        btnSave.TabIndex = 29
+        btnSave.Text = "Save"
+        btnSave.UseVisualStyleBackColor = True
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI", 22.2F, FontStyle.Bold)
+        Label1.Location = New Point(333, 52)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(203, 50)
+        Label1.TabIndex = 6
+        Label1.Text = "My Profile"
+        ' 
+        ' btnInternship
+        ' 
+        btnInternship.BackColor = Color.Transparent
+        btnInternship.BackgroundImageLayout = ImageLayout.None
+        btnInternship.FlatAppearance.BorderSize = 0
+        btnInternship.FlatStyle = FlatStyle.Flat
+        btnInternship.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnInternship.ForeColor = Color.White
+        btnInternship.Image = My.Resources.Resources.Graduation_Cap
+        btnInternship.Location = New Point(12, 227)
+        btnInternship.Name = "btnInternship"
+        btnInternship.Padding = New Padding(10, 0, 0, 0)
+        btnInternship.Size = New Size(205, 65)
+        btnInternship.TabIndex = 2
+        btnInternship.Text = "Internship"
+        btnInternship.TextAlign = ContentAlignment.MiddleRight
+        btnInternship.TextImageRelation = TextImageRelation.ImageBeforeText
+        btnInternship.UseVisualStyleBackColor = False
+        ' 
+        ' btnProfile
+        ' 
+        btnProfile.BackColor = Color.Transparent
+        btnProfile.BackgroundImageLayout = ImageLayout.None
+        btnProfile.FlatAppearance.BorderSize = 0
+        btnProfile.FlatStyle = FlatStyle.Flat
+        btnProfile.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnProfile.ForeColor = Color.White
+        btnProfile.Image = My.Resources.Resources.Home
+        btnProfile.Location = New Point(12, 156)
+        btnProfile.Name = "btnProfile"
+        btnProfile.Padding = New Padding(10, 0, 0, 0)
+        btnProfile.Size = New Size(205, 65)
+        btnProfile.TabIndex = 1
+        btnProfile.Text = "My Profile"
+        btnProfile.TextAlign = ContentAlignment.MiddleRight
+        btnProfile.TextImageRelation = TextImageRelation.ImageBeforeText
+        btnProfile.UseVisualStyleBackColor = False
+        ' 
+        ' PictureBoxLogo
+        ' 
+        PictureBoxLogo.ErrorImage = CType(resources.GetObject("PictureBoxLogo.ErrorImage"), Image)
+        PictureBoxLogo.Image = CType(resources.GetObject("PictureBoxLogo.Image"), Image)
+        PictureBoxLogo.InitialImage = CType(resources.GetObject("PictureBoxLogo.InitialImage"), Image)
+        PictureBoxLogo.Location = New Point(42, 22)
+        PictureBoxLogo.Name = "PictureBoxLogo"
+        PictureBoxLogo.Size = New Size(125, 101)
+        PictureBoxLogo.SizeMode = PictureBoxSizeMode.Zoom
+        PictureBoxLogo.TabIndex = 0
+        PictureBoxLogo.TabStop = False
+        ' 
+        ' btnLogout
+        ' 
+        btnLogout.BackgroundImageLayout = ImageLayout.None
+        btnLogout.FlatAppearance.BorderSize = 0
+        btnLogout.FlatStyle = FlatStyle.Flat
+        btnLogout.ForeColor = Color.White
+        btnLogout.Image = My.Resources.Resources.Logout
+        btnLogout.ImageAlign = ContentAlignment.MiddleLeft
+        btnLogout.Location = New Point(42, 75)
+        btnLogout.Name = "btnLogout"
+        btnLogout.Padding = New Padding(20, 0, 0, 0)
+        btnLogout.Size = New Size(150, 48)
+        btnLogout.TabIndex = 1
+        btnLogout.Text = "Log Out"
+        btnLogout.TextAlign = ContentAlignment.MiddleRight
+        btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText
+        btnLogout.UseVisualStyleBackColor = False
+        ' 
+        ' btnFaculty
+        ' 
+        btnFaculty.BackgroundImageLayout = ImageLayout.None
+        btnFaculty.FlatAppearance.BorderSize = 0
+        btnFaculty.FlatStyle = FlatStyle.Flat
+        btnFaculty.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        btnFaculty.ForeColor = Color.White
+        btnFaculty.Image = My.Resources.Resources.Test_Account
+        btnFaculty.ImageAlign = ContentAlignment.MiddleLeft
+        btnFaculty.Location = New Point(42, 21)
+        btnFaculty.Name = "btnFaculty"
+        btnFaculty.Padding = New Padding(20, 0, 0, 0)
+        btnFaculty.RightToLeft = RightToLeft.No
+        btnFaculty.Size = New Size(150, 48)
+        btnFaculty.TabIndex = 0
+        btnFaculty.Text = "Student"
+        btnFaculty.TextAlign = ContentAlignment.MiddleRight
+        btnFaculty.TextImageRelation = TextImageRelation.ImageBeforeText
+        btnFaculty.UseVisualStyleBackColor = False
+        ' 
+        ' pnlBottomMenu
+        ' 
+        pnlBottomMenu.Controls.Add(btnLogout)
+        pnlBottomMenu.Controls.Add(btnFaculty)
+        pnlBottomMenu.Dock = DockStyle.Bottom
+        pnlBottomMenu.Location = New Point(0, 719)
+        pnlBottomMenu.Name = "pnlBottomMenu"
+        pnlBottomMenu.Size = New Size(230, 139)
+        pnlBottomMenu.TabIndex = 5
+        ' 
+        ' pnlSidebar
+        ' 
+        pnlSidebar.BackColor = Color.Transparent
+        pnlSidebar.Controls.Add(pnlBottomMenu)
+        pnlSidebar.Controls.Add(btnInternship)
+        pnlSidebar.Controls.Add(btnProfile)
+        pnlSidebar.Controls.Add(PictureBoxLogo)
+        pnlSidebar.Dock = DockStyle.Left
+        pnlSidebar.Location = New Point(0, 0)
+        pnlSidebar.Name = "pnlSidebar"
+        pnlSidebar.Size = New Size(230, 858)
+        pnlSidebar.TabIndex = 6
+        ' 
+        ' pnlContactInfo
+        ' 
+        pnlContactInfo.Controls.Add(Label12)
+        pnlContactInfo.Controls.Add(Label6)
+        pnlContactInfo.Controls.Add(Label7)
+        pnlContactInfo.Location = New Point(843, 372)
+        pnlContactInfo.Name = "pnlContactInfo"
+        pnlContactInfo.Size = New Size(492, 215)
+        pnlContactInfo.TabIndex = 24
+        ' 
+        ' pnlMain
+        ' 
+        pnlMain.Controls.Add(btnCancel)
+        pnlMain.Controls.Add(btnSave)
+        pnlMain.Controls.Add(Label1)
+        pnlMain.Controls.Add(btnEditProf)
+        pnlMain.Controls.Add(pnlContactInfo)
+        pnlMain.Controls.Add(pnlPersonalInfo)
+        pnlMain.Controls.Add(pnlAcadInfo)
+        pnlMain.Dock = DockStyle.Fill
+        pnlMain.Location = New Point(0, 0)
+        pnlMain.Name = "pnlMain"
+        pnlMain.Size = New Size(1422, 858)
+        pnlMain.TabIndex = 7
+        ' 
+        ' Form6
+        ' 
+        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(1422, 858)
+        Controls.Add(pnlSidebar)
+        Controls.Add(pnlMain)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Name = "Form6"
+        Text = "Pasig Institute of Technology"
+        pnlAcadInfo.ResumeLayout(False)
+        pnlAcadInfo.PerformLayout()
+        pnlPersonalInfo.ResumeLayout(False)
+        pnlPersonalInfo.PerformLayout()
+        CType(PictureBoxLogo, ComponentModel.ISupportInitialize).EndInit()
+        pnlBottomMenu.ResumeLayout(False)
+        pnlSidebar.ResumeLayout(False)
+        pnlContactInfo.ResumeLayout(False)
+        pnlContactInfo.PerformLayout()
+        pnlMain.ResumeLayout(False)
+        pnlMain.PerformLayout()
+        ResumeLayout(False)
+    End Sub
+
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents lbl As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents pnlAcadInfo As Panel
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents lblTotalStudentsTitle As Label
+    Friend WithEvents pnlPersonalInfo As Panel
+    Friend WithEvents Label12 As Label
+    Friend WithEvents btnEditProf As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents btnCancel As Button
+    Friend WithEvents btnSave As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents btnInternship As Button
+    Friend WithEvents btnProfile As Button
+    Friend WithEvents PictureBoxLogo As PictureBox
+    Friend WithEvents btnLogout As Button
+    Friend WithEvents btnFaculty As Button
+    Friend WithEvents pnlBottomMenu As Panel
+    Friend WithEvents pnlSidebar As Panel
+    Friend WithEvents pnlContactInfo As Panel
+    Friend WithEvents pnlMain As Panel
+End Class
