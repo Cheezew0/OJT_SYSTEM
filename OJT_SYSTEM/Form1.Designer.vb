@@ -101,9 +101,9 @@ Partial Class DashboardForm
         pnlBottomMenu.Controls.Add(btnLogout)
         pnlBottomMenu.Controls.Add(btnFaculty)
         pnlBottomMenu.Dock = DockStyle.Bottom
-        pnlBottomMenu.Location = New Point(0, 719)
+        pnlBottomMenu.Location = New Point(0, 670)
         pnlBottomMenu.Name = "pnlBottomMenu"
-        pnlBottomMenu.Size = New Size(230, 139)
+        pnlBottomMenu.Size = New Size(230, 188)
         pnlBottomMenu.TabIndex = 5
         ' 
         ' btnLogout
@@ -114,10 +114,10 @@ Partial Class DashboardForm
         btnLogout.ForeColor = Color.White
         btnLogout.Image = My.Resources.Resources.Logout
         btnLogout.ImageAlign = ContentAlignment.MiddleLeft
-        btnLogout.Location = New Point(42, 75)
+        btnLogout.Location = New Point(42, 106)
         btnLogout.Name = "btnLogout"
         btnLogout.Padding = New Padding(20, 0, 0, 0)
-        btnLogout.Size = New Size(150, 48)
+        btnLogout.Size = New Size(150, 64)
         btnLogout.TabIndex = 1
         btnLogout.Text = "Log Out"
         btnLogout.TextAlign = ContentAlignment.MiddleRight
@@ -133,11 +133,11 @@ Partial Class DashboardForm
         btnFaculty.ForeColor = Color.White
         btnFaculty.Image = My.Resources.Resources.Test_Account
         btnFaculty.ImageAlign = ContentAlignment.MiddleLeft
-        btnFaculty.Location = New Point(42, 21)
+        btnFaculty.Location = New Point(42, 36)
         btnFaculty.Name = "btnFaculty"
         btnFaculty.Padding = New Padding(20, 0, 0, 0)
         btnFaculty.RightToLeft = RightToLeft.No
-        btnFaculty.Size = New Size(150, 48)
+        btnFaculty.Size = New Size(150, 64)
         btnFaculty.TabIndex = 0
         btnFaculty.Text = "Faculty"
         btnFaculty.TextAlign = ContentAlignment.MiddleRight
