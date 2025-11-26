@@ -99,10 +99,11 @@ Partial Class FrmChooseLogin
         Controls.Add(panellf)
         Controls.Add(picLogo)
         FormBorderStyle = FormBorderStyle.FixedSingle
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         Name = "FrmChooseLogin"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Welcome"
+        Text = "OJT Evaluation System"
         CType(picLogo, ComponentModel.ISupportInitialize).EndInit()
         panellf.ResumeLayout(False)
         panellf.PerformLayout()

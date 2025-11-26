@@ -22,6 +22,7 @@ Partial Class FrmStudentPortal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmStudentPortal))
         lblStudentLogIn = New Label()
         pnlStudentLogIn = New Panel()
         btnBack = New Button()
@@ -224,9 +225,10 @@ Partial Class FrmStudentPortal
         ClientSize = New Size(1262, 673)
         Controls.Add(pnlCreate)
         Controls.Add(pnlStudentLogIn)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "FrmStudentPortal"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Form7"
+        Text = "Student Portal"
         pnlStudentLogIn.ResumeLayout(False)
         pnlStudentLogIn.PerformLayout()
         pnlCreate.ResumeLayout(False)

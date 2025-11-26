@@ -22,6 +22,7 @@ Partial Class FrmFacultyLogIn
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmFacultyLogIn))
         lblFacultyLogIn = New Label()
         btnLogIn = New Button()
         txtBoxEmail = New TextBox()
@@ -112,9 +113,10 @@ Partial Class FrmFacultyLogIn
         Controls.Add(txtBoxEmail)
         Controls.Add(btnLogIn)
         Controls.Add(lblFacultyLogIn)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "FrmFacultyLogIn"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Form8"
+        Text = "Faculty Log In"
         ResumeLayout(False)
         PerformLayout()
     End Sub
