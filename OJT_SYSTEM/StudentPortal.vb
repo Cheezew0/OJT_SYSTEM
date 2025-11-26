@@ -9,4 +9,10 @@
         ChooseLogIn.Show()
         Me.Hide()
     End Sub
+
+    Private Sub btnLogIn_Click(sender As Object, e As EventArgs) Handles btnLogIn.Click
+        Dim profileForm As New MyProfileForm()
+        profileForm.Show()
+        Me.Hide()
+    End Sub
 End Class

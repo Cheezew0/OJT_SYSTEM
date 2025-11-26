@@ -72,8 +72,6 @@
     End Sub
 
     Private Sub btnEvaluationLog_Click(sender As Object, e As EventArgs) Handles btnEvaluationLog.Click
-        Dim profileForm As New MyProfileForm()
-        profileForm.Show()
-        Me.Hide()
+
     End Sub
 End Class

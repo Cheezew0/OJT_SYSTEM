@@ -7,7 +7,9 @@ Public Class MyProfileForm
     End Sub
 
     Private Sub btnStudent_Click(sender As Object, e As EventArgs) Handles btnInternship.Click
-
+        Dim btnInternshipForm As New StudInternForm
+        btnInternshipForm.Show()
+        Me.Hide()
     End Sub
 
     Private Sub Label10_Click(sender As Object, e As EventArgs) Handles Label10.Click

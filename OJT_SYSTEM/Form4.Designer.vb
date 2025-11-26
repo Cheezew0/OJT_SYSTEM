@@ -331,9 +331,9 @@ Partial Class EvaluationForm
         ' 
         ' DateTimePicker1
         ' 
-        DateTimePicker1.Location = New Point(236, 73)
+        DateTimePicker1.Location = New Point(238, 121)
         DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(154, 27)
+        DateTimePicker1.Size = New Size(152, 27)
         DateTimePicker1.TabIndex = 13
         ' 
         ' ComboBox5
@@ -407,7 +407,7 @@ Partial Class EvaluationForm
         ' ComboBox1
         ' 
         ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(238, 123)
+        ComboBox1.Location = New Point(238, 75)
         ComboBox1.Name = "ComboBox1"
         ComboBox1.Size = New Size(152, 28)
         ComboBox1.TabIndex = 4
@@ -415,7 +415,7 @@ Partial Class EvaluationForm
         ' Label10
         ' 
         Label10.AutoSize = True
-        Label10.Location = New Point(47, 126)
+        Label10.Location = New Point(47, 80)
         Label10.Name = "Label10"
         Label10.Size = New Size(74, 20)
         Label10.TabIndex = 3
@@ -424,7 +424,7 @@ Partial Class EvaluationForm
         ' Label9
         ' 
         Label9.AutoSize = True
-        Label9.Location = New Point(47, 78)
+        Label9.Location = New Point(47, 126)
         Label9.Name = "Label9"
         Label9.Size = New Size(94, 20)
         Label9.TabIndex = 2
