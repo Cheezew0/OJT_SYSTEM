@@ -554,7 +554,7 @@ Partial Class DashboardForm
         pnlPartnerComp.Controls.Add(lblPartnerComp)
         pnlPartnerComp.Location = New Point(882, 142)
         pnlPartnerComp.Name = "pnlPartnerComp"
-        pnlPartnerComp.Size = New Size(230, 92)
+        pnlPartnerComp.Size = New Size(230, 99)
         pnlPartnerComp.TabIndex = 4
         ' 
         ' lblPartnerCompCount
@@ -572,7 +572,7 @@ Partial Class DashboardForm
         PictureBox4.BackgroundImage = CType(resources.GetObject("PictureBox4.BackgroundImage"), Image)
         PictureBox4.Location = New Point(30, 40)
         PictureBox4.Name = "PictureBox4"
-        PictureBox4.Size = New Size(41, 38)
+        PictureBox4.Size = New Size(40, 38)
         PictureBox4.TabIndex = 10
         PictureBox4.TabStop = False
         ' 
@@ -593,7 +593,7 @@ Partial Class DashboardForm
         pnlCompIntern.Controls.Add(lblCompIntern)
         pnlCompIntern.Location = New Point(624, 142)
         pnlCompIntern.Name = "pnlCompIntern"
-        pnlCompIntern.Size = New Size(230, 92)
+        pnlCompIntern.Size = New Size(230, 99)
         pnlCompIntern.TabIndex = 3
         ' 
         ' Label2
@@ -611,7 +611,7 @@ Partial Class DashboardForm
         PictureBox3.BackgroundImage = CType(resources.GetObject("PictureBox3.BackgroundImage"), Image)
         PictureBox3.Location = New Point(21, 40)
         PictureBox3.Name = "PictureBox3"
-        PictureBox3.Size = New Size(41, 38)
+        PictureBox3.Size = New Size(39, 38)
         PictureBox3.TabIndex = 7
         PictureBox3.TabStop = False
         ' 
@@ -632,7 +632,7 @@ Partial Class DashboardForm
         pnlActiveStud.Controls.Add(lblActiveStud)
         pnlActiveStud.Location = New Point(363, 142)
         pnlActiveStud.Name = "pnlActiveStud"
-        pnlActiveStud.Size = New Size(230, 92)
+        pnlActiveStud.Size = New Size(230, 99)
         pnlActiveStud.TabIndex = 2
         ' 
         ' lblActStudCount
@@ -650,7 +650,7 @@ Partial Class DashboardForm
         PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), Image)
         PictureBox2.Location = New Point(32, 40)
         PictureBox2.Name = "PictureBox2"
-        PictureBox2.Size = New Size(41, 38)
+        PictureBox2.Size = New Size(39, 38)
         PictureBox2.TabIndex = 4
         PictureBox2.TabStop = False
         ' 
@@ -672,7 +672,7 @@ Partial Class DashboardForm
         pnlStudent.Controls.Add(lblTotalStudentsTitle)
         pnlStudent.Location = New Point(98, 142)
         pnlStudent.Name = "pnlStudent"
-        pnlStudent.Size = New Size(230, 92)
+        pnlStudent.Size = New Size(230, 99)
         pnlStudent.TabIndex = 1
         ' 
         ' lblStudCount

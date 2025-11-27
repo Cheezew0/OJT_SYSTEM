@@ -25,23 +25,14 @@ Partial Class FrmStudentPortal
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmStudentPortal))
         lblStudentLogIn = New Label()
         pnlStudentLogIn = New Panel()
+        btnCreate = New Button()
         btnBack = New Button()
         btnLogIn = New Button()
         txtBoxPassword = New TextBox()
         lblPassword = New Label()
         lblEmail = New Label()
         txtBoxEmail = New TextBox()
-        pnlCreate = New Panel()
-        btnCreate = New Button()
-        txtBoxPassword2 = New TextBox()
-        txtBoxEmail2 = New TextBox()
-        txrBoxStudentID = New TextBox()
-        lblPassword2 = New Label()
-        lblEmail2 = New Label()
-        LblStudentID = New Label()
-        lblStudentSignUp = New Label()
         pnlStudentLogIn.SuspendLayout()
-        pnlCreate.SuspendLayout()
         SuspendLayout()
         ' 
         ' lblStudentLogIn
@@ -57,6 +48,7 @@ Partial Class FrmStudentPortal
         ' 
         ' pnlStudentLogIn
         ' 
+        pnlStudentLogIn.Controls.Add(btnCreate)
         pnlStudentLogIn.Controls.Add(btnBack)
         pnlStudentLogIn.Controls.Add(btnLogIn)
         pnlStudentLogIn.Controls.Add(txtBoxPassword)
@@ -70,6 +62,16 @@ Partial Class FrmStudentPortal
         pnlStudentLogIn.Size = New Size(615, 673)
         pnlStudentLogIn.TabIndex = 1
         ' 
+        ' btnCreate
+        ' 
+        btnCreate.Font = New Font("Segoe UI", 10.8F)
+        btnCreate.Location = New Point(329, 502)
+        btnCreate.Name = "btnCreate"
+        btnCreate.Size = New Size(135, 37)
+        btnCreate.TabIndex = 7
+        btnCreate.Text = "Create Account"
+        btnCreate.UseVisualStyleBackColor = True
+        ' 
         ' btnBack
         ' 
         btnBack.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
@@ -82,10 +84,10 @@ Partial Class FrmStudentPortal
         ' 
         ' btnLogIn
         ' 
-        btnLogIn.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold)
-        btnLogIn.Location = New Point(172, 489)
+        btnLogIn.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        btnLogIn.Location = New Point(137, 502)
         btnLogIn.Name = "btnLogIn"
-        btnLogIn.Size = New Size(169, 57)
+        btnLogIn.Size = New Size(113, 37)
         btnLogIn.TabIndex = 5
         btnLogIn.Text = "Log In"
         btnLogIn.UseVisualStyleBackColor = True
@@ -128,102 +130,11 @@ Partial Class FrmStudentPortal
         txtBoxEmail.Size = New Size(304, 38)
         txtBoxEmail.TabIndex = 1
         ' 
-        ' pnlCreate
-        ' 
-        pnlCreate.Controls.Add(btnCreate)
-        pnlCreate.Controls.Add(txtBoxPassword2)
-        pnlCreate.Controls.Add(txtBoxEmail2)
-        pnlCreate.Controls.Add(txrBoxStudentID)
-        pnlCreate.Controls.Add(lblPassword2)
-        pnlCreate.Controls.Add(lblEmail2)
-        pnlCreate.Controls.Add(LblStudentID)
-        pnlCreate.Controls.Add(lblStudentSignUp)
-        pnlCreate.Dock = DockStyle.Right
-        pnlCreate.Location = New Point(621, 0)
-        pnlCreate.Name = "pnlCreate"
-        pnlCreate.Size = New Size(641, 673)
-        pnlCreate.TabIndex = 2
-        ' 
-        ' btnCreate
-        ' 
-        btnCreate.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold)
-        btnCreate.Location = New Point(255, 489)
-        btnCreate.Name = "btnCreate"
-        btnCreate.Size = New Size(169, 57)
-        btnCreate.TabIndex = 8
-        btnCreate.Text = "Create"
-        btnCreate.UseVisualStyleBackColor = True
-        ' 
-        ' txtBoxPassword2
-        ' 
-        txtBoxPassword2.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
-        txtBoxPassword2.Location = New Point(241, 387)
-        txtBoxPassword2.Name = "txtBoxPassword2"
-        txtBoxPassword2.Size = New Size(292, 38)
-        txtBoxPassword2.TabIndex = 7
-        ' 
-        ' txtBoxEmail2
-        ' 
-        txtBoxEmail2.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
-        txtBoxEmail2.Location = New Point(241, 299)
-        txtBoxEmail2.Name = "txtBoxEmail2"
-        txtBoxEmail2.Size = New Size(292, 38)
-        txtBoxEmail2.TabIndex = 6
-        ' 
-        ' txrBoxStudentID
-        ' 
-        txrBoxStudentID.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
-        txrBoxStudentID.Location = New Point(241, 216)
-        txrBoxStudentID.Name = "txrBoxStudentID"
-        txrBoxStudentID.Size = New Size(292, 38)
-        txrBoxStudentID.TabIndex = 5
-        ' 
-        ' lblPassword2
-        ' 
-        lblPassword2.AutoSize = True
-        lblPassword2.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
-        lblPassword2.Location = New Point(105, 394)
-        lblPassword2.Name = "lblPassword2"
-        lblPassword2.Size = New Size(118, 31)
-        lblPassword2.TabIndex = 4
-        lblPassword2.Text = "Password:"
-        ' 
-        ' lblEmail2
-        ' 
-        lblEmail2.AutoSize = True
-        lblEmail2.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
-        lblEmail2.Location = New Point(105, 306)
-        lblEmail2.Name = "lblEmail2"
-        lblEmail2.Size = New Size(76, 31)
-        lblEmail2.TabIndex = 3
-        lblEmail2.Text = "Email:"
-        ' 
-        ' LblStudentID
-        ' 
-        LblStudentID.AutoSize = True
-        LblStudentID.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
-        LblStudentID.Location = New Point(105, 223)
-        LblStudentID.Name = "LblStudentID"
-        LblStudentID.Size = New Size(130, 31)
-        LblStudentID.TabIndex = 1
-        LblStudentID.Text = "Student ID:"
-        ' 
-        ' lblStudentSignUp
-        ' 
-        lblStudentSignUp.AutoSize = True
-        lblStudentSignUp.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblStudentSignUp.Location = New Point(175, 83)
-        lblStudentSignUp.Name = "lblStudentSignUp"
-        lblStudentSignUp.Size = New Size(311, 54)
-        lblStudentSignUp.TabIndex = 0
-        lblStudentSignUp.Text = "Create Account"
-        ' 
         ' FrmStudentPortal
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1262, 673)
-        Controls.Add(pnlCreate)
+        ClientSize = New Size(615, 673)
         Controls.Add(pnlStudentLogIn)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "FrmStudentPortal"
@@ -231,26 +142,16 @@ Partial Class FrmStudentPortal
         Text = "Student Portal"
         pnlStudentLogIn.ResumeLayout(False)
         pnlStudentLogIn.PerformLayout()
-        pnlCreate.ResumeLayout(False)
-        pnlCreate.PerformLayout()
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents lblStudentLogIn As Label
     Friend WithEvents pnlStudentLogIn As Panel
     Friend WithEvents txtBoxEmail As TextBox
-    Friend WithEvents pnlCreate As Panel
-    Friend WithEvents lblStudentSignUp As Label
     Friend WithEvents txtBoxPassword As TextBox
     Friend WithEvents lblPassword As Label
     Friend WithEvents lblEmail As Label
     Friend WithEvents btnLogIn As Button
-    Friend WithEvents LblStudentID As Label
-    Friend WithEvents lblPassword2 As Label
-    Friend WithEvents lblEmail2 As Label
-    Friend WithEvents txrBoxStudentID As TextBox
-    Friend WithEvents txtBoxPassword2 As TextBox
-    Friend WithEvents txtBoxEmail2 As TextBox
-    Friend WithEvents btnCreate As Button
     Friend WithEvents btnBack As Button
+    Friend WithEvents btnCreate As Button
 End Class

@@ -482,18 +482,20 @@ Partial Class InternForm
         ' Label19
         ' 
         Label19.AutoSize = True
+        Label19.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label19.Location = New Point(33, 221)
         Label19.Name = "Label19"
-        Label19.Size = New Size(73, 20)
+        Label19.Size = New Size(75, 20)
         Label19.TabIndex = 9
         Label19.Text = "End Date:"
         ' 
         ' Label20
         ' 
         Label20.AutoSize = True
+        Label20.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label20.Location = New Point(33, 128)
         Label20.Name = "Label20"
-        Label20.Size = New Size(115, 20)
+        Label20.Size = New Size(120, 20)
         Label20.TabIndex = 11
         Label20.Text = "Required Hours:"
         ' 
@@ -566,18 +568,20 @@ Partial Class InternForm
         ' Label27
         ' 
         Label27.AutoSize = True
+        Label27.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label27.Location = New Point(33, 176)
         Label27.Name = "Label27"
-        Label27.Size = New Size(100, 20)
+        Label27.Size = New Size(103, 20)
         Label27.TabIndex = 7
         Label27.Text = "Starting Date:"
         ' 
         ' Label28
         ' 
         Label28.AutoSize = True
+        Label28.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label28.Location = New Point(33, 80)
         Label28.Name = "Label28"
-        Label28.Size = New Size(137, 20)
+        Label28.Size = New Size(140, 20)
         Label28.TabIndex = 15
         Label28.Text = "Hourse Completed:"
         ' 
@@ -620,9 +624,10 @@ Partial Class InternForm
         ' Label14
         ' 
         Label14.AutoSize = True
+        Label14.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label14.Location = New Point(33, 80)
         Label14.Name = "Label14"
-        Label14.Size = New Size(65, 20)
+        Label14.Size = New Size(67, 20)
         Label14.TabIndex = 23
         Label14.Text = "Address:"
         ' 
@@ -638,18 +643,20 @@ Partial Class InternForm
         ' Label8
         ' 
         Label8.AutoSize = True
+        Label8.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label8.Location = New Point(33, 221)
         Label8.Name = "Label8"
-        Label8.Size = New Size(52, 20)
+        Label8.Size = New Size(54, 20)
         Label8.TabIndex = 9
         Label8.Text = "Status:"
         ' 
         ' Label10
         ' 
         Label10.AutoSize = True
+        Label10.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label10.Location = New Point(33, 128)
         Label10.Name = "Label10"
-        Label10.Size = New Size(81, 20)
+        Label10.Size = New Size(88, 20)
         Label10.TabIndex = 11
         Label10.Text = "Supervisor:"
         ' 
@@ -674,9 +681,10 @@ Partial Class InternForm
         ' Label9
         ' 
         Label9.AutoSize = True
+        Label9.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label9.Location = New Point(33, 176)
         Label9.Name = "Label9"
-        Label9.Size = New Size(75, 20)
+        Label9.Size = New Size(78, 20)
         Label9.TabIndex = 7
         Label9.Text = "Company:"
         ' 
@@ -747,9 +755,10 @@ Partial Class InternForm
         ' Label16
         ' 
         Label16.AutoSize = True
+        Label16.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label16.Location = New Point(28, 221)
         Label16.Name = "Label16"
-        Label16.Size = New Size(49, 20)
+        Label16.Size = New Size(50, 20)
         Label16.TabIndex = 21
         Label16.Text = "Email:"
         ' 
@@ -765,9 +774,10 @@ Partial Class InternForm
         ' Label12
         ' 
         Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label12.Location = New Point(28, 269)
         Label12.Name = "Label12"
-        Label12.Size = New Size(89, 20)
+        Label12.Size = New Size(91, 20)
         Label12.TabIndex = 13
         Label12.Text = "Department"
         ' 
@@ -783,9 +793,10 @@ Partial Class InternForm
         ' Label6
         ' 
         Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label6.Location = New Point(28, 173)
         Label6.Name = "Label6"
-        Label6.Size = New Size(57, 20)
+        Label6.Size = New Size(60, 20)
         Label6.TabIndex = 5
         Label6.Text = "Course:"
         ' 
@@ -801,9 +812,10 @@ Partial Class InternForm
         ' Label5
         ' 
         Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label5.Location = New Point(28, 125)
         Label5.Name = "Label5"
-        Label5.Size = New Size(107, 20)
+        Label5.Size = New Size(111, 20)
         Label5.TabIndex = 3
         Label5.Text = "Student Name:"
         ' 
@@ -819,9 +831,10 @@ Partial Class InternForm
         ' Label4
         ' 
         Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label4.Location = New Point(28, 78)
         Label4.Name = "Label4"
-        Label4.Size = New Size(82, 20)
+        Label4.Size = New Size(85, 20)
         Label4.TabIndex = 1
         Label4.Text = "Student ID:"
         ' 

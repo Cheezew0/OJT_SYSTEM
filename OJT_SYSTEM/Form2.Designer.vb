@@ -23,9 +23,9 @@ Partial Class StudentForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentForm))
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
         pnlSidebar = New Panel()
         pnlBottomMenu = New Panel()
         btnLogout = New Button()
@@ -36,8 +36,10 @@ Partial Class StudentForm
         btnDashboard = New Button()
         PictureBoxLogo = New PictureBox()
         pnlMain = New Panel()
+        Button1 = New Button()
         pnlActivitiesMain = New Panel()
-        DataGridView1 = New RoundedPanel()
+        btnAddFile = New Button()
+        dgvStudents = New RoundedPanel()
         Student_ID = New DataGridViewTextBoxColumn()
         Student_Name = New DataGridViewTextBoxColumn()
         Program = New DataGridViewTextBoxColumn()
@@ -68,7 +70,7 @@ Partial Class StudentForm
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
         pnlMain.SuspendLayout()
         pnlActivitiesMain.SuspendLayout()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgvStudents, ComponentModel.ISupportInitialize).BeginInit()
         pnlPartnerComp.SuspendLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).BeginInit()
         pnlCompIntern.SuspendLayout()
@@ -232,6 +234,7 @@ Partial Class StudentForm
         ' 
         ' pnlMain
         ' 
+        pnlMain.Controls.Add(Button1)
         pnlMain.Controls.Add(pnlActivitiesMain)
         pnlMain.Controls.Add(pnlPartnerComp)
         pnlMain.Controls.Add(pnlCompIntern)
@@ -244,50 +247,69 @@ Partial Class StudentForm
         pnlMain.Size = New Size(1192, 858)
         pnlMain.TabIndex = 2
         ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(98, 610)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(94, 29)
+        Button1.TabIndex = 6
+        Button1.Text = "Add File"
+        Button1.UseVisualStyleBackColor = True
+        ' 
         ' pnlActivitiesMain
         ' 
-        pnlActivitiesMain.Controls.Add(DataGridView1)
-        pnlActivitiesMain.Location = New Point(98, 146)
+        pnlActivitiesMain.Controls.Add(btnAddFile)
+        pnlActivitiesMain.Controls.Add(dgvStudents)
+        pnlActivitiesMain.Location = New Point(98, 117)
         pnlActivitiesMain.Name = "pnlActivitiesMain"
-        pnlActivitiesMain.Size = New Size(1052, 428)
+        pnlActivitiesMain.Size = New Size(1052, 457)
         pnlActivitiesMain.TabIndex = 5
         ' 
-        ' DataGridView1
+        ' btnAddFile
         ' 
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(255))
-        DataGridViewCellStyle1.ForeColor = Color.Black
-        DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        DataGridView1.BorderStyle = BorderStyle.None
-        DataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(26), CByte(79), CByte(93))
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 10F, FontStyle.Bold)
-        DataGridViewCellStyle2.ForeColor = Color.White
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {Student_ID, Student_Name, Program, Department, Company, Status, Supervisor, Rating})
-        DataGridView1.CornerRadius = 20
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(247), CByte(247), CByte(247))
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle3.ForeColor = Color.Black
-        DataGridViewCellStyle3.Padding = New Padding(5)
-        DataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(CByte(183), CByte(192), CByte(217))
-        DataGridViewCellStyle3.SelectionForeColor = Color.Black
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
-        DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
-        DataGridView1.EnableHeadersVisualStyles = False
-        DataGridView1.GridColor = Color.Gray
-        DataGridView1.Location = New Point(3, 14)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.RowHeadersVisible = False
-        DataGridView1.RowHeadersWidth = 51
-        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView1.Size = New Size(997, 395)
-        DataGridView1.TabIndex = 0
+        btnAddFile.Location = New Point(935, 10)
+        btnAddFile.Name = "btnAddFile"
+        btnAddFile.Size = New Size(94, 29)
+        btnAddFile.TabIndex = 7
+        btnAddFile.Text = "Add File"
+        btnAddFile.UseVisualStyleBackColor = True
+        ' 
+        ' dgvStudents
+        ' 
+        DataGridViewCellStyle4.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(255))
+        DataGridViewCellStyle4.ForeColor = Color.Black
+        dgvStudents.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        dgvStudents.BorderStyle = BorderStyle.None
+        dgvStudents.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(26), CByte(79), CByte(93))
+        DataGridViewCellStyle5.Font = New Font("Segoe UI", 10F, FontStyle.Bold)
+        DataGridViewCellStyle5.ForeColor = Color.White
+        DataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
+        dgvStudents.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgvStudents.Columns.AddRange(New DataGridViewColumn() {Student_ID, Student_Name, Program, Department, Company, Status, Supervisor, Rating})
+        dgvStudents.CornerRadius = 20
+        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = Color.FromArgb(CByte(247), CByte(247), CByte(247))
+        DataGridViewCellStyle6.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle6.ForeColor = Color.Black
+        DataGridViewCellStyle6.Padding = New Padding(5)
+        DataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(CByte(183), CByte(192), CByte(217))
+        DataGridViewCellStyle6.SelectionForeColor = Color.Black
+        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.False
+        dgvStudents.DefaultCellStyle = DataGridViewCellStyle6
+        dgvStudents.EnableHeadersVisualStyles = False
+        dgvStudents.GridColor = Color.Gray
+        dgvStudents.Location = New Point(28, 53)
+        dgvStudents.Name = "dgvStudents"
+        dgvStudents.RowHeadersVisible = False
+        dgvStudents.RowHeadersWidth = 51
+        dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgvStudents.Size = New Size(1001, 395)
+        dgvStudents.TabIndex = 0
         ' 
         ' Student_ID
         ' 
@@ -528,7 +550,7 @@ Partial Class StudentForm
         pnlMain.ResumeLayout(False)
         pnlMain.PerformLayout()
         pnlActivitiesMain.ResumeLayout(False)
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgvStudents, ComponentModel.ISupportInitialize).EndInit()
         pnlPartnerComp.ResumeLayout(False)
         pnlPartnerComp.PerformLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).EndInit()
@@ -580,5 +602,7 @@ Partial Class StudentForm
     Friend WithEvents Status As DataGridViewTextBoxColumn
     Friend WithEvents Supervisor As DataGridViewTextBoxColumn
     Friend WithEvents Rating As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridView1 As RoundedPanel
+    Friend WithEvents dgvStudents As RoundedPanel
+    Friend WithEvents Button1 As Button
+    Friend WithEvents btnAddFile As Button
 End Class

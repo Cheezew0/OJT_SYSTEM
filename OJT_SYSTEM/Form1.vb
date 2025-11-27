@@ -2,20 +2,21 @@
 
 Public Class DashboardForm
 
+    Private _accountId As Integer
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
+    Public Sub New(accountId As Integer)
+        Me.New()
+        _accountId = accountId
+    End Sub
     Private Sub pnlSidebar_Paint(sender As Object, e As PaintEventArgs) Handles pnlSidebar.Paint
         pnlSidebar.BackColor = ColorTranslator.FromHtml("#1A4F5D")
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            Using conn As MySqlConnection = DbConnection.GetConnection()
-                conn.Open()
-                MessageBox.Show("Connection successful!")
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message)
-        End Try
-
         btnDashboard.BackColor = ColorTranslator.FromHtml("#1A4F5D")
         btnStudent.BackColor = ColorTranslator.FromHtml("#1A4F5D")
         btnInternships.BackColor = ColorTranslator.FromHtml("#1A4F5D")

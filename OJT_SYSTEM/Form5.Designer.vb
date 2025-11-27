@@ -31,23 +31,31 @@ Partial Class MyProfileForm
         btnProfile = New Button()
         PictureBoxLogo = New PictureBox()
         pnlMain = New Panel()
-        btnCancel = New Button()
-        btnSave = New Button()
         Label1 = New Label()
-        btnEditProf = New Button()
-        pnlContactInfo = New Panel()
-        txtEmail = New TextBox()
-        txtContactNum = New TextBox()
-        Label12 = New Label()
-        Label6 = New Label()
-        Label7 = New Label()
         pnlPersonalInfo = New Panel()
+        cmbProf = New ComboBox()
+        cmbStatus = New ComboBox()
+        txtEmailaddress = New TextBox()
+        Label17 = New Label()
+        btnCancel = New Button()
+        cmbProgram = New ComboBox()
         DateTimePicker1 = New DateTimePicker()
         Label16 = New Label()
+        cmbSection = New ComboBox()
+        btnSave = New Button()
+        txtContactNum = New TextBox()
         txtLName = New TextBox()
         txtMName = New TextBox()
+        Label9 = New Label()
+        Label12 = New Label()
+        btnEditProf = New Button()
+        Label11 = New Label()
+        lbl = New Label()
+        Label6 = New Label()
+        Label5 = New Label()
         Label15 = New Label()
         Label14 = New Label()
+        Label7 = New Label()
         txtAddr = New TextBox()
         cmbSex = New ComboBox()
         mtxtStudId = New MaskedTextBox()
@@ -58,25 +66,11 @@ Partial Class MyProfileForm
         Label13 = New Label()
         Label3 = New Label()
         lblTotalStudentsTitle = New Label()
-        pnlAcadInfo = New Panel()
-        cmbCourse = New ComboBox()
-        cmbSection = New ComboBox()
-        txtStatus = New TextBox()
-        txtDept = New TextBox()
-        Label9 = New Label()
-        Label8 = New Label()
-        lbl = New Label()
-        Label5 = New Label()
-        Label11 = New Label()
-        Label17 = New Label()
-        ComboBox1 = New ComboBox()
         pnlSidebar.SuspendLayout()
         pnlBottomMenu.SuspendLayout()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
         pnlMain.SuspendLayout()
-        pnlContactInfo.SuspendLayout()
         pnlPersonalInfo.SuspendLayout()
-        pnlAcadInfo.SuspendLayout()
         SuspendLayout()
         ' 
         ' pnlSidebar
@@ -192,37 +186,13 @@ Partial Class MyProfileForm
         ' 
         ' pnlMain
         ' 
-        pnlMain.Controls.Add(btnCancel)
-        pnlMain.Controls.Add(btnSave)
         pnlMain.Controls.Add(Label1)
-        pnlMain.Controls.Add(btnEditProf)
-        pnlMain.Controls.Add(pnlContactInfo)
         pnlMain.Controls.Add(pnlPersonalInfo)
-        pnlMain.Controls.Add(pnlAcadInfo)
         pnlMain.Dock = DockStyle.Fill
         pnlMain.Location = New Point(230, 0)
         pnlMain.Name = "pnlMain"
         pnlMain.Size = New Size(1192, 858)
         pnlMain.TabIndex = 5
-        ' 
-        ' btnCancel
-        ' 
-        btnCancel.Location = New Point(740, 320)
-        btnCancel.Name = "btnCancel"
-        btnCancel.Size = New Size(181, 52)
-        btnCancel.TabIndex = 30
-        btnCancel.Text = "Cancel"
-        btnCancel.UseVisualStyleBackColor = True
-        ' 
-        ' btnSave
-        ' 
-        btnSave.ForeColor = Color.White
-        btnSave.Location = New Point(740, 256)
-        btnSave.Name = "btnSave"
-        btnSave.Size = New Size(181, 52)
-        btnSave.TabIndex = 29
-        btnSave.Text = "Save"
-        btnSave.UseVisualStyleBackColor = True
         ' 
         ' Label1
         ' 
@@ -234,80 +204,31 @@ Partial Class MyProfileForm
         Label1.TabIndex = 6
         Label1.Text = "My Profile"
         ' 
-        ' btnEditProf
-        ' 
-        btnEditProf.ForeColor = Color.Teal
-        btnEditProf.Location = New Point(740, 191)
-        btnEditProf.Name = "btnEditProf"
-        btnEditProf.Size = New Size(181, 52)
-        btnEditProf.TabIndex = 28
-        btnEditProf.Text = "Edit Profile"
-        btnEditProf.UseVisualStyleBackColor = True
-        ' 
-        ' pnlContactInfo
-        ' 
-        pnlContactInfo.Controls.Add(txtEmail)
-        pnlContactInfo.Controls.Add(txtContactNum)
-        pnlContactInfo.Controls.Add(Label12)
-        pnlContactInfo.Controls.Add(Label6)
-        pnlContactInfo.Controls.Add(Label7)
-        pnlContactInfo.Location = New Point(635, 472)
-        pnlContactInfo.Name = "pnlContactInfo"
-        pnlContactInfo.Size = New Size(492, 215)
-        pnlContactInfo.TabIndex = 24
-        ' 
-        ' txtEmail
-        ' 
-        txtEmail.Location = New Point(249, 101)
-        txtEmail.Name = "txtEmail"
-        txtEmail.Size = New Size(226, 27)
-        txtEmail.TabIndex = 31
-        ' 
-        ' txtContactNum
-        ' 
-        txtContactNum.Location = New Point(249, 62)
-        txtContactNum.Name = "txtContactNum"
-        txtContactNum.Size = New Size(226, 27)
-        txtContactNum.TabIndex = 30
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Font = New Font("Segoe UI", 18F, FontStyle.Bold)
-        Label12.Location = New Point(17, 13)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(313, 41)
-        Label12.TabIndex = 24
-        Label12.Text = "Contact Information:"
-        ' 
-        ' Label6
-        ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(17, 65)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(149, 23)
-        Label6.TabIndex = 10
-        Label6.Text = "Contact Number:"
-        ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(17, 102)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(59, 23)
-        Label7.TabIndex = 5
-        Label7.Text = "Email:"
-        ' 
         ' pnlPersonalInfo
         ' 
+        pnlPersonalInfo.Controls.Add(cmbProf)
+        pnlPersonalInfo.Controls.Add(cmbStatus)
+        pnlPersonalInfo.Controls.Add(txtEmailaddress)
+        pnlPersonalInfo.Controls.Add(Label17)
+        pnlPersonalInfo.Controls.Add(btnCancel)
+        pnlPersonalInfo.Controls.Add(cmbProgram)
         pnlPersonalInfo.Controls.Add(DateTimePicker1)
         pnlPersonalInfo.Controls.Add(Label16)
+        pnlPersonalInfo.Controls.Add(cmbSection)
+        pnlPersonalInfo.Controls.Add(btnSave)
+        pnlPersonalInfo.Controls.Add(txtContactNum)
         pnlPersonalInfo.Controls.Add(txtLName)
         pnlPersonalInfo.Controls.Add(txtMName)
+        pnlPersonalInfo.Controls.Add(Label9)
+        pnlPersonalInfo.Controls.Add(Label12)
+        pnlPersonalInfo.Controls.Add(btnEditProf)
+        pnlPersonalInfo.Controls.Add(Label11)
+        pnlPersonalInfo.Controls.Add(lbl)
+        pnlPersonalInfo.Controls.Add(Label6)
+        pnlPersonalInfo.Controls.Add(Label5)
         pnlPersonalInfo.Controls.Add(Label15)
         pnlPersonalInfo.Controls.Add(Label14)
+        pnlPersonalInfo.Controls.Add(Label7)
         pnlPersonalInfo.Controls.Add(txtAddr)
         pnlPersonalInfo.Controls.Add(cmbSex)
         pnlPersonalInfo.Controls.Add(mtxtStudId)
@@ -318,14 +239,64 @@ Partial Class MyProfileForm
         pnlPersonalInfo.Controls.Add(Label13)
         pnlPersonalInfo.Controls.Add(Label3)
         pnlPersonalInfo.Controls.Add(lblTotalStudentsTitle)
-        pnlPersonalInfo.Location = New Point(108, 135)
+        pnlPersonalInfo.Location = New Point(98, 139)
         pnlPersonalInfo.Name = "pnlPersonalInfo"
-        pnlPersonalInfo.Size = New Size(603, 311)
+        pnlPersonalInfo.Size = New Size(1048, 544)
         pnlPersonalInfo.TabIndex = 25
+        ' 
+        ' cmbProf
+        ' 
+        cmbProf.FormattingEnabled = True
+        cmbProf.Location = New Point(256, 409)
+        cmbProf.Name = "cmbProf"
+        cmbProf.Size = New Size(226, 28)
+        cmbProf.TabIndex = 36
+        ' 
+        ' cmbStatus
+        ' 
+        cmbStatus.FormattingEnabled = True
+        cmbStatus.Location = New Point(256, 374)
+        cmbStatus.Name = "cmbStatus"
+        cmbStatus.Size = New Size(226, 28)
+        cmbStatus.TabIndex = 35
+        ' 
+        ' txtEmailaddress
+        ' 
+        txtEmailaddress.Location = New Point(800, 345)
+        txtEmailaddress.Name = "txtEmailaddress"
+        txtEmailaddress.Size = New Size(226, 27)
+        txtEmailaddress.TabIndex = 31
+        ' 
+        ' Label17
+        ' 
+        Label17.AutoSize = True
+        Label17.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label17.Location = New Point(17, 410)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(90, 23)
+        Label17.TabIndex = 32
+        Label17.Text = "Professor:"
+        ' 
+        ' btnCancel
+        ' 
+        btnCancel.Location = New Point(812, 453)
+        btnCancel.Name = "btnCancel"
+        btnCancel.Size = New Size(98, 38)
+        btnCancel.TabIndex = 30
+        btnCancel.Text = "Cancel"
+        btnCancel.UseVisualStyleBackColor = True
+        ' 
+        ' cmbProgram
+        ' 
+        cmbProgram.FormattingEnabled = True
+        cmbProgram.Location = New Point(256, 304)
+        cmbProgram.Name = "cmbProgram"
+        cmbProgram.Size = New Size(226, 28)
+        cmbProgram.TabIndex = 31
         ' 
         ' DateTimePicker1
         ' 
-        DateTimePicker1.Location = New Point(349, 267)
+        DateTimePicker1.Location = New Point(756, 131)
         DateTimePicker1.Name = "DateTimePicker1"
         DateTimePicker1.Size = New Size(226, 27)
         DateTimePicker1.TabIndex = 34
@@ -334,25 +305,120 @@ Partial Class MyProfileForm
         ' 
         Label16.AutoSize = True
         Label16.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label16.Location = New Point(17, 267)
+        Label16.Location = New Point(631, 133)
         Label16.Name = "Label16"
         Label16.Size = New Size(91, 23)
         Label16.TabIndex = 33
         Label16.Text = "Birthdate:"
         ' 
+        ' cmbSection
+        ' 
+        cmbSection.FormattingEnabled = True
+        cmbSection.Location = New Point(256, 340)
+        cmbSection.Name = "cmbSection"
+        cmbSection.Size = New Size(226, 28)
+        cmbSection.TabIndex = 30
+        ' 
+        ' btnSave
+        ' 
+        btnSave.ForeColor = Color.White
+        btnSave.Location = New Point(690, 453)
+        btnSave.Name = "btnSave"
+        btnSave.Size = New Size(116, 38)
+        btnSave.TabIndex = 29
+        btnSave.Text = "Save"
+        btnSave.UseVisualStyleBackColor = True
+        ' 
+        ' txtContactNum
+        ' 
+        txtContactNum.Location = New Point(800, 306)
+        txtContactNum.Name = "txtContactNum"
+        txtContactNum.Size = New Size(226, 27)
+        txtContactNum.TabIndex = 30
+        ' 
         ' txtLName
         ' 
-        txtLName.Location = New Point(349, 165)
+        txtLName.Location = New Point(226, 166)
         txtLName.Name = "txtLName"
         txtLName.Size = New Size(226, 27)
         txtLName.TabIndex = 32
         ' 
         ' txtMName
         ' 
-        txtMName.Location = New Point(349, 134)
+        txtMName.Location = New Point(226, 134)
         txtMName.Name = "txtMName"
         txtMName.Size = New Size(226, 27)
         txtMName.TabIndex = 31
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label9.Location = New Point(17, 375)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(65, 23)
+        Label9.TabIndex = 12
+        Label9.Text = "Status:"
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI", 18F, FontStyle.Bold)
+        Label12.Location = New Point(568, 257)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(313, 41)
+        Label12.TabIndex = 24
+        Label12.Text = "Contact Information:"
+        ' 
+        ' btnEditProf
+        ' 
+        btnEditProf.ForeColor = Color.Teal
+        btnEditProf.Location = New Point(566, 453)
+        btnEditProf.Name = "btnEditProf"
+        btnEditProf.Size = New Size(118, 38)
+        btnEditProf.TabIndex = 28
+        btnEditProf.Text = "Edit Profile"
+        btnEditProf.UseVisualStyleBackColor = True
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Font = New Font("Segoe UI", 18F, FontStyle.Bold)
+        Label11.Location = New Point(17, 257)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(340, 41)
+        Label11.TabIndex = 23
+        Label11.Text = "Academic Information:"
+        ' 
+        ' lbl
+        ' 
+        lbl.AutoSize = True
+        lbl.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lbl.Location = New Point(17, 341)
+        lbl.Name = "lbl"
+        lbl.Size = New Size(74, 23)
+        lbl.TabIndex = 9
+        lbl.Text = "Section:"
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.Location = New Point(568, 309)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(149, 23)
+        Label6.TabIndex = 10
+        Label6.Text = "Contact Number:"
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label5.Location = New Point(17, 307)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(69, 23)
+        Label5.TabIndex = 7
+        Label5.Text = "Course:"
         ' 
         ' Label15
         ' 
@@ -374,9 +440,19 @@ Partial Class MyProfileForm
         Label14.TabIndex = 29
         Label14.Text = "Middle Name:"
         ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label7.Location = New Point(568, 346)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(59, 23)
+        Label7.TabIndex = 5
+        Label7.Text = "Email:"
+        ' 
         ' txtAddr
         ' 
-        txtAddr.Location = New Point(349, 233)
+        txtAddr.Location = New Point(756, 101)
         txtAddr.Name = "txtAddr"
         txtAddr.Size = New Size(226, 27)
         txtAddr.TabIndex = 28
@@ -384,14 +460,14 @@ Partial Class MyProfileForm
         ' cmbSex
         ' 
         cmbSex.FormattingEnabled = True
-        cmbSex.Location = New Point(349, 198)
+        cmbSex.Location = New Point(756, 69)
         cmbSex.Name = "cmbSex"
         cmbSex.Size = New Size(226, 28)
         cmbSex.TabIndex = 27
         ' 
         ' mtxtStudId
         ' 
-        mtxtStudId.Location = New Point(349, 69)
+        mtxtStudId.Location = New Point(226, 70)
         mtxtStudId.Mask = "00-00000"
         mtxtStudId.Name = "mtxtStudId"
         mtxtStudId.Size = New Size(226, 27)
@@ -399,7 +475,7 @@ Partial Class MyProfileForm
         ' 
         ' txtFname
         ' 
-        txtFname.Location = New Point(349, 102)
+        txtFname.Location = New Point(226, 102)
         txtFname.Name = "txtFname"
         txtFname.Size = New Size(226, 27)
         txtFname.TabIndex = 25
@@ -408,7 +484,7 @@ Partial Class MyProfileForm
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(17, 233)
+        Label4.Location = New Point(631, 102)
         Label4.Name = "Label4"
         Label4.Size = New Size(79, 23)
         Label4.TabIndex = 24
@@ -428,7 +504,7 @@ Partial Class MyProfileForm
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(17, 199)
+        Label2.Location = New Point(631, 70)
         Label2.Name = "Label2"
         Label2.Size = New Size(43, 23)
         Label2.TabIndex = 8
@@ -464,122 +540,6 @@ Partial Class MyProfileForm
         lblTotalStudentsTitle.TabIndex = 0
         lblTotalStudentsTitle.Text = "Student ID:"
         ' 
-        ' pnlAcadInfo
-        ' 
-        pnlAcadInfo.Controls.Add(ComboBox1)
-        pnlAcadInfo.Controls.Add(Label17)
-        pnlAcadInfo.Controls.Add(cmbCourse)
-        pnlAcadInfo.Controls.Add(cmbSection)
-        pnlAcadInfo.Controls.Add(txtStatus)
-        pnlAcadInfo.Controls.Add(txtDept)
-        pnlAcadInfo.Controls.Add(Label9)
-        pnlAcadInfo.Controls.Add(Label8)
-        pnlAcadInfo.Controls.Add(lbl)
-        pnlAcadInfo.Controls.Add(Label5)
-        pnlAcadInfo.Controls.Add(Label11)
-        pnlAcadInfo.Location = New Point(108, 472)
-        pnlAcadInfo.Name = "pnlAcadInfo"
-        pnlAcadInfo.Size = New Size(505, 251)
-        pnlAcadInfo.TabIndex = 26
-        ' 
-        ' cmbCourse
-        ' 
-        cmbCourse.FormattingEnabled = True
-        cmbCourse.Location = New Point(256, 60)
-        cmbCourse.Name = "cmbCourse"
-        cmbCourse.Size = New Size(226, 28)
-        cmbCourse.TabIndex = 31
-        ' 
-        ' cmbSection
-        ' 
-        cmbSection.FormattingEnabled = True
-        cmbSection.Location = New Point(256, 96)
-        cmbSection.Name = "cmbSection"
-        cmbSection.Size = New Size(226, 28)
-        cmbSection.TabIndex = 30
-        ' 
-        ' txtStatus
-        ' 
-        txtStatus.Location = New Point(256, 164)
-        txtStatus.Name = "txtStatus"
-        txtStatus.Size = New Size(226, 27)
-        txtStatus.TabIndex = 29
-        ' 
-        ' txtDept
-        ' 
-        txtDept.Location = New Point(256, 130)
-        txtDept.Name = "txtDept"
-        txtDept.Size = New Size(226, 27)
-        txtDept.TabIndex = 28
-        ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(17, 164)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(65, 23)
-        Label9.TabIndex = 12
-        Label9.Text = "Status:"
-        ' 
-        ' Label8
-        ' 
-        Label8.AutoSize = True
-        Label8.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label8.Location = New Point(17, 131)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(113, 23)
-        Label8.TabIndex = 11
-        Label8.Text = "Department:"
-        ' 
-        ' lbl
-        ' 
-        lbl.AutoSize = True
-        lbl.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lbl.Location = New Point(17, 97)
-        lbl.Name = "lbl"
-        lbl.Size = New Size(74, 23)
-        lbl.TabIndex = 9
-        lbl.Text = "Section:"
-        ' 
-        ' Label5
-        ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(17, 63)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(69, 23)
-        Label5.TabIndex = 7
-        Label5.Text = "Course:"
-        ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Font = New Font("Segoe UI", 18F, FontStyle.Bold)
-        Label11.Location = New Point(17, 13)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(340, 41)
-        Label11.TabIndex = 23
-        Label11.Text = "Academic Information:"
-        ' 
-        ' Label17
-        ' 
-        Label17.AutoSize = True
-        Label17.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label17.Location = New Point(17, 201)
-        Label17.Name = "Label17"
-        Label17.Size = New Size(90, 23)
-        Label17.TabIndex = 32
-        Label17.Text = "Professor;"
-        ' 
-        ' ComboBox1
-        ' 
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(256, 201)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(226, 28)
-        ComboBox1.TabIndex = 33
-        ' 
         ' MyProfileForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -595,12 +555,8 @@ Partial Class MyProfileForm
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).EndInit()
         pnlMain.ResumeLayout(False)
         pnlMain.PerformLayout()
-        pnlContactInfo.ResumeLayout(False)
-        pnlContactInfo.PerformLayout()
         pnlPersonalInfo.ResumeLayout(False)
         pnlPersonalInfo.PerformLayout()
-        pnlAcadInfo.ResumeLayout(False)
-        pnlAcadInfo.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -618,7 +574,6 @@ Partial Class MyProfileForm
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnSave As Button
     Friend WithEvents btnEditProf As Button
-    Friend WithEvents pnlContactInfo As Panel
     Friend WithEvents Label12 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
@@ -628,7 +583,6 @@ Partial Class MyProfileForm
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents lblTotalStudentsTitle As Label
-    Friend WithEvents pnlAcadInfo As Panel
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents lbl As Label
@@ -638,19 +592,19 @@ Partial Class MyProfileForm
     Friend WithEvents cmbSex As ComboBox
     Friend WithEvents mtxtStudId As MaskedTextBox
     Friend WithEvents txtFname As TextBox
-    Friend WithEvents txtStatus As TextBox
-    Friend WithEvents txtDept As TextBox
     Friend WithEvents txtLName As TextBox
     Friend WithEvents txtMName As TextBox
     Friend WithEvents Label15 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label13 As Label
-    Friend WithEvents cmbCourse As ComboBox
+    Friend WithEvents cmbProgram As ComboBox
     Friend WithEvents cmbSection As ComboBox
-    Friend WithEvents txtEmail As TextBox
+    Friend WithEvents txtEmailaddress As TextBox
     Friend WithEvents txtContactNum As TextBox
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents Label16 As Label
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label17 As Label
+    Friend WithEvents cmbProf As ComboBox
+    Friend WithEvents cmbStatus As ComboBox
 End Class
