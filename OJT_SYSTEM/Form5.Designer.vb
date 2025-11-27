@@ -42,6 +42,8 @@ Partial Class MyProfileForm
         Label6 = New Label()
         Label7 = New Label()
         pnlPersonalInfo = New Panel()
+        DateTimePicker1 = New DateTimePicker()
+        Label16 = New Label()
         txtLName = New TextBox()
         txtMName = New TextBox()
         Label15 = New Label()
@@ -66,8 +68,8 @@ Partial Class MyProfileForm
         lbl = New Label()
         Label5 = New Label()
         Label11 = New Label()
-        Label16 = New Label()
-        DateTimePicker1 = New DateTimePicker()
+        Label17 = New Label()
+        ComboBox1 = New ComboBox()
         pnlSidebar.SuspendLayout()
         pnlBottomMenu.SuspendLayout()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
@@ -321,6 +323,23 @@ Partial Class MyProfileForm
         pnlPersonalInfo.Size = New Size(603, 311)
         pnlPersonalInfo.TabIndex = 25
         ' 
+        ' DateTimePicker1
+        ' 
+        DateTimePicker1.Location = New Point(349, 267)
+        DateTimePicker1.Name = "DateTimePicker1"
+        DateTimePicker1.Size = New Size(226, 27)
+        DateTimePicker1.TabIndex = 34
+        ' 
+        ' Label16
+        ' 
+        Label16.AutoSize = True
+        Label16.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label16.Location = New Point(17, 267)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(91, 23)
+        Label16.TabIndex = 33
+        Label16.Text = "Birthdate:"
+        ' 
         ' txtLName
         ' 
         txtLName.Location = New Point(349, 165)
@@ -447,6 +466,8 @@ Partial Class MyProfileForm
         ' 
         ' pnlAcadInfo
         ' 
+        pnlAcadInfo.Controls.Add(ComboBox1)
+        pnlAcadInfo.Controls.Add(Label17)
         pnlAcadInfo.Controls.Add(cmbCourse)
         pnlAcadInfo.Controls.Add(cmbSection)
         pnlAcadInfo.Controls.Add(txtStatus)
@@ -458,7 +479,7 @@ Partial Class MyProfileForm
         pnlAcadInfo.Controls.Add(Label11)
         pnlAcadInfo.Location = New Point(108, 472)
         pnlAcadInfo.Name = "pnlAcadInfo"
-        pnlAcadInfo.Size = New Size(505, 215)
+        pnlAcadInfo.Size = New Size(505, 251)
         pnlAcadInfo.TabIndex = 26
         ' 
         ' cmbCourse
@@ -495,7 +516,7 @@ Partial Class MyProfileForm
         ' 
         Label9.AutoSize = True
         Label9.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(17, 165)
+        Label9.Location = New Point(17, 164)
         Label9.Name = "Label9"
         Label9.Size = New Size(65, 23)
         Label9.TabIndex = 12
@@ -541,22 +562,23 @@ Partial Class MyProfileForm
         Label11.TabIndex = 23
         Label11.Text = "Academic Information:"
         ' 
-        ' Label16
+        ' Label17
         ' 
-        Label16.AutoSize = True
-        Label16.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label16.Location = New Point(17, 267)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(91, 23)
-        Label16.TabIndex = 33
-        Label16.Text = "Birthdate:"
+        Label17.AutoSize = True
+        Label17.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label17.Location = New Point(17, 201)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(90, 23)
+        Label17.TabIndex = 32
+        Label17.Text = "Professor;"
         ' 
-        ' DateTimePicker1
+        ' ComboBox1
         ' 
-        DateTimePicker1.Location = New Point(349, 267)
-        DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(226, 27)
-        DateTimePicker1.TabIndex = 34
+        ComboBox1.FormattingEnabled = True
+        ComboBox1.Location = New Point(256, 201)
+        ComboBox1.Name = "ComboBox1"
+        ComboBox1.Size = New Size(226, 28)
+        ComboBox1.TabIndex = 33
         ' 
         ' MyProfileForm
         ' 
@@ -629,4 +651,6 @@ Partial Class MyProfileForm
     Friend WithEvents txtContactNum As TextBox
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents Label16 As Label
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label17 As Label
 End Class

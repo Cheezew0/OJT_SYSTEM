@@ -1,10 +1,20 @@
-﻿Public Class DashboardForm
+﻿Imports MySql.Data.MySqlClient
+
+Public Class DashboardForm
 
     Private Sub pnlSidebar_Paint(sender As Object, e As PaintEventArgs) Handles pnlSidebar.Paint
         pnlSidebar.BackColor = ColorTranslator.FromHtml("#1A4F5D")
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            Using conn As MySqlConnection = DbConnection.GetConnection()
+                conn.Open()
+                MessageBox.Show("Connection successful!")
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
 
         btnDashboard.BackColor = ColorTranslator.FromHtml("#1A4F5D")
         btnStudent.BackColor = ColorTranslator.FromHtml("#1A4F5D")

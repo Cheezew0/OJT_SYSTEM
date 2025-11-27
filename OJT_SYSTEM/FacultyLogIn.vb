@@ -9,4 +9,10 @@
         Me.Hide()
     End Sub
 
+    Private Sub btnLogIn_Click(sender As Object, e As EventArgs) Handles btnLogIn.Click
+        Dim dashboardStud As New DashboardForm
+        dashboardStud.Show()
+        Me.Hide()
+
+    End Sub
 End Class
