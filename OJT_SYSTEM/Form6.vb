@@ -88,6 +88,7 @@
         )
 
         If result = DialogResult.Yes Then
+            Me.Hide()
             FrmChooseLogin.Show()
         End If
     End Sub

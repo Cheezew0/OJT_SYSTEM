@@ -37,14 +37,33 @@ Public Class CreateAccountFrm
             Exit Sub
         End If
 
-        'data insert
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
 
+                ' 1) CHECK IF THIS STUDENT ALREADY HAS AN ACCOUNT
+                Dim checkSql As String =
+                    "SELECT COUNT(*) FROM student_acc WHERE student_id = @student_id"
+
+                Using checkCmd As New MySqlCommand(checkSql, conn)
+                    checkCmd.Parameters.AddWithValue("@student_id", studentId)
+
+                    Dim exists As Integer = CInt(checkCmd.ExecuteScalar())
+                    If exists > 0 Then
+                        MessageBox.Show(
+                            "This student ID already has an account. Please log in instead.",
+                            "Account already exists",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        )
+                        Exit Sub    ' <-- stop here, do NOT insert anything
+                    End If
+                End Using
+
+                ' 2) INSERT NEW ACCOUNT (safe, we know student_id is unused)
                 Dim query As String =
-                    "INSERT INTO student_acc (student_id, password, email) 
-                     VALUES (@student_id, @password, @Email)"
+                    "INSERT INTO student_acc (student_id, password, email) " &
+                    "VALUES (@student_id, @password, @Email)"
 
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@student_id", studentId)
@@ -62,9 +81,11 @@ Public Class CreateAccountFrm
                 mkEmailReg.Clear()
 
             Catch ex As MySqlException
+                ' 1062 = duplicate key on email (your email column is UNIQUE)
                 If ex.Number = 1062 Then
                     MessageBox.Show("This email is already used.", "Error",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    ' 1452 = foreign key error (student_id not in student table)
                 ElseIf ex.Number = 1452 Then
                     MessageBox.Show("This Student ID does not exist in the student list.", "Error",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -76,6 +97,7 @@ Public Class CreateAccountFrm
                 MessageBox.Show("Unexpected error: " & ex.Message)
             End Try
         End Using
-
     End Sub
+
+
 End Class

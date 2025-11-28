@@ -81,8 +81,6 @@ Partial Class InternForm
         pnlStudInfo = New Panel()
         lblEmail = New Label()
         Label16 = New Label()
-        lblDepartment = New Label()
-        Label12 = New Label()
         lblCourse = New Label()
         Label6 = New Label()
         lblStudName = New Label()
@@ -597,7 +595,7 @@ Partial Class InternForm
         pnlInternInfo.Controls.Add(lblSupervisor)
         pnlInternInfo.Controls.Add(pnlPartnerComp)
         pnlInternInfo.Controls.Add(Label9)
-        pnlInternInfo.Location = New Point(46, 528)
+        pnlInternInfo.Location = New Point(46, 496)
         pnlInternInfo.Name = "pnlInternInfo"
         pnlInternInfo.Size = New Size(594, 279)
         pnlInternInfo.TabIndex = 25
@@ -729,8 +727,6 @@ Partial Class InternForm
         ' 
         pnlStudInfo.Controls.Add(lblEmail)
         pnlStudInfo.Controls.Add(Label16)
-        pnlStudInfo.Controls.Add(lblDepartment)
-        pnlStudInfo.Controls.Add(Label12)
         pnlStudInfo.Controls.Add(lblCourse)
         pnlStudInfo.Controls.Add(Label6)
         pnlStudInfo.Controls.Add(lblStudName)
@@ -740,7 +736,7 @@ Partial Class InternForm
         pnlStudInfo.Controls.Add(Label3)
         pnlStudInfo.Location = New Point(46, 198)
         pnlStudInfo.Name = "pnlStudInfo"
-        pnlStudInfo.Size = New Size(594, 319)
+        pnlStudInfo.Size = New Size(594, 276)
         pnlStudInfo.TabIndex = 7
         ' 
         ' lblEmail
@@ -761,25 +757,6 @@ Partial Class InternForm
         Label16.Size = New Size(50, 20)
         Label16.TabIndex = 21
         Label16.Text = "Email:"
-        ' 
-        ' lblDepartment
-        ' 
-        lblDepartment.AutoSize = True
-        lblDepartment.Location = New Point(370, 269)
-        lblDepartment.Name = "lblDepartment"
-        lblDepartment.Size = New Size(89, 20)
-        lblDepartment.TabIndex = 14
-        lblDepartment.Text = "Department"
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        Label12.Location = New Point(28, 269)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(91, 20)
-        Label12.TabIndex = 13
-        Label12.Text = "Department"
         ' 
         ' lblCourse
         ' 
@@ -933,8 +910,6 @@ Partial Class InternForm
     Friend WithEvents lblCompany As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents lblCourse As Label
-    Friend WithEvents lblDepartment As Label
-    Friend WithEvents Label12 As Label
     Friend WithEvents lblAddress As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents lblEmail As Label

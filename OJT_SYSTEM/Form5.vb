@@ -287,7 +287,8 @@ Public Class MyProfileForm
             MessageBoxDefaultButton.Button2
         )
 
-        If Result = DialogResult.Yes Then
+        If result = DialogResult.Yes Then
+            Me.Hide()
             FrmChooseLogin.Show()
         End If
     End Sub

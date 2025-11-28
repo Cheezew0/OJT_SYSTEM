@@ -60,6 +60,7 @@ Public Class StudentForm
         )
 
         If result = DialogResult.Yes Then
+            Me.Hide()
             FrmChooseLogin.Show()
         End If
     End Sub
@@ -124,9 +125,7 @@ Public Class StudentForm
                     cmd.Parameters.AddWithValue("@StudentId", studentId)
                     cmd.ExecuteNonQuery()
                 Next
-
             End Using
         End Using
     End Sub
-
 End Class
