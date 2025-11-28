@@ -77,4 +77,18 @@
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles pnlSummary.Paint
         pnlSummary.BackColor = ColorTranslator.FromHtml("#F7F7F7")
     End Sub
+
+    Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
+        Dim result As DialogResult = MessageBox.Show(
+            "Are you sure you want to log out?",
+            "Confirm Logout",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2
+        )
+
+        If result = DialogResult.Yes Then
+            FrmChooseLogin.Show()
+        End If
+    End Sub
 End Class

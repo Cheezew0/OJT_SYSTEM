@@ -67,7 +67,7 @@
         )
 
         If result = DialogResult.Yes Then
-            Application.Exit()
+            FrmChooseLogin.Show()
         End If
     End Sub
 

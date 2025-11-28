@@ -1,6 +1,7 @@
-﻿Imports MySql.Data.MySqlClient
-Imports System.Drawing
+﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports MySql.Data.MySqlClient
+Imports Mysqlx.XDevAPI.Common
 
 Public Class MyProfileForm
 
@@ -277,4 +278,17 @@ Public Class MyProfileForm
         DisableEditing()
     End Sub
 
+    Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
+        Dim result As DialogResult = MessageBox.Show(
+            "Are you sure you want to log out?",
+            "Confirm Logout",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button2
+        )
+
+        If Result = DialogResult.Yes Then
+            FrmChooseLogin.Show()
+        End If
+    End Sub
 End Class
