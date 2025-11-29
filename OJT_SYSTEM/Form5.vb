@@ -166,9 +166,8 @@ Public Class MyProfileForm
         btnSave.Enabled = False
         btnCancel.Enabled = False
     End Sub
-
     Private Sub EnableEditing()
-        txtEmailaddress.Enabled = True
+        txtEmailaddress.Enabled = False   ' <-- ALWAYS READ ONLY
         txtContactNum.Enabled = True
         txtLName.Enabled = True
         txtMName.Enabled = True
