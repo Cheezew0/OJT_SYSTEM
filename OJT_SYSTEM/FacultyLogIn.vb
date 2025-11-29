@@ -1,11 +1,21 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class FrmFacultyLogIn
+
+    ' <<< add this field >>>
+    Private passwordShown As Boolean = False
+
     Private connectionString As String =
-    "Server=localhost;Database=ojt_management_system;Uid=root;Pwd=;"
+        "Server=localhost;Database=ojt_management_system;Uid=root;Pwd=;"
 
     Private Sub FrmFacultyLogIn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = ColorTranslator.FromHtml("#1A4F5D")
+
+        ' hide password by default
+        TextBox1.UseSystemPasswordChar = True
+
+        ' set default eye icon (closed)
+        picEye.Image = My.Resources.hide    ' make sure this name matches your resource
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
@@ -29,35 +39,45 @@ Public Class FrmFacultyLogIn
             Try
                 conn.Open()
 
+                ' Get faculty_id + email + account_id using JOIN
                 Dim sql As String =
-                    "SELECT account_id " &
-                    "FROM faculty_acc " &
-                    "WHERE faculty_email = @Email AND password = @Password " &
+                    "SELECT f.faculty_id, f.email, fa.account_id " &
+                    "FROM faculty_acc fa " &
+                    "JOIN faculty f ON fa.faculty_email = f.email " &
+                    "WHERE fa.faculty_email = @Email AND fa.password = @Password " &
                     "LIMIT 1;"
 
                 Using cmd As New MySqlCommand(sql, conn)
                     cmd.Parameters.AddWithValue("@Email", email)
                     cmd.Parameters.AddWithValue("@Password", password)
 
-                    Dim result As Object = cmd.ExecuteScalar()
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            ' --- LOGIN SUCCESS ---
 
-                    If result IsNot Nothing Then
-                        ' --- LOGIN SUCCESS ---
-                        Dim accountId As Integer = CInt(result)
-                        MessageBox.Show("Faculty login successful!")
+                            ' Save to global session so other forms know who's logged in
+                            CurrentFacultyId = CInt(reader("faculty_id"))
+                            CurrentFacultyEmail = reader("email").ToString()
+                            CurrentAccountId = CInt(reader("account_id"))
 
+                            MessageBox.Show("Faculty login successful!",
+                                            "Success",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Information)
 
-                        Dim fDash As New DashboardForm(accountId)
-                        fDash.Show()
-                        Me.Hide()
-
-                    Else
-                        ' --- LOGIN FAILED ---
-                        MessageBox.Show("Incorrect email or password.",
-                                        "Access Denied",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Error)
-                    End If
+                            ' Open dashboard or main form
+                            ' You can still pass accountId if your DashboardForm needs it
+                            Dim fDash As New DashboardForm(CurrentAccountId)
+                            fDash.Show()
+                            Me.Hide()
+                        Else
+                            ' --- LOGIN FAILED ---
+                            MessageBox.Show("Incorrect email or password.",
+                                            "Access Denied",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error)
+                        End If
+                    End Using
                 End Using
 
             Catch ex As Exception
@@ -65,6 +85,18 @@ Public Class FrmFacultyLogIn
             End Try
         End Using
 
+    End Sub
+
+    Private Sub picEye_Click(sender As Object, e As EventArgs) Handles picEye.Click
+        If passwordShown = False Then
+            TextBox1.UseSystemPasswordChar = False
+            picEye.Image = My.Resources.view   ' open-eye icon
+            passwordShown = True
+        Else
+            TextBox1.UseSystemPasswordChar = True
+            picEye.Image = My.Resources.hide   ' closed-eye icon
+            passwordShown = False
+        End If
     End Sub
 
 End Class

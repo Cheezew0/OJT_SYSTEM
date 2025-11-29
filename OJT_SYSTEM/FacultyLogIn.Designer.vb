@@ -30,6 +30,8 @@ Partial Class FrmFacultyLogIn
         lblEmail = New Label()
         lblPassword = New Label()
         btnBack = New Button()
+        picEye = New PictureBox()
+        CType(picEye, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' lblFacultyLogIn
@@ -101,11 +103,22 @@ Partial Class FrmFacultyLogIn
         btnBack.Text = "Back"
         btnBack.UseVisualStyleBackColor = True
         ' 
+        ' picEye
+        ' 
+        picEye.BackColor = SystemColors.Window
+        picEye.Location = New Point(525, 362)
+        picEye.Name = "picEye"
+        picEye.Size = New Size(39, 38)
+        picEye.SizeMode = PictureBoxSizeMode.Zoom
+        picEye.TabIndex = 8
+        picEye.TabStop = False
+        ' 
         ' FrmFacultyLogIn
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(750, 673)
+        Controls.Add(picEye)
         Controls.Add(btnBack)
         Controls.Add(lblPassword)
         Controls.Add(lblEmail)
@@ -117,6 +130,7 @@ Partial Class FrmFacultyLogIn
         Name = "FrmFacultyLogIn"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Faculty Log In"
+        CType(picEye, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -129,4 +143,5 @@ Partial Class FrmFacultyLogIn
     Friend WithEvents lblPassword As Label
     Friend WithEvents btnBack As Button
     Friend WithEvents btnLogIn As Button
+    Friend WithEvents picEye As PictureBox
 End Class

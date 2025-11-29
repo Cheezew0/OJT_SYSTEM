@@ -1,4 +1,7 @@
-﻿Public Class StudInternForm
+﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports MySql.Data.MySqlClient
+Public Class StudInternForm
+
     Private Sub btnInternship_Click(sender As Object, e As EventArgs) Handles btnInternship.Click
 
     End Sub
@@ -21,6 +24,11 @@
         Panel2.Region = RoundCorners(Panel2, 20)
 
         StyleDataGridView(dtgEvalHistory)
+        SetInternFieldsEnabled(False)
+        SetSupervisorFieldsEnabled(False)
+
+        btnSave.Enabled = False
+        btnSsave.Enabled = False
     End Sub
 
     Private Sub StyleDataGridView(dgv As DataGridView)
@@ -93,4 +101,39 @@
         End If
     End Sub
 
+    ' Lock/unlock all internship fields in pnlIntern
+    Private Sub SetInternFieldsEnabled(enabled As Boolean)
+        txtInternCompany.ReadOnly = Not enabled
+        txtCompAddr.ReadOnly = Not enabled
+        txtCompEmail.ReadOnly = Not enabled   ' Company Email
+
+        DateTimePicker1.Enabled = enabled ' Starting date
+        DateTimePicker2.Enabled = enabled ' End date
+
+        TextBox1.ReadOnly = Not enabled   ' Total Required Hours
+        TextBox2.ReadOnly = Not enabled   ' Hours Rendered
+    End Sub
+
+    ' Lock/unlock all supervisor fields in pnlSupervisor
+    Private Sub SetSupervisorFieldsEnabled(enabled As Boolean)
+        txtSFName.ReadOnly = Not enabled
+        txtLName.ReadOnly = Not enabled
+        txtPos.ReadOnly = Not enabled
+        txtSEmail.ReadOnly = Not enabled
+        txtSContact.ReadOnly = Not enabled
+    End Sub
+
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        SetInternFieldsEnabled(True)
+        btnSave.Enabled = True
+    End Sub
+
+    Private Sub btnSedit_Click(sender As Object, e As EventArgs) Handles btnSedit.Click
+        SetSupervisorFieldsEnabled(True)
+        btnSsave.Enabled = True
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+
+    End Sub
 End Class
