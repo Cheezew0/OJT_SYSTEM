@@ -34,16 +34,10 @@ Public Class StudInternForm
         pnlSummary.BackColor = ColorTranslator.FromHtml("#F7F7F7")
         Panel2.BackColor = ColorTranslator.FromHtml("#F7F7F7")
 
-        pnlIntern.Region = RoundCorners(pnlIntern, 20)
-        pnlSummary.Region = RoundCorners(pnlSummary, 20)
-        Panel2.Region = RoundCorners(Panel2, 20)
-
         SetInternFieldsEnabled(False)
         SetSupervisorFieldsEnabled(False)
         btnSave.Enabled = False
         btnSsave.Enabled = False
-
-        ' Load from DB so UI shows current values
         LoadInternshipForStudent()
     End Sub
 
