@@ -53,9 +53,7 @@ Public Class FrmFacultyLogIn
 
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
-                            ' --- LOGIN SUCCESS ---
 
-                            ' Save to global session so other forms know who's logged in
                             CurrentFacultyId = CInt(reader("faculty_id"))
                             CurrentFacultyEmail = reader("email").ToString()
                             CurrentAccountId = CInt(reader("account_id"))
@@ -65,8 +63,6 @@ Public Class FrmFacultyLogIn
                                             MessageBoxButtons.OK,
                                             MessageBoxIcon.Information)
 
-                            ' Open dashboard or main form
-                            ' You can still pass accountId if your DashboardForm needs it
                             Dim fDash As New DashboardForm(CurrentAccountId)
                             fDash.Show()
                             Me.Hide()

@@ -6,8 +6,6 @@ Public Class MyProfileForm
 
     Private connectionString As String =
         "Server=localhost;Database=ojt_management_system;Uid=root;Pwd=;"
-
-    ' comes from student login (passed into ctor)
     Private studentIdValue As String
 
     Public Sub New(studentId As String)
@@ -64,6 +62,7 @@ Public Class MyProfileForm
         path.CloseFigure()
         btn.Region = New Region(path)
     End Sub
+
 
     ' ===================== LOAD STUDENT + PROFESSOR =====================
 
@@ -250,13 +249,11 @@ Public Class MyProfileForm
         DisableEditing()
         LoadStudentInfo()   ' revert to DB values
     End Sub
-
     Private Sub btnInternship_Click(sender As Object, e As EventArgs) Handles btnInternship.Click
-        Dim btnInternshipForm As New StudInternForm
+        Dim btnInternshipForm As New StudInternForm(studentIdValue)
         btnInternshipForm.Show()
         Me.Hide()
     End Sub
-
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
         Dim result As DialogResult = MessageBox.Show(
             "Are you sure you want to log out?",
