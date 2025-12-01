@@ -70,7 +70,6 @@ Partial Class FrmFacultyLogIn
         TextBox1.Name = "TextBox1"
         TextBox1.Size = New Size(304, 38)
         TextBox1.TabIndex = 4
-        TextBox1.UseSystemPasswordChar = True
         ' 
         ' lblEmail
         ' 

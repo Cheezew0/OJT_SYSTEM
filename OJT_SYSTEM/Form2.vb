@@ -142,12 +142,11 @@ Public Class StudentForm
                 ' Save to DB and assign faculty_id
                 SaveStudentIdsToDatabase()
 
-                ' Reload grid according to current filter
-                Dim showAll As Boolean = (cmbFilter.SelectedIndex = 0)
-                LoadStudents(showAll)
-
                 MessageBox.Show("Student IDs loaded from CSV and saved to database.",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' Refresh student list so only this faculty's rows appear
+                LoadStudentsForCurrentFaculty()
 
             Catch ex As Exception
                 MessageBox.Show("Error reading CSV file: " & ex.Message,
@@ -160,8 +159,35 @@ Public Class StudentForm
     ' SAVE TO DATABASE + TAG WITH CURRENT FACULTY ID
     ' ===============================================================
     Private Sub SaveStudentIdsToDatabase()
+
+        ' 0) BASIC CHECK THAT CurrentFacultyId IS SET
+        If CurrentFacultyId <= 0 Then
+            MessageBox.Show("The logged-in faculty ID is not set. " &
+                            "Please log in again before importing students.",
+                            "Invalid Faculty ID",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
         Using conn As New MySqlConnection(connectionString)
             conn.Open()
+
+            ' 0.1) VERIFY THAT THIS FACULTY EXISTS IN THE faculty TABLE
+            Using checkFacultyCmd As New MySqlCommand(
+                "SELECT COUNT(*) FROM faculty WHERE faculty_id = @FacultyId;", conn)
+                checkFacultyCmd.Parameters.AddWithValue("@FacultyId", CurrentFacultyId)
+                Dim count As Integer = CInt(checkFacultyCmd.ExecuteScalar())
+
+                If count = 0 Then
+                    MessageBox.Show(
+                        "Faculty ID " & CurrentFacultyId &
+                        " does not exist in the faculty table." & Environment.NewLine &
+                        "Students cannot be imported because the foreign key would fail.",
+                        "Faculty Not Found",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+            End Using
 
             ' 1) command to check who (if anyone) owns this student_id
             Dim selectSql As String =

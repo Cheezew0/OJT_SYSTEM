@@ -32,6 +32,19 @@ Partial Class StudInternForm
         pnlBottomMenu = New Panel()
         pnlSidebar = New Panel()
         pnlMain = New Panel()
+        pnlSupervisor = New Panel()
+        btnSsave = New Button()
+        btnSedit = New Button()
+        txtSContact = New TextBox()
+        Label17 = New Label()
+        txtSEmail = New TextBox()
+        Label16 = New Label()
+        txtPos = New TextBox()
+        Label15 = New Label()
+        txtLName = New TextBox()
+        Label14 = New Label()
+        txtSFName = New TextBox()
+        Label13 = New Label()
         Panel2 = New Panel()
         dtgEvalHistory = New DataGridView()
         colDate = New DataGridViewTextBoxColumn()
@@ -45,6 +58,9 @@ Partial Class StudInternForm
         Label11 = New Label()
         Label10 = New Label()
         pnlIntern = New Panel()
+        txtCompEmail = New TextBox()
+        Label18 = New Label()
+        btnSave = New Button()
         btnEdit = New Button()
         Label9 = New Label()
         Label8 = New Label()
@@ -64,6 +80,7 @@ Partial Class StudInternForm
         pnlBottomMenu.SuspendLayout()
         pnlSidebar.SuspendLayout()
         pnlMain.SuspendLayout()
+        pnlSupervisor.SuspendLayout()
         Panel2.SuspendLayout()
         CType(dtgEvalHistory, ComponentModel.ISupportInitialize).BeginInit()
         pnlSummary.SuspendLayout()
@@ -193,6 +210,7 @@ Partial Class StudInternForm
         ' 
         ' pnlMain
         ' 
+        pnlMain.Controls.Add(pnlSupervisor)
         pnlMain.Controls.Add(Panel2)
         pnlMain.Controls.Add(pnlSummary)
         pnlMain.Controls.Add(pnlIntern)
@@ -203,13 +221,135 @@ Partial Class StudInternForm
         pnlMain.Size = New Size(1422, 858)
         pnlMain.TabIndex = 7
         ' 
+        ' pnlSupervisor
+        ' 
+        pnlSupervisor.Controls.Add(btnSsave)
+        pnlSupervisor.Controls.Add(btnSedit)
+        pnlSupervisor.Controls.Add(txtSContact)
+        pnlSupervisor.Controls.Add(Label17)
+        pnlSupervisor.Controls.Add(txtSEmail)
+        pnlSupervisor.Controls.Add(Label16)
+        pnlSupervisor.Controls.Add(txtPos)
+        pnlSupervisor.Controls.Add(Label15)
+        pnlSupervisor.Controls.Add(txtLName)
+        pnlSupervisor.Controls.Add(Label14)
+        pnlSupervisor.Controls.Add(txtSFName)
+        pnlSupervisor.Controls.Add(Label13)
+        pnlSupervisor.Location = New Point(285, 396)
+        pnlSupervisor.Name = "pnlSupervisor"
+        pnlSupervisor.Size = New Size(1081, 166)
+        pnlSupervisor.TabIndex = 10
+        ' 
+        ' btnSsave
+        ' 
+        btnSsave.Location = New Point(950, 118)
+        btnSsave.Name = "btnSsave"
+        btnSsave.Size = New Size(100, 28)
+        btnSsave.TabIndex = 22
+        btnSsave.Text = "Save"
+        btnSsave.UseVisualStyleBackColor = True
+        ' 
+        ' btnSedit
+        ' 
+        btnSedit.Location = New Point(844, 118)
+        btnSedit.Name = "btnSedit"
+        btnSedit.Size = New Size(100, 28)
+        btnSedit.TabIndex = 21
+        btnSedit.Text = "Edit"
+        btnSedit.UseVisualStyleBackColor = True
+        ' 
+        ' txtSContact
+        ' 
+        txtSContact.Location = New Point(288, 119)
+        txtSContact.Name = "txtSContact"
+        txtSContact.Size = New Size(197, 27)
+        txtSContact.TabIndex = 20
+        ' 
+        ' Label17
+        ' 
+        Label17.AutoSize = True
+        Label17.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold)
+        Label17.Location = New Point(288, 91)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(254, 25)
+        Label17.TabIndex = 19
+        Label17.Text = "Supervisor Contact Number:"
+        ' 
+        ' txtSEmail
+        ' 
+        txtSEmail.Location = New Point(19, 119)
+        txtSEmail.Name = "txtSEmail"
+        txtSEmail.Size = New Size(197, 27)
+        txtSEmail.TabIndex = 18
+        ' 
+        ' Label16
+        ' 
+        Label16.AutoSize = True
+        Label16.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold)
+        Label16.Location = New Point(19, 91)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(159, 25)
+        Label16.TabIndex = 17
+        Label16.Text = "Supervisor Email:"
+        ' 
+        ' txtPos
+        ' 
+        txtPos.Location = New Point(569, 41)
+        txtPos.Name = "txtPos"
+        txtPos.Size = New Size(197, 27)
+        txtPos.TabIndex = 16
+        ' 
+        ' Label15
+        ' 
+        Label15.AutoSize = True
+        Label15.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold)
+        Label15.Location = New Point(569, 13)
+        Label15.Name = "Label15"
+        Label15.Size = New Size(85, 25)
+        Label15.TabIndex = 15
+        Label15.Text = "Position:"
+        ' 
+        ' txtLName
+        ' 
+        txtLName.Location = New Point(288, 41)
+        txtLName.Name = "txtLName"
+        txtLName.Size = New Size(197, 27)
+        txtLName.TabIndex = 14
+        ' 
+        ' Label14
+        ' 
+        Label14.AutoSize = True
+        Label14.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold)
+        Label14.Location = New Point(288, 13)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(202, 25)
+        Label14.TabIndex = 13
+        Label14.Text = "Supervisor Last Name:"
+        ' 
+        ' txtSFName
+        ' 
+        txtSFName.Location = New Point(19, 41)
+        txtSFName.Name = "txtSFName"
+        txtSFName.Size = New Size(197, 27)
+        txtSFName.TabIndex = 12
+        ' 
+        ' Label13
+        ' 
+        Label13.AutoSize = True
+        Label13.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold)
+        Label13.Location = New Point(19, 13)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(204, 25)
+        Label13.TabIndex = 11
+        Label13.Text = "Supervisor First Name:"
+        ' 
         ' Panel2
         ' 
         Panel2.Controls.Add(dtgEvalHistory)
         Panel2.Controls.Add(Label12)
-        Panel2.Location = New Point(333, 514)
+        Panel2.Location = New Point(285, 568)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(824, 218)
+        Panel2.Size = New Size(824, 261)
         Panel2.TabIndex = 9
         ' 
         ' dtgEvalHistory
@@ -217,8 +357,7 @@ Partial Class StudInternForm
         dtgEvalHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dtgEvalHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dtgEvalHistory.Columns.AddRange(New DataGridViewColumn() {colDate, colScore, colEvaluator})
-        dtgEvalHistory.Dock = DockStyle.Fill
-        dtgEvalHistory.Location = New Point(0, 0)
+        dtgEvalHistory.Location = New Point(-3, 46)
         dtgEvalHistory.Name = "dtgEvalHistory"
         dtgEvalHistory.RowHeadersWidth = 51
         dtgEvalHistory.Size = New Size(824, 218)
@@ -259,9 +398,9 @@ Partial Class StudInternForm
         pnlSummary.Controls.Add(btnViewRpt)
         pnlSummary.Controls.Add(Label11)
         pnlSummary.Controls.Add(Label10)
-        pnlSummary.Location = New Point(333, 396)
+        pnlSummary.Location = New Point(1115, 568)
         pnlSummary.Name = "pnlSummary"
-        pnlSummary.Size = New Size(824, 112)
+        pnlSummary.Size = New Size(251, 166)
         pnlSummary.TabIndex = 8
         ' 
         ' lblRating
@@ -277,16 +416,16 @@ Partial Class StudInternForm
         ' lblEvalComp
         ' 
         lblEvalComp.AutoSize = True
-        lblEvalComp.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lblEvalComp.Location = New Point(411, 52)
+        lblEvalComp.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblEvalComp.Location = New Point(22, 92)
         lblEvalComp.Name = "lblEvalComp"
-        lblEvalComp.Size = New Size(194, 25)
+        lblEvalComp.Size = New Size(207, 25)
         lblEvalComp.TabIndex = 16
         lblEvalComp.Text = "Evaluations Completed"
         ' 
         ' btnViewRpt
         ' 
-        btnViewRpt.Location = New Point(611, 51)
+        btnViewRpt.Location = New Point(19, 120)
         btnViewRpt.Name = "btnViewRpt"
         btnViewRpt.Size = New Size(175, 31)
         btnViewRpt.TabIndex = 15
@@ -315,6 +454,9 @@ Partial Class StudInternForm
         ' 
         ' pnlIntern
         ' 
+        pnlIntern.Controls.Add(txtCompEmail)
+        pnlIntern.Controls.Add(Label18)
+        pnlIntern.Controls.Add(btnSave)
         pnlIntern.Controls.Add(btnEdit)
         pnlIntern.Controls.Add(Label9)
         pnlIntern.Controls.Add(Label8)
@@ -330,14 +472,40 @@ Partial Class StudInternForm
         pnlIntern.Controls.Add(Label3)
         pnlIntern.Controls.Add(txtInternCompany)
         pnlIntern.Controls.Add(Label2)
-        pnlIntern.Location = New Point(333, 119)
+        pnlIntern.Location = New Point(285, 119)
         pnlIntern.Name = "pnlIntern"
-        pnlIntern.Size = New Size(1015, 271)
+        pnlIntern.Size = New Size(1081, 271)
         pnlIntern.TabIndex = 7
+        ' 
+        ' txtCompEmail
+        ' 
+        txtCompEmail.Location = New Point(722, 45)
+        txtCompEmail.Name = "txtCompEmail"
+        txtCompEmail.Size = New Size(333, 27)
+        txtCompEmail.TabIndex = 17
+        ' 
+        ' Label18
+        ' 
+        Label18.AutoSize = True
+        Label18.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold)
+        Label18.Location = New Point(722, 17)
+        Label18.Name = "Label18"
+        Label18.Size = New Size(148, 25)
+        Label18.TabIndex = 16
+        Label18.Text = "Company Email:"
+        ' 
+        ' btnSave
+        ' 
+        btnSave.Location = New Point(950, 212)
+        btnSave.Name = "btnSave"
+        btnSave.Size = New Size(100, 28)
+        btnSave.TabIndex = 15
+        btnSave.Text = "Save"
+        btnSave.UseVisualStyleBackColor = True
         ' 
         ' btnEdit
         ' 
-        btnEdit.Location = New Point(886, 44)
+        btnEdit.Location = New Point(844, 212)
         btnEdit.Name = "btnEdit"
         btnEdit.Size = New Size(100, 28)
         btnEdit.TabIndex = 14
@@ -434,7 +602,7 @@ Partial Class StudInternForm
         ' 
         ' txtCompAddr
         ' 
-        txtCompAddr.Location = New Point(433, 45)
+        txtCompAddr.Location = New Point(372, 45)
         txtCompAddr.Name = "txtCompAddr"
         txtCompAddr.Size = New Size(333, 27)
         txtCompAddr.TabIndex = 3
@@ -443,7 +611,7 @@ Partial Class StudInternForm
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold)
-        Label3.Location = New Point(433, 17)
+        Label3.Location = New Point(372, 17)
         Label3.Name = "Label3"
         Label3.Size = New Size(170, 25)
         Label3.TabIndex = 2
@@ -481,6 +649,8 @@ Partial Class StudInternForm
         pnlSidebar.ResumeLayout(False)
         pnlMain.ResumeLayout(False)
         pnlMain.PerformLayout()
+        pnlSupervisor.ResumeLayout(False)
+        pnlSupervisor.PerformLayout()
         Panel2.ResumeLayout(False)
         Panel2.PerformLayout()
         CType(dtgEvalHistory, ComponentModel.ISupportInitialize).EndInit()
@@ -527,4 +697,20 @@ Partial Class StudInternForm
     Friend WithEvents colScore As DataGridViewTextBoxColumn
     Friend WithEvents colEvaluator As DataGridViewTextBoxColumn
     Friend WithEvents btnEdit As Button
+    Friend WithEvents pnlSupervisor As Panel
+    Friend WithEvents btnSsave As Button
+    Friend WithEvents btnSedit As Button
+    Friend WithEvents txtSContact As TextBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents txtSEmail As TextBox
+    Friend WithEvents Label16 As Label
+    Friend WithEvents txtPos As TextBox
+    Friend WithEvents Label15 As Label
+    Friend WithEvents txtLName As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents txtSFName As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents btnSave As Button
+    Friend WithEvents txtCompEmail As TextBox
+    Friend WithEvents Label18 As Label
 End Class
