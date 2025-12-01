@@ -37,6 +37,10 @@ Partial Class StudentForm
         PictureBoxLogo = New PictureBox()
         pnlMain = New Panel()
         pnlActivitiesMain = New Panel()
+        btnDeleteStudent = New Button()
+        btnAddStudent = New Button()
+        mtxtStudentId = New MaskedTextBox()
+        cmbFilter = New ComboBox()
         btnAddFile = New Button()
         dgvStudents = New RoundedPanel()
         Student_ID = New DataGridViewTextBoxColumn()
@@ -128,7 +132,7 @@ Partial Class StudentForm
         btnFaculty.BackgroundImageLayout = ImageLayout.None
         btnFaculty.FlatAppearance.BorderSize = 0
         btnFaculty.FlatStyle = FlatStyle.Flat
-        btnFaculty.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        btnFaculty.Font = New Font("Segoe UI", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         btnFaculty.ForeColor = Color.White
         btnFaculty.Image = My.Resources.Resources.Test_Account
         btnFaculty.ImageAlign = ContentAlignment.MiddleLeft
@@ -149,7 +153,7 @@ Partial Class StudentForm
         btnEvaluationLog.BackgroundImageLayout = ImageLayout.None
         btnEvaluationLog.FlatAppearance.BorderSize = 0
         btnEvaluationLog.FlatStyle = FlatStyle.Flat
-        btnEvaluationLog.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnEvaluationLog.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnEvaluationLog.ForeColor = Color.White
         btnEvaluationLog.Image = My.Resources.Resources.Task
         btnEvaluationLog.Location = New Point(12, 369)
@@ -168,7 +172,7 @@ Partial Class StudentForm
         btnInternships.BackgroundImageLayout = ImageLayout.None
         btnInternships.FlatAppearance.BorderSize = 0
         btnInternships.FlatStyle = FlatStyle.Flat
-        btnInternships.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnInternships.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnInternships.ForeColor = Color.White
         btnInternships.Image = My.Resources.Resources.Job_Seeker
         btnInternships.Location = New Point(12, 298)
@@ -187,7 +191,7 @@ Partial Class StudentForm
         btnStudent.BackgroundImageLayout = ImageLayout.None
         btnStudent.FlatAppearance.BorderSize = 0
         btnStudent.FlatStyle = FlatStyle.Flat
-        btnStudent.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnStudent.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnStudent.ForeColor = Color.White
         btnStudent.Image = My.Resources.Resources.Graduation_Cap
         btnStudent.Location = New Point(12, 227)
@@ -206,7 +210,7 @@ Partial Class StudentForm
         btnDashboard.BackgroundImageLayout = ImageLayout.None
         btnDashboard.FlatAppearance.BorderSize = 0
         btnDashboard.FlatStyle = FlatStyle.Flat
-        btnDashboard.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnDashboard.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnDashboard.ForeColor = Color.White
         btnDashboard.Image = My.Resources.Resources.Home
         btnDashboard.Location = New Point(12, 156)
@@ -247,18 +251,58 @@ Partial Class StudentForm
         ' 
         ' pnlActivitiesMain
         ' 
+        pnlActivitiesMain.Controls.Add(btnDeleteStudent)
+        pnlActivitiesMain.Controls.Add(btnAddStudent)
+        pnlActivitiesMain.Controls.Add(mtxtStudentId)
+        pnlActivitiesMain.Controls.Add(cmbFilter)
         pnlActivitiesMain.Controls.Add(btnAddFile)
         pnlActivitiesMain.Controls.Add(dgvStudents)
-        pnlActivitiesMain.Location = New Point(98, 117)
+        pnlActivitiesMain.Location = New Point(24, 117)
         pnlActivitiesMain.Name = "pnlActivitiesMain"
-        pnlActivitiesMain.Size = New Size(1052, 457)
+        pnlActivitiesMain.Size = New Size(1126, 697)
         pnlActivitiesMain.TabIndex = 5
+        ' 
+        ' btnDeleteStudent
+        ' 
+        btnDeleteStudent.Location = New Point(474, 655)
+        btnDeleteStudent.Name = "btnDeleteStudent"
+        btnDeleteStudent.Size = New Size(127, 29)
+        btnDeleteStudent.TabIndex = 11
+        btnDeleteStudent.Text = "Delete Student"
+        btnDeleteStudent.UseVisualStyleBackColor = True
+        ' 
+        ' btnAddStudent
+        ' 
+        btnAddStudent.Location = New Point(338, 655)
+        btnAddStudent.Name = "btnAddStudent"
+        btnAddStudent.Size = New Size(127, 29)
+        btnAddStudent.TabIndex = 10
+        btnAddStudent.Text = "Add Student"
+        btnAddStudent.UseVisualStyleBackColor = True
+        ' 
+        ' mtxtStudentId
+        ' 
+        mtxtStudentId.Location = New Point(197, 655)
+        mtxtStudentId.Mask = "00-00000"
+        mtxtStudentId.Name = "mtxtStudentId"
+        mtxtStudentId.Size = New Size(125, 27)
+        mtxtStudentId.TabIndex = 9
+        mtxtStudentId.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals
+        ' 
+        ' cmbFilter
+        ' 
+        cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbFilter.FormattingEnabled = True
+        cmbFilter.Location = New Point(951, 11)
+        cmbFilter.Name = "cmbFilter"
+        cmbFilter.Size = New Size(151, 28)
+        cmbFilter.TabIndex = 8
         ' 
         ' btnAddFile
         ' 
-        btnAddFile.Location = New Point(935, 10)
+        btnAddFile.Location = New Point(1019, 650)
         btnAddFile.Name = "btnAddFile"
-        btnAddFile.Size = New Size(94, 29)
+        btnAddFile.Size = New Size(94, 32)
         btnAddFile.TabIndex = 7
         btnAddFile.Text = "Add File"
         btnAddFile.UseVisualStyleBackColor = True
@@ -272,7 +316,7 @@ Partial Class StudentForm
         dgvStudents.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(26), CByte(79), CByte(93))
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 10F, FontStyle.Bold)
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold)
         DataGridViewCellStyle2.ForeColor = Color.White
         DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
@@ -283,7 +327,7 @@ Partial Class StudentForm
         dgvStudents.CornerRadius = 20
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(247), CByte(247), CByte(247))
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9.0F)
         DataGridViewCellStyle3.ForeColor = Color.Black
         DataGridViewCellStyle3.Padding = New Padding(5)
         DataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(CByte(183), CByte(192), CByte(217))
@@ -292,12 +336,12 @@ Partial Class StudentForm
         dgvStudents.DefaultCellStyle = DataGridViewCellStyle3
         dgvStudents.EnableHeadersVisualStyles = False
         dgvStudents.GridColor = Color.Gray
-        dgvStudents.Location = New Point(28, 53)
+        dgvStudents.Location = New Point(3, 53)
         dgvStudents.Name = "dgvStudents"
         dgvStudents.RowHeadersVisible = False
         dgvStudents.RowHeadersWidth = 51
         dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvStudents.Size = New Size(1001, 395)
+        dgvStudents.Size = New Size(1120, 591)
         dgvStudents.TabIndex = 0
         ' 
         ' Student_ID
@@ -369,7 +413,7 @@ Partial Class StudentForm
         ' lblPartnerCompCount
         ' 
         lblPartnerCompCount.AutoSize = True
-        lblPartnerCompCount.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblPartnerCompCount.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblPartnerCompCount.Location = New Point(161, 37)
         lblPartnerCompCount.Name = "lblPartnerCompCount"
         lblPartnerCompCount.Size = New Size(35, 41)
@@ -408,7 +452,7 @@ Partial Class StudentForm
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label2.Location = New Point(152, 37)
         Label2.Name = "Label2"
         Label2.Size = New Size(35, 41)
@@ -447,7 +491,7 @@ Partial Class StudentForm
         ' lblActStudCount
         ' 
         lblActStudCount.AutoSize = True
-        lblActStudCount.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblActStudCount.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblActStudCount.Location = New Point(163, 37)
         lblActStudCount.Name = "lblActStudCount"
         lblActStudCount.Size = New Size(35, 41)
@@ -487,7 +531,7 @@ Partial Class StudentForm
         ' lblStudCount
         ' 
         lblStudCount.AutoSize = True
-        lblStudCount.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblStudCount.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblStudCount.Location = New Point(159, 37)
         lblStudCount.Name = "lblStudCount"
         lblStudCount.Size = New Size(35, 41)
@@ -517,7 +561,7 @@ Partial Class StudentForm
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(98, 62)
+        Label1.Location = New Point(24, 54)
         Label1.Name = "Label1"
         Label1.Size = New Size(260, 50)
         Label1.TabIndex = 0
@@ -525,13 +569,14 @@ Partial Class StudentForm
         ' 
         ' StudentForm
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1422, 858)
         Controls.Add(pnlMain)
         Controls.Add(pnlSidebar)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "StudentForm"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Pasig Institute of Technology"
         pnlSidebar.ResumeLayout(False)
         pnlBottomMenu.ResumeLayout(False)
@@ -539,6 +584,7 @@ Partial Class StudentForm
         pnlMain.ResumeLayout(False)
         pnlMain.PerformLayout()
         pnlActivitiesMain.ResumeLayout(False)
+        pnlActivitiesMain.PerformLayout()
         CType(dgvStudents, ComponentModel.ISupportInitialize).EndInit()
         pnlPartnerComp.ResumeLayout(False)
         pnlPartnerComp.PerformLayout()
@@ -593,4 +639,8 @@ Partial Class StudentForm
     Friend WithEvents Rating As DataGridViewTextBoxColumn
     Friend WithEvents dgvStudents As RoundedPanel
     Friend WithEvents btnAddFile As Button
+    Friend WithEvents cmbFilter As ComboBox
+    Friend WithEvents btnDeleteStudent As Button
+    Friend WithEvents btnAddStudent As Button
+    Friend WithEvents mtxtStudentId As MaskedTextBox
 End Class
