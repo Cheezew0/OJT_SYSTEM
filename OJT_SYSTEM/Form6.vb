@@ -456,13 +456,13 @@ Public Class StudInternForm
 
                     Using reader = cmd.ExecuteReader()
                         If reader.Read() Then
-                            ' --- store IDs for later saves ---
+                            '  store IDs for later saves
                             CurrentInternshipId = Convert.ToInt32(reader("internship_id"))
                             CurrentCompanyId = Convert.ToInt32(reader("company_id"))
                             CurrentSupervisorId = Convert.ToInt32(reader("supervisor_id"))
                             CurrentFacultyId = Convert.ToInt32(reader("faculty_id"))
 
-                            ' --- company / internship UI ---
+                            ' company / internship UI 
                             txtInternCompany.Text = reader("company_name").ToString()
                             txtCompEmail.Text = reader("company_email").ToString()
                             txtCompAddr.Text = reader("company_address").ToString()
@@ -476,7 +476,7 @@ Public Class StudInternForm
                             TextBox2.Text = reader("hours_completed").ToString()
                             ' You can also show reader("status") somewhere if you have a label.
 
-                            ' --- supervisor UI ---
+                            ' supervisor UI 
                             txtSFName.Text = reader("first_name").ToString()
                             txtLName.Text = reader("last_name").ToString()
                             txtPos.Text = reader("position").ToString()

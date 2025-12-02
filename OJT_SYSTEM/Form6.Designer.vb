@@ -52,7 +52,7 @@ Partial Class StudInternForm
         colEvaluator = New DataGridViewTextBoxColumn()
         Label12 = New Label()
         pnlSummary = New Panel()
-        lblRating = New Label()
+        lblProfRating = New Label()
         lblEvalComp = New Label()
         btnViewRpt = New Button()
         Label11 = New Label()
@@ -76,6 +76,8 @@ Partial Class StudInternForm
         Label3 = New Label()
         txtInternCompany = New TextBox()
         Label2 = New Label()
+        Label19 = New Label()
+        lblSupervisorRating = New Label()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
         pnlBottomMenu.SuspendLayout()
         pnlSidebar.SuspendLayout()
@@ -393,31 +395,33 @@ Partial Class StudInternForm
         ' 
         ' pnlSummary
         ' 
-        pnlSummary.Controls.Add(lblRating)
+        pnlSummary.Controls.Add(lblSupervisorRating)
+        pnlSummary.Controls.Add(Label19)
+        pnlSummary.Controls.Add(lblProfRating)
         pnlSummary.Controls.Add(lblEvalComp)
         pnlSummary.Controls.Add(btnViewRpt)
         pnlSummary.Controls.Add(Label11)
         pnlSummary.Controls.Add(Label10)
         pnlSummary.Location = New Point(1115, 568)
         pnlSummary.Name = "pnlSummary"
-        pnlSummary.Size = New Size(251, 166)
+        pnlSummary.Size = New Size(251, 261)
         pnlSummary.TabIndex = 8
         ' 
-        ' lblRating
+        ' lblProfRating
         ' 
-        lblRating.AutoSize = True
-        lblRating.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lblRating.Location = New Point(92, 52)
-        lblRating.Name = "lblRating"
-        lblRating.Size = New Size(22, 25)
-        lblRating.TabIndex = 17
-        lblRating.Text = "0"
+        lblProfRating.AutoSize = True
+        lblProfRating.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblProfRating.Location = New Point(198, 52)
+        lblProfRating.Name = "lblProfRating"
+        lblProfRating.Size = New Size(22, 25)
+        lblProfRating.TabIndex = 17
+        lblProfRating.Text = "0"
         ' 
         ' lblEvalComp
         ' 
         lblEvalComp.AutoSize = True
         lblEvalComp.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblEvalComp.Location = New Point(22, 92)
+        lblEvalComp.Location = New Point(19, 169)
         lblEvalComp.Name = "lblEvalComp"
         lblEvalComp.Size = New Size(207, 25)
         lblEvalComp.TabIndex = 16
@@ -425,7 +429,7 @@ Partial Class StudInternForm
         ' 
         ' btnViewRpt
         ' 
-        btnViewRpt.Location = New Point(19, 120)
+        btnViewRpt.Location = New Point(16, 197)
         btnViewRpt.Name = "btnViewRpt"
         btnViewRpt.Size = New Size(175, 31)
         btnViewRpt.TabIndex = 15
@@ -438,9 +442,9 @@ Partial Class StudInternForm
         Label11.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label11.Location = New Point(19, 52)
         Label11.Name = "Label11"
-        Label11.Size = New Size(67, 25)
+        Label11.Size = New Size(147, 25)
         Label11.TabIndex = 14
-        Label11.Text = "Rating:"
+        Label11.Text = "Professor Rating:"
         ' 
         ' Label10
         ' 
@@ -634,6 +638,26 @@ Partial Class StudInternForm
         Label2.TabIndex = 0
         Label2.Text = "Internship Company:"
         ' 
+        ' Label19
+        ' 
+        Label19.AutoSize = True
+        Label19.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label19.Location = New Point(19, 98)
+        Label19.Name = "Label19"
+        Label19.Size = New Size(156, 25)
+        Label19.TabIndex = 18
+        Label19.Text = "Supervisor Rating:"
+        ' 
+        ' lblSupervisorRating
+        ' 
+        lblSupervisorRating.AutoSize = True
+        lblSupervisorRating.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblSupervisorRating.Location = New Point(198, 98)
+        lblSupervisorRating.Name = "lblSupervisorRating"
+        lblSupervisorRating.Size = New Size(22, 25)
+        lblSupervisorRating.TabIndex = 19
+        lblSupervisorRating.Text = "0"
+        ' 
         ' StudInternForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -690,7 +714,7 @@ Partial Class StudInternForm
     Friend WithEvents Label10 As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label12 As Label
-    Friend WithEvents lblRating As Label
+    Friend WithEvents lblProfRating As Label
     Friend WithEvents lblEvalComp As Label
     Friend WithEvents dtgEvalHistory As DataGridView
     Friend WithEvents colDate As DataGridViewTextBoxColumn
@@ -713,4 +737,6 @@ Partial Class StudInternForm
     Friend WithEvents btnSave As Button
     Friend WithEvents txtCompEmail As TextBox
     Friend WithEvents Label18 As Label
+    Friend WithEvents lblSupervisorRating As Label
+    Friend WithEvents Label19 As Label
 End Class
