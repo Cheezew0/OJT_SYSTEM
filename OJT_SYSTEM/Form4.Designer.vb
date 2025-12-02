@@ -35,21 +35,21 @@ Partial Class EvaluationForm
         pnlMain = New Panel()
         pnlEval = New Panel()
         pnlRating = New Panel()
+        lblRating = New Label()
         Label18 = New Label()
-        Button2 = New Button()
-        Button1 = New Button()
-        TextBox1 = New TextBox()
+        btnSaveEval = New Button()
+        txtComm = New TextBox()
         Label17 = New Label()
-        DateTimePicker1 = New DateTimePicker()
-        ComboBox5 = New ComboBox()
-        ComboBox4 = New ComboBox()
-        ComboBox3 = New ComboBox()
-        ComboBox2 = New ComboBox()
+        dtpVisit = New DateTimePicker()
+        cmbSoftSkills = New ComboBox()
+        cmbSkills = New ComboBox()
+        cmbProfessionalism = New ComboBox()
+        cmbPunc = New ComboBox()
         Label15 = New Label()
         Label14 = New Label()
         Label13 = New Label()
         Label11 = New Label()
-        ComboBox1 = New ComboBox()
+        cmbEval = New ComboBox()
         Label10 = New Label()
         Label9 = New Label()
         Label2 = New Label()
@@ -254,35 +254,45 @@ Partial Class EvaluationForm
         ' pnlEval
         ' 
         pnlEval.Controls.Add(pnlRating)
-        pnlEval.Controls.Add(Button2)
-        pnlEval.Controls.Add(Button1)
-        pnlEval.Controls.Add(TextBox1)
+        pnlEval.Controls.Add(btnSaveEval)
+        pnlEval.Controls.Add(txtComm)
         pnlEval.Controls.Add(Label17)
-        pnlEval.Controls.Add(DateTimePicker1)
-        pnlEval.Controls.Add(ComboBox5)
-        pnlEval.Controls.Add(ComboBox4)
-        pnlEval.Controls.Add(ComboBox3)
-        pnlEval.Controls.Add(ComboBox2)
+        pnlEval.Controls.Add(dtpVisit)
+        pnlEval.Controls.Add(cmbSoftSkills)
+        pnlEval.Controls.Add(cmbSkills)
+        pnlEval.Controls.Add(cmbProfessionalism)
+        pnlEval.Controls.Add(cmbPunc)
         pnlEval.Controls.Add(Label15)
         pnlEval.Controls.Add(Label14)
         pnlEval.Controls.Add(Label13)
         pnlEval.Controls.Add(Label11)
-        pnlEval.Controls.Add(ComboBox1)
+        pnlEval.Controls.Add(cmbEval)
         pnlEval.Controls.Add(Label10)
         pnlEval.Controls.Add(Label9)
         pnlEval.Controls.Add(Label2)
-        pnlEval.Location = New Point(424, 198)
+        pnlEval.Location = New Point(435, 198)
         pnlEval.Name = "pnlEval"
         pnlEval.Size = New Size(722, 367)
         pnlEval.TabIndex = 13
         ' 
         ' pnlRating
         ' 
+        pnlRating.Controls.Add(lblRating)
         pnlRating.Controls.Add(Label18)
         pnlRating.Location = New Point(444, 143)
         pnlRating.Name = "pnlRating"
         pnlRating.Size = New Size(236, 146)
         pnlRating.TabIndex = 18
+        ' 
+        ' lblRating
+        ' 
+        lblRating.AutoSize = True
+        lblRating.Font = New Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblRating.Location = New Point(96, 59)
+        lblRating.Name = "lblRating"
+        lblRating.Size = New Size(40, 46)
+        lblRating.TabIndex = 16
+        lblRating.Text = "0"
         ' 
         ' Label18
         ' 
@@ -293,140 +303,137 @@ Partial Class EvaluationForm
         Label18.TabIndex = 15
         Label18.Text = "Overall Rating:"
         ' 
-        ' Button2
+        ' btnSaveEval
         ' 
-        Button2.BackColor = Color.FromArgb(CByte(128), CByte(128), CByte(255))
-        Button2.Location = New Point(577, 307)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(103, 35)
-        Button2.TabIndex = 17
-        Button2.Text = "Clear"
-        Button2.UseVisualStyleBackColor = False
+        btnSaveEval.BackColor = Color.Red
+        btnSaveEval.Location = New Point(455, 307)
+        btnSaveEval.Name = "btnSaveEval"
+        btnSaveEval.Size = New Size(103, 35)
+        btnSaveEval.TabIndex = 16
+        btnSaveEval.Text = "Save"
+        btnSaveEval.UseVisualStyleBackColor = False
         ' 
-        ' Button1
+        ' txtComm
         ' 
-        Button1.BackColor = Color.Red
-        Button1.Location = New Point(455, 307)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(103, 35)
-        Button1.TabIndex = 16
-        Button1.Text = "Save"
-        Button1.UseVisualStyleBackColor = False
-        ' 
-        ' TextBox1
-        ' 
-        TextBox1.Location = New Point(551, 75)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(129, 27)
-        TextBox1.TabIndex = 15
+        txtComm.Location = New Point(551, 75)
+        txtComm.Name = "txtComm"
+        txtComm.Size = New Size(129, 27)
+        txtComm.TabIndex = 15
         ' 
         ' Label17
         ' 
         Label17.AutoSize = True
+        Label17.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label17.Location = New Point(455, 78)
         Label17.Name = "Label17"
-        Label17.Size = New Size(77, 20)
+        Label17.Size = New Size(79, 20)
         Label17.TabIndex = 14
         Label17.Text = "Comment:"
         ' 
-        ' DateTimePicker1
+        ' dtpVisit
         ' 
-        DateTimePicker1.Location = New Point(238, 121)
-        DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(152, 27)
-        DateTimePicker1.TabIndex = 13
+        dtpVisit.Location = New Point(238, 121)
+        dtpVisit.Name = "dtpVisit"
+        dtpVisit.Size = New Size(152, 27)
+        dtpVisit.TabIndex = 13
         ' 
-        ' ComboBox5
+        ' cmbSoftSkills
         ' 
-        ComboBox5.FormattingEnabled = True
-        ComboBox5.Location = New Point(238, 314)
-        ComboBox5.Name = "ComboBox5"
-        ComboBox5.Size = New Size(152, 28)
-        ComboBox5.TabIndex = 12
+        cmbSoftSkills.FormattingEnabled = True
+        cmbSoftSkills.Location = New Point(238, 314)
+        cmbSoftSkills.Name = "cmbSoftSkills"
+        cmbSoftSkills.Size = New Size(152, 28)
+        cmbSoftSkills.TabIndex = 12
         ' 
-        ' ComboBox4
+        ' cmbSkills
         ' 
-        ComboBox4.FormattingEnabled = True
-        ComboBox4.Location = New Point(238, 266)
-        ComboBox4.Name = "ComboBox4"
-        ComboBox4.Size = New Size(152, 28)
-        ComboBox4.TabIndex = 11
+        cmbSkills.FormattingEnabled = True
+        cmbSkills.Location = New Point(238, 266)
+        cmbSkills.Name = "cmbSkills"
+        cmbSkills.Size = New Size(152, 28)
+        cmbSkills.TabIndex = 11
         ' 
-        ' ComboBox3
+        ' cmbProfessionalism
         ' 
-        ComboBox3.FormattingEnabled = True
-        ComboBox3.Location = New Point(238, 219)
-        ComboBox3.Name = "ComboBox3"
-        ComboBox3.Size = New Size(152, 28)
-        ComboBox3.TabIndex = 10
+        cmbProfessionalism.FormattingEnabled = True
+        cmbProfessionalism.Location = New Point(238, 219)
+        cmbProfessionalism.Name = "cmbProfessionalism"
+        cmbProfessionalism.Size = New Size(152, 28)
+        cmbProfessionalism.TabIndex = 10
         ' 
-        ' ComboBox2
+        ' cmbPunc
         ' 
-        ComboBox2.FormattingEnabled = True
-        ComboBox2.Location = New Point(238, 171)
-        ComboBox2.Name = "ComboBox2"
-        ComboBox2.Size = New Size(152, 28)
-        ComboBox2.TabIndex = 9
+        cmbPunc.FormattingEnabled = True
+        cmbPunc.Location = New Point(238, 171)
+        cmbPunc.Name = "cmbPunc"
+        cmbPunc.Size = New Size(152, 28)
+        cmbPunc.TabIndex = 9
         ' 
         ' Label15
         ' 
         Label15.AutoSize = True
+        Label15.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label15.Location = New Point(47, 317)
         Label15.Name = "Label15"
-        Label15.Size = New Size(117, 20)
+        Label15.Size = New Size(78, 20)
         Label15.TabIndex = 8
-        Label15.Text = "Communication:"
+        Label15.Text = "Soft Skills:"
         ' 
         ' Label14
         ' 
         Label14.AutoSize = True
+        Label14.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label14.Location = New Point(47, 269)
         Label14.Name = "Label14"
-        Label14.Size = New Size(45, 20)
+        Label14.Size = New Size(47, 20)
         Label14.TabIndex = 7
         Label14.Text = "Skills:"
         ' 
         ' Label13
         ' 
         Label13.AutoSize = True
+        Label13.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label13.Location = New Point(47, 222)
         Label13.Name = "Label13"
-        Label13.Size = New Size(115, 20)
+        Label13.Size = New Size(119, 20)
         Label13.TabIndex = 6
         Label13.Text = "Professionalism:"
         ' 
         ' Label11
         ' 
         Label11.AutoSize = True
+        Label11.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label11.Location = New Point(47, 174)
         Label11.Name = "Label11"
-        Label11.Size = New Size(84, 20)
+        Label11.Size = New Size(90, 20)
         Label11.TabIndex = 5
         Label11.Text = "Punctuality:"
         ' 
-        ' ComboBox1
+        ' cmbEval
         ' 
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(238, 75)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(152, 28)
-        ComboBox1.TabIndex = 4
+        cmbEval.FormattingEnabled = True
+        cmbEval.Location = New Point(238, 75)
+        cmbEval.Name = "cmbEval"
+        cmbEval.Size = New Size(152, 28)
+        cmbEval.TabIndex = 4
         ' 
         ' Label10
         ' 
         Label10.AutoSize = True
+        Label10.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label10.Location = New Point(47, 80)
         Label10.Name = "Label10"
-        Label10.Size = New Size(74, 20)
+        Label10.Size = New Size(79, 20)
         Label10.TabIndex = 3
         Label10.Text = "Evaluator:"
         ' 
         ' Label9
         ' 
         Label9.AutoSize = True
+        Label9.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label9.Location = New Point(47, 126)
         Label9.Name = "Label9"
-        Label9.Size = New Size(94, 20)
+        Label9.Size = New Size(96, 20)
         Label9.TabIndex = 2
         Label9.Text = "Date of Visit:"
         ' 
@@ -455,9 +462,9 @@ Partial Class EvaluationForm
         pnlStudInfo.Controls.Add(lblStudID)
         pnlStudInfo.Controls.Add(Label4)
         pnlStudInfo.Controls.Add(Label3)
-        pnlStudInfo.Location = New Point(46, 198)
+        pnlStudInfo.Location = New Point(30, 198)
         pnlStudInfo.Name = "pnlStudInfo"
-        pnlStudInfo.Size = New Size(348, 367)
+        pnlStudInfo.Size = New Size(389, 367)
         pnlStudInfo.TabIndex = 12
         ' 
         ' lblStatus
@@ -472,9 +479,10 @@ Partial Class EvaluationForm
         ' Label8
         ' 
         Label8.AutoSize = True
+        Label8.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label8.Location = New Point(29, 317)
         Label8.Name = "Label8"
-        Label8.Size = New Size(52, 20)
+        Label8.Size = New Size(54, 20)
         Label8.TabIndex = 23
         Label8.Text = "Status:"
         ' 
@@ -490,11 +498,12 @@ Partial Class EvaluationForm
         ' Label16
         ' 
         Label16.AutoSize = True
+        Label16.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label16.Location = New Point(28, 222)
         Label16.Name = "Label16"
-        Label16.Size = New Size(75, 20)
+        Label16.Size = New Size(78, 20)
         Label16.TabIndex = 21
-        Label16.Text = "Comapny:"
+        Label16.Text = "Company:"
         ' 
         ' lblSupervisor
         ' 
@@ -508,9 +517,10 @@ Partial Class EvaluationForm
         ' Label12
         ' 
         Label12.AutoSize = True
+        Label12.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label12.Location = New Point(28, 269)
         Label12.Name = "Label12"
-        Label12.Size = New Size(81, 20)
+        Label12.Size = New Size(88, 20)
         Label12.TabIndex = 13
         Label12.Text = "Supervisor:"
         ' 
@@ -526,9 +536,10 @@ Partial Class EvaluationForm
         ' Label6
         ' 
         Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label6.Location = New Point(28, 174)
         Label6.Name = "Label6"
-        Label6.Size = New Size(57, 20)
+        Label6.Size = New Size(60, 20)
         Label6.TabIndex = 5
         Label6.Text = "Course:"
         ' 
@@ -544,9 +555,10 @@ Partial Class EvaluationForm
         ' Label5
         ' 
         Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label5.Location = New Point(28, 126)
         Label5.Name = "Label5"
-        Label5.Size = New Size(107, 20)
+        Label5.Size = New Size(111, 20)
         Label5.TabIndex = 3
         Label5.Text = "Student Name:"
         ' 
@@ -562,9 +574,10 @@ Partial Class EvaluationForm
         ' Label4
         ' 
         Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label4.Location = New Point(28, 78)
         Label4.Name = "Label4"
-        Label4.Size = New Size(82, 20)
+        Label4.Size = New Size(85, 20)
         Label4.TabIndex = 1
         Label4.Text = "Student ID:"
         ' 
@@ -728,22 +741,22 @@ Partial Class EvaluationForm
     Friend WithEvents btnSearch As Button
     Friend WithEvents pnlEval As Panel
     Friend WithEvents Label2 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmbEval As ComboBox
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtComm As TextBox
     Friend WithEvents Label17 As Label
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents ComboBox5 As ComboBox
-    Friend WithEvents ComboBox4 As ComboBox
-    Friend WithEvents ComboBox3 As ComboBox
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents dtpVisit As DateTimePicker
+    Friend WithEvents cmbSoftSkills As ComboBox
+    Friend WithEvents cmbSkills As ComboBox
+    Friend WithEvents cmbProfessionalism As ComboBox
+    Friend WithEvents cmbPunc As ComboBox
     Friend WithEvents Label15 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnSaveEval As Button
     Friend WithEvents pnlRating As Panel
     Private WithEvents Label18 As Label
+    Friend WithEvents lblRating As Label
 End Class

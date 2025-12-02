@@ -1,8 +1,83 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class InternForm
-    Private ReadOnly connStr As String =
-    "Server=localhost;Database=ojt_management_system;User Id=root;Password=;"
+    Private Sub LoadInternshipDetails(studentId As String)
+        Dim cs As String = "server=localhost;user id=root;password=;database=ojt_management_system;"
+
+        ' === VALIDATE FACULTY SESSION ===
+        If SessionData.CurrentFacultyId <= 0 Then
+            MessageBox.Show("Faculty information missing. Please log in again.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        Using conn As New MySqlConnection(cs)
+            conn.Open()
+
+            Dim query As String =
+        "SELECT 
+            s.student_id,
+            CONCAT(s.first_name, ' ', s.last_name) AS student_name,
+            s.program,
+            s.email_address,
+
+            i.starting_date,
+            i.end_date,
+            i.hours_required,
+            i.hours_completed,
+            i.status,
+
+            c.company_name,
+            c.address AS company_address,
+
+            cc.first_name AS sup_fname,
+            cc.last_name AS sup_lname
+         FROM internship i
+         INNER JOIN student s ON i.student_id = s.student_id
+         INNER JOIN company c ON i.company_id = c.company_id
+         INNER JOIN companycontact cc ON i.supervisor_id = cc.supervisor_id
+         WHERE i.student_id = @studentId
+           AND i.faculty_id = @facultyId
+         LIMIT 1;"
+
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@studentId", studentId)
+                cmd.Parameters.AddWithValue("@facultyId", SessionData.CurrentFacultyId)
+
+                Using reader As MySqlDataReader = cmd.ExecuteReader()
+                    If reader.Read() Then
+                        ' ===== STUDENT INFO =====
+                        lblStudID.Text = reader("student_id").ToString()
+                        lblStudName.Text = reader("student_name").ToString()
+                        lblCourse.Text = reader("program").ToString()
+                        lblEmail.Text = reader("email_address").ToString()
+
+                        ' ===== INTERNSHIP INFO =====
+                        lblStartdate.Text = CDate(reader("starting_date")).ToShortDateString()
+                        lblEndDate.Text = CDate(reader("end_date")).ToShortDateString()
+                        lblReqHrs.Text = reader("hours_required").ToString()
+                        lblStatus.Text = reader("status").ToString()
+
+                        ' ===== COMPANY INFO =====
+                        lblCompany.Text = reader("company_name").ToString()
+                        lblAddress.Text = reader("company_address").ToString()
+
+                        ' ===== SUPERVISOR INFO =====
+                        lblSupervisor.Text = reader("sup_fname").ToString() & " " &
+                                         reader("sup_lname").ToString()
+                    Else
+                        ClearStudentInfo()
+                        MessageBox.Show(
+                        "No internship record found for this student ID under your supervision.",
+                        "Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    )
+                    End If
+                End Using
+            End Using
+        End Using
+    End Sub
 
     Private Sub btnInternships_Click(sender As Object, e As EventArgs) Handles btnInternships.Click
 
@@ -105,51 +180,30 @@ Public Class InternForm
     Private Sub pnlStudInfo_Paint(sender As Object, e As PaintEventArgs) Handles pnlStudInfo.Paint
 
     End Sub
-
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        Dim studentId As String = MaskedTextBox1.Text.Trim()
+        ClearStudentInfo()
 
-        If String.IsNullOrEmpty(studentId) Then
-            MessageBox.Show("Please enter a Student ID.")
+        If SessionData.CurrentFacultyId <= 0 Then
+            MessageBox.Show("Faculty information missing. Please log in again.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
 
-        Using conn As New MySqlConnection(connStr)
-            Dim sql As String =
-            "SELECT student_id, first_name, middle_name, last_name, " &
-            "       program, email_address, address, status " &
-            "FROM student " &
-            "WHERE student_id = @id;"
+        Dim sid As String = MaskedTextBox1.Text.Trim()
 
-            Using cmd As New MySqlCommand(sql, conn)
-                cmd.Parameters.AddWithValue("@id", studentId)
-
-                Try
-                    conn.Open()
-                    Using rdr As MySqlDataReader = cmd.ExecuteReader()
-                        If rdr.Read() Then
-                            Dim first As String = rdr("first_name").ToString()
-                            Dim middle As String = If(IsDBNull(rdr("middle_name")), "", rdr("middle_name").ToString())
-                            Dim last As String = rdr("last_name").ToString()
-                            Dim fullName As String = (first & " " & middle & " " & last).Replace("  ", " ").Trim()
-
-                            lblStudID.Text = rdr("student_id").ToString()
-                            lblStudName.Text = fullName
-                            lblCourse.Text = rdr("program").ToString()
-                            lblEmail.Text = rdr("email_address").ToString()
-                            lblAddress.Text = rdr("address").ToString()
-                            lblStatus.Text = rdr("status").ToString()
-                        Else
-                            MessageBox.Show("Student not found.")
-                            ClearStudentInfo()
-                        End If
-                    End Using
-                Catch ex As Exception
-                    MessageBox.Show("Error while searching: " & ex.Message)
-                End Try
-            End Using
-        End Using
+        If Not MaskedTextBox1.MaskCompleted Then
+            MessageBox.Show("Please enter a complete student ID.",
+                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+        If sid.Length < 5 Then
+            MessageBox.Show("Please enter a valid student ID.",
+                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+        LoadInternshipDetails(sid)
     End Sub
+
 
     Private Sub ClearStudentInfo()
         lblStudID.Text = ""
