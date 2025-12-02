@@ -44,6 +44,24 @@ Public Class EvaluationForm
         cmbProfessionalism.Items.AddRange(ratingOptions)
         cmbSkills.Items.AddRange(ratingOptions)
         cmbSoftSkills.Items.AddRange(ratingOptions)
+        cmbReportType.Items.Clear()
+        cmbReportType.Items.AddRange(New Object() {
+            "Summary Report",
+            "Detailed Evaluator Report",
+            "Student Performance Report",
+            "Internship Completion Report"
+        })
+        cmbReportType.SelectedIndex = 0   ' default
+
+        cmbInteractionType.Items.Clear()
+        cmbInteractionType.Items.AddRange(New Object() {
+            "Site Visit",
+            "Virtual Meeting",
+            "Phone Call",
+            "Company Feedback",
+            "Follow-Up Evaluation"
+        })
+        cmbInteractionType.SelectedIndex = 0
     End Sub
 
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
@@ -367,13 +385,25 @@ Public Class EvaluationForm
             ' 1. Basic validation
             If currentInternshipId = 0 Then
                 MessageBox.Show("This student has no internship record to evaluate.", "No Internship",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Exit Sub
             End If
 
             If cmbEval.SelectedIndex < 0 Then
                 MessageBox.Show("Please select who is evaluating (Professor or Supervisor) in the Evaluator dropdown.",
-                                "Missing Evaluator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            "Missing Evaluator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            If cmbReportType.SelectedIndex < 0 Then
+                MessageBox.Show("Please select a Report Type.", "Missing Report Type",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            If cmbInteractionType.SelectedIndex < 0 Then
+                MessageBox.Show("Please select an Interaction Type.", "Missing Interaction Type",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Exit Sub
             End If
 
@@ -384,7 +414,7 @@ Public Class EvaluationForm
 
             If Not (isProfessor OrElse isSupervisor) Then
                 MessageBox.Show("Unknown evaluator type. Please make sure cmbEval items start with 'Professor:' or 'Supervisor:'.",
-                                "Evaluator Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            "Evaluator Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
 
@@ -397,17 +427,24 @@ Public Class EvaluationForm
             Dim totalScore As Integer = punc + prof + skills + soft           ' 0–20
             Dim totalPercent As Decimal = CDec(totalScore) / 20D * 100D       ' 0–100
 
+            ' 4. Visit/report meta from controls
+            Dim reportType As String = cmbReportType.SelectedItem.ToString()
+            Dim interactionMode As String = cmbInteractionType.SelectedItem.ToString()
+            Dim visitDate As Date = dtpVisit.Value.Date   ' your DateTimePicker
+
             Using conn As New MySqlConnection(connectionString)
                 conn.Open()
 
-                ' 4. Check if a grade row already exists for this internship
+                ' -------------------------------
+                ' 4a. Check if a grade row exists
+                ' -------------------------------
                 Dim gradeExists As Boolean = False
                 Dim supTotalExisting As Decimal = 0D
                 Dim profTotalExisting As Decimal = 0D
 
                 Dim checkSql As String =
-                    "SELECT sup_total_percent, prof_total_percent " &
-                    "FROM grade WHERE internship_id = @internshipId LIMIT 1;"
+                "SELECT sup_total_percent, prof_total_percent " &
+                "FROM grade WHERE internship_id = @internshipId LIMIT 1;"
 
                 Using checkCmd As New MySqlCommand(checkSql, conn)
                     checkCmd.Parameters.AddWithValue("@internshipId", currentInternshipId)
@@ -425,30 +462,32 @@ Public Class EvaluationForm
                 If gradeExists Then
                     If isSupervisor AndAlso supTotalExisting > 0D Then
                         MessageBox.Show("The supervisor has already submitted a grade for this student.",
-                                        "Already Graded", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                    "Already Graded", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Exit Sub
                     End If
 
                     If isProfessor AndAlso profTotalExisting > 0D Then
                         MessageBox.Show("The professor has already submitted a grade for this student.",
-                                        "Already Graded", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                    "Already Graded", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Exit Sub
                     End If
                 End If
 
+                ' -------------------------------
                 ' 6. Insert or update grade row
+                ' -------------------------------
                 If Not gradeExists Then
                     ' First evaluator creating the grade record
                     Dim insertSql As String =
-                        "INSERT INTO grade (" &
-                        "  internship_id, " &
-                        "  sup_punctuality, sup_professionalism, sup_skills, sup_softskills, sup_total_percent, " &
-                        "  prof_punctuality, prof_professionalism, prof_skills, prof_softskills, prof_total_percent" &
-                        ") VALUES (" &
-                        "  @internshipId, " &
-                        "  @sup_punc, @sup_prof, @sup_skills, @sup_soft, @sup_total, " &
-                        "  @prof_punc, @prof_prof, @prof_skills, @prof_soft, @prof_total" &
-                        ");"
+                    "INSERT INTO grade (" &
+                    "  internship_id, " &
+                    "  sup_punctuality, sup_professionalism, sup_skills, sup_softskills, sup_total_percent, " &
+                    "  prof_punctuality, prof_professionalism, prof_skills, prof_softskills, prof_total_percent" &
+                    ") VALUES (" &
+                    "  @internshipId, " &
+                    "  @sup_punc, @sup_prof, @sup_skills, @sup_soft, @sup_total, " &
+                    "  @prof_punc, @prof_prof, @prof_skills, @prof_soft, @prof_total" &
+                    ");"
 
                     Using insertCmd As New MySqlCommand(insertSql, conn)
                         insertCmd.Parameters.AddWithValue("@internshipId", currentInternshipId)
@@ -487,13 +526,13 @@ Public Class EvaluationForm
                     ' Grade row exists, update only the current evaluator's fields
                     If isSupervisor Then
                         Dim updateSupSql As String =
-                            "UPDATE grade SET " &
-                            "  sup_punctuality = @sup_punc, " &
-                            "  sup_professionalism = @sup_prof, " &
-                            "  sup_skills = @sup_skills, " &
-                            "  sup_softskills = @sup_soft, " &
-                            "  sup_total_percent = @sup_total " &
-                            "WHERE internship_id = @internshipId;"
+                        "UPDATE grade SET " &
+                        "  sup_punctuality = @sup_punc, " &
+                        "  sup_professionalism = @sup_prof, " &
+                        "  sup_skills = @sup_skills, " &
+                        "  sup_softskills = @sup_soft, " &
+                        "  sup_total_percent = @sup_total " &
+                        "WHERE internship_id = @internshipId;"
 
                         Using updateCmd As New MySqlCommand(updateSupSql, conn)
                             updateCmd.Parameters.AddWithValue("@sup_punc", punc)
@@ -507,13 +546,13 @@ Public Class EvaluationForm
 
                     ElseIf isProfessor Then
                         Dim updateProfSql As String =
-                            "UPDATE grade SET " &
-                            "  prof_punctuality = @prof_punc, " &
-                            "  prof_professionalism = @prof_prof, " &
-                            "  prof_skills = @prof_skills, " &
-                            "  prof_softskills = @prof_soft, " &
-                            "  prof_total_percent = @prof_total " &
-                            "WHERE internship_id = @internshipId;"
+                        "UPDATE grade SET " &
+                        "  prof_punctuality = @prof_punc, " &
+                        "  prof_professionalism = @prof_prof, " &
+                        "  prof_skills = @prof_skills, " &
+                        "  prof_softskills = @prof_soft, " &
+                        "  prof_total_percent = @prof_total " &
+                        "WHERE internship_id = @internshipId;"
 
                         Using updateCmd As New MySqlCommand(updateProfSql, conn)
                             updateCmd.Parameters.AddWithValue("@prof_punc", punc)
@@ -527,7 +566,9 @@ Public Class EvaluationForm
                     End If
                 End If
 
-                ' 7. 🔁 UPDATE CACHED GRADES + UI
+                ' -------------------------------
+                ' 7. Update cached grades + UI
+                ' -------------------------------
                 If isSupervisor Then
                     supPunc = punc
                     supProf = prof
@@ -543,24 +584,72 @@ Public Class EvaluationForm
                 End If
 
                 gradesLoaded = True
-
-                ' Show this evaluator's grade in lblRating
                 lblRating.Text = totalPercent.ToString("0.00") & "%"
+
+                ' -------------------------------
+                ' 8. INSERT VISIT LOG ROW
+                ' -------------------------------
+                ' We need faculty_id / supervisor_id from internship
+                Dim facultyIdObj As Object = DBNull.Value
+                Dim supervisorIdObj As Object = DBNull.Value
+                Dim reportedBy As String
+
+                Dim infoSql As String =
+                "SELECT faculty_id, supervisor_id " &
+                "FROM internship WHERE internship_id = @internshipId LIMIT 1;"
+
+                Using infoCmd As New MySqlCommand(infoSql, conn)
+                    infoCmd.Parameters.AddWithValue("@internshipId", currentInternshipId)
+                    Using rInfo = infoCmd.ExecuteReader()
+                        If rInfo.Read() Then
+                            If isProfessor Then
+                                ' Faculty report
+                                facultyIdObj = rInfo("faculty_id")
+                                reportedBy = "Faculty"
+                                supervisorIdObj = DBNull.Value
+                            Else
+                                ' Company supervisor report
+                                supervisorIdObj = rInfo("supervisor_id")
+                                reportedBy = "CompanySupervisor"
+                                facultyIdObj = DBNull.Value
+                            End If
+                        Else
+                            ' No internship row found (should not happen if currentInternshipId is valid)
+                            reportedBy = If(isProfessor, "Faculty", "CompanySupervisor")
+                        End If
+                    End Using
+                End Using
+
+                Dim visitSql As String =
+                "INSERT INTO visitlog " &
+                " (internship_id, faculty_id, supervisor_id, visit_date, report_type, interaction_mode, reported_by) " &
+                "VALUES " &
+                " (@internshipId, @facultyId, @supervisorId, @visitDate, @reportType, @interactionMode, @reportedBy);"
+
+                Using visitCmd As New MySqlCommand(visitSql, conn)
+                    visitCmd.Parameters.AddWithValue("@internshipId", currentInternshipId)
+                    visitCmd.Parameters.AddWithValue("@facultyId", facultyIdObj)
+                    visitCmd.Parameters.AddWithValue("@supervisorId", supervisorIdObj)
+                    visitCmd.Parameters.AddWithValue("@visitDate", visitDate)
+                    visitCmd.Parameters.AddWithValue("@reportType", reportType)
+                    visitCmd.Parameters.AddWithValue("@interactionMode", interactionMode)
+                    visitCmd.Parameters.AddWithValue("@reportedBy", If(isProfessor, "Faculty", "CompanySupervisor"))
+                    visitCmd.ExecuteNonQuery()
+                End Using
             End Using
 
-            MessageBox.Show("Grade saved successfully.", "Saved",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Grade and visit log saved successfully.", "Saved",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As ApplicationException
             ' From GetRatingValue validation
             MessageBox.Show(ex.Message, "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
         Catch ex As Exception
-            MessageBox.Show("Error while saving grade: " & ex.Message, "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error while saving grade/visit: " & ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
     Private Sub btnGenReport_Click(sender As Object, e As EventArgs) Handles btnGenReport.Click
         Try
             ' --- Basic validation ---
@@ -686,8 +775,18 @@ Public Class EvaluationForm
 
                 evalInfo.Add(New iTextSharp.text.Chunk("Date of Visit: ", boldFont))
                 evalInfo.Add(New iTextSharp.text.Chunk(visitDate & Environment.NewLine, normalFont))
+
+                ' NEW: Report Type
+                evalInfo.Add(New iTextSharp.text.Chunk("Report Type: ", boldFont))
+                evalInfo.Add(New iTextSharp.text.Chunk(cmbReportType.SelectedItem.ToString() & Environment.NewLine, normalFont))
+
+                ' NEW: Interaction Type
+                evalInfo.Add(New iTextSharp.text.Chunk("Interaction Type: ", boldFont))
+                evalInfo.Add(New iTextSharp.text.Chunk(cmbInteractionType.SelectedItem.ToString() & Environment.NewLine, normalFont))
+
                 evalInfo.SpacingAfter = 15.0F
                 doc.Add(evalInfo)
+
 
                 ' =======================
                 ' Ratings table
@@ -772,5 +871,7 @@ Public Class EvaluationForm
                         MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
 End Class
 

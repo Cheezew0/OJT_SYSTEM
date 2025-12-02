@@ -77,7 +77,12 @@ Partial Class EvaluationForm
         PictureBox2 = New PictureBox()
         lblActiveStud = New Label()
         Label1 = New Label()
-        Panel1 = New Panel()
+        Label19 = New Label()
+        Label20 = New Label()
+        cmbReportType = New ComboBox()
+        dtpVisitDate = New DateTimePicker()
+        cmbInteractionType = New ComboBox()
+        Label21 = New Label()
         pnlSidebar.SuspendLayout()
         pnlBottomMenu.SuspendLayout()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
@@ -243,7 +248,6 @@ Partial Class EvaluationForm
         ' 
         ' pnlMain
         ' 
-        pnlMain.Controls.Add(Panel1)
         pnlMain.Controls.Add(pnlEval)
         pnlMain.Controls.Add(pnlStudInfo)
         pnlMain.Controls.Add(pnlsearch)
@@ -256,6 +260,12 @@ Partial Class EvaluationForm
         ' 
         ' pnlEval
         ' 
+        pnlEval.Controls.Add(cmbInteractionType)
+        pnlEval.Controls.Add(Label21)
+        pnlEval.Controls.Add(dtpVisitDate)
+        pnlEval.Controls.Add(cmbReportType)
+        pnlEval.Controls.Add(Label20)
+        pnlEval.Controls.Add(Label19)
         pnlEval.Controls.Add(btnGenReport)
         pnlEval.Controls.Add(pnlRating)
         pnlEval.Controls.Add(btnSaveEval)
@@ -276,7 +286,7 @@ Partial Class EvaluationForm
         pnlEval.Controls.Add(Label2)
         pnlEval.Location = New Point(435, 198)
         pnlEval.Name = "pnlEval"
-        pnlEval.Size = New Size(722, 367)
+        pnlEval.Size = New Size(722, 506)
         pnlEval.TabIndex = 13
         ' 
         ' btnGenReport
@@ -345,7 +355,7 @@ Partial Class EvaluationForm
         ' 
         ' dtpVisit
         ' 
-        dtpVisit.Location = New Point(238, 121)
+        dtpVisit.Location = New Point(238, 264)
         dtpVisit.Name = "dtpVisit"
         dtpVisit.Size = New Size(152, 27)
         dtpVisit.TabIndex = 13
@@ -353,7 +363,7 @@ Partial Class EvaluationForm
         ' cmbSoftSkills
         ' 
         cmbSoftSkills.FormattingEnabled = True
-        cmbSoftSkills.Location = New Point(238, 314)
+        cmbSoftSkills.Location = New Point(238, 457)
         cmbSoftSkills.Name = "cmbSoftSkills"
         cmbSoftSkills.Size = New Size(152, 28)
         cmbSoftSkills.TabIndex = 12
@@ -361,7 +371,7 @@ Partial Class EvaluationForm
         ' cmbSkills
         ' 
         cmbSkills.FormattingEnabled = True
-        cmbSkills.Location = New Point(238, 266)
+        cmbSkills.Location = New Point(238, 409)
         cmbSkills.Name = "cmbSkills"
         cmbSkills.Size = New Size(152, 28)
         cmbSkills.TabIndex = 11
@@ -369,7 +379,7 @@ Partial Class EvaluationForm
         ' cmbProfessionalism
         ' 
         cmbProfessionalism.FormattingEnabled = True
-        cmbProfessionalism.Location = New Point(238, 219)
+        cmbProfessionalism.Location = New Point(238, 362)
         cmbProfessionalism.Name = "cmbProfessionalism"
         cmbProfessionalism.Size = New Size(152, 28)
         cmbProfessionalism.TabIndex = 10
@@ -377,7 +387,7 @@ Partial Class EvaluationForm
         ' cmbPunc
         ' 
         cmbPunc.FormattingEnabled = True
-        cmbPunc.Location = New Point(238, 171)
+        cmbPunc.Location = New Point(238, 314)
         cmbPunc.Name = "cmbPunc"
         cmbPunc.Size = New Size(152, 28)
         cmbPunc.TabIndex = 9
@@ -386,7 +396,7 @@ Partial Class EvaluationForm
         ' 
         Label15.AutoSize = True
         Label15.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        Label15.Location = New Point(47, 317)
+        Label15.Location = New Point(47, 460)
         Label15.Name = "Label15"
         Label15.Size = New Size(78, 20)
         Label15.TabIndex = 8
@@ -396,7 +406,7 @@ Partial Class EvaluationForm
         ' 
         Label14.AutoSize = True
         Label14.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        Label14.Location = New Point(47, 269)
+        Label14.Location = New Point(47, 412)
         Label14.Name = "Label14"
         Label14.Size = New Size(47, 20)
         Label14.TabIndex = 7
@@ -406,7 +416,7 @@ Partial Class EvaluationForm
         ' 
         Label13.AutoSize = True
         Label13.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        Label13.Location = New Point(47, 222)
+        Label13.Location = New Point(47, 365)
         Label13.Name = "Label13"
         Label13.Size = New Size(119, 20)
         Label13.TabIndex = 6
@@ -416,7 +426,7 @@ Partial Class EvaluationForm
         ' 
         Label11.AutoSize = True
         Label11.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        Label11.Location = New Point(47, 174)
+        Label11.Location = New Point(47, 317)
         Label11.Name = "Label11"
         Label11.Size = New Size(90, 20)
         Label11.TabIndex = 5
@@ -444,7 +454,7 @@ Partial Class EvaluationForm
         ' 
         Label9.AutoSize = True
         Label9.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        Label9.Location = New Point(47, 126)
+        Label9.Location = New Point(47, 269)
         Label9.Name = "Label9"
         Label9.Size = New Size(139, 20)
         Label9.TabIndex = 2
@@ -690,12 +700,58 @@ Partial Class EvaluationForm
         Label1.TabIndex = 6
         Label1.Text = "Evaluation Log"
         ' 
-        ' Panel1
+        ' Label19
         ' 
-        Panel1.Location = New Point(30, 587)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(700, 134)
-        Panel1.TabIndex = 14
+        Label19.AutoSize = True
+        Label19.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
+        Label19.Location = New Point(47, 125)
+        Label19.Name = "Label19"
+        Label19.Size = New Size(78, 20)
+        Label19.TabIndex = 20
+        Label19.Text = "Visit Date:"
+        ' 
+        ' Label20
+        ' 
+        Label20.AutoSize = True
+        Label20.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
+        Label20.Location = New Point(47, 174)
+        Label20.Name = "Label20"
+        Label20.Size = New Size(95, 20)
+        Label20.TabIndex = 21
+        Label20.Text = "Report Type:"
+        ' 
+        ' cmbReportType
+        ' 
+        cmbReportType.FormattingEnabled = True
+        cmbReportType.Location = New Point(238, 171)
+        cmbReportType.Name = "cmbReportType"
+        cmbReportType.Size = New Size(152, 28)
+        cmbReportType.TabIndex = 22
+        ' 
+        ' dtpVisitDate
+        ' 
+        dtpVisitDate.Location = New Point(238, 121)
+        dtpVisitDate.Name = "dtpVisitDate"
+        dtpVisitDate.Size = New Size(152, 27)
+        dtpVisitDate.TabIndex = 23
+        ' 
+        ' cmbInteractionType
+        ' 
+        cmbInteractionType.FormattingEnabled = True
+        cmbInteractionType.Location = New Point(238, 219)
+        cmbInteractionType.Name = "cmbInteractionType"
+        cmbInteractionType.Size = New Size(152, 28)
+        cmbInteractionType.TabIndex = 25
+        ' 
+        ' Label21
+        ' 
+        Label21.AutoSize = True
+        Label21.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
+        Label21.Location = New Point(47, 222)
+        Label21.Name = "Label21"
+        Label21.Size = New Size(123, 20)
+        Label21.TabIndex = 24
+        Label21.Text = "Interaction Type:"
         ' 
         ' EvaluationForm
         ' 
@@ -780,5 +836,10 @@ Partial Class EvaluationForm
     Private WithEvents Label18 As Label
     Friend WithEvents lblRating As Label
     Friend WithEvents btnGenReport As Button
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents cmbInteractionType As ComboBox
+    Friend WithEvents Label21 As Label
+    Friend WithEvents dtpVisitDate As DateTimePicker
+    Friend WithEvents cmbReportType As ComboBox
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label19 As Label
 End Class
