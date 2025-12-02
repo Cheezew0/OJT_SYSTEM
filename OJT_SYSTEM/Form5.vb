@@ -1,5 +1,6 @@
 ﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
+Imports System.Text.RegularExpressions          ' 👈 add this
 Imports MySql.Data.MySqlClient
 
 Public Class MyProfileForm
@@ -9,8 +10,8 @@ Public Class MyProfileForm
     Private studentIdValue As String
 
     Public Sub New(studentId As String)
-        InitializeComponent()          ' REQUIRED for the form to load
-        studentIdValue = studentId     ' logged-in student's ID
+        InitializeComponent()
+        studentIdValue = studentId
     End Sub
 
     ' ===================== FORM LOAD =====================
@@ -31,8 +32,13 @@ Public Class MyProfileForm
         cmbProgram.Items.AddRange(New String() {"BSIT", "BSCS"})
         cmbSection.Items.AddRange(New String() {"4A", "4B", "4C", "4D"})
 
-        LoadStudentInfo()   ' load student + professor + email
-        DisableEditing()    ' everything read-only at start
+        ' 🔹 Department combo (read-only, auto from course)
+        cmbDepartment.Items.Clear()
+        cmbDepartment.Items.Add("Computer Science")          ' for BSCS
+        cmbDepartment.Items.Add("Information Technology")    ' for BSIT
+
+        LoadStudentInfo()
+        DisableEditing()
     End Sub
 
     ' ===================== UI HELPERS =====================
@@ -111,6 +117,9 @@ Public Class MyProfileForm
                             cmbSection.Text = reader("section").ToString()
                             cmbStatus.Text = reader("status").ToString()
 
+                            ' auto-set department based on program
+                            UpdateDepartmentFromProgram()
+
                             ' ---- PROFESSOR (read-only) ----
                             Dim profName As String = ""
                             If Not IsDBNull(reader("professor_name")) Then
@@ -122,14 +131,21 @@ Public Class MyProfileForm
                                 cmbProf.SelectedIndex = 0
                             End If
 
-                            ' ---- CONTACT INFO (email from student or student_acc) ----
+                            ' ---- CONTACT INFO (email + phone) ----
                             Dim emailToShow As String = ""
                             If Not IsDBNull(reader("effective_email")) Then
                                 emailToShow = reader("effective_email").ToString()
                             End If
                             txtEmailaddress.Text = emailToShow
 
-                            txtContactNum.Text = reader("student_contact").ToString()
+                            Dim contactRaw As String = reader("student_contact").ToString()
+
+                            ' convert stored "09xxxxxxxxx" → "+639xxxxxxxxx" for display
+                            If Regex.IsMatch(contactRaw, "^0\d{10}$") Then
+                                txtContactNum.Text = "+63" & contactRaw.Substring(1)
+                            Else
+                                txtContactNum.Text = contactRaw
+                            End If
                         Else
                             MessageBox.Show("Student record not found for ID: " & studentIdValue)
                         End If
@@ -142,6 +158,22 @@ Public Class MyProfileForm
         End Using
     End Sub
 
+    ' keep department in sync when course changes
+    Private Sub cmbProgram_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbProgram.SelectedIndexChanged
+        UpdateDepartmentFromProgram()
+    End Sub
+
+    Private Sub UpdateDepartmentFromProgram()
+        Select Case cmbProgram.Text
+            Case "BSCS"
+                cmbDepartment.Text = "Computer Science"
+            Case "BSIT"
+                cmbDepartment.Text = "Information Technology"
+            Case Else
+                cmbDepartment.Text = ""
+        End Select
+    End Sub
+
     ' ===================== ENABLE / DISABLE EDITING =====================
 
     Private Sub DisableEditing()
@@ -151,36 +183,38 @@ Public Class MyProfileForm
         txtMName.Enabled = False
         txtFname.Enabled = False
         txtAddr.Enabled = False
-        mtxtStudId.Enabled = False        ' NEVER editable
+        mtxtStudId.Enabled = False
 
         cmbSex.Enabled = False
         cmbStatus.Enabled = False
         cmbProgram.Enabled = False
         cmbSection.Enabled = False
-
-        cmbProf.Enabled = False           ' NEVER editable
+        cmbDepartment.Enabled = False   ' derived from course
+        cmbProf.Enabled = False
 
         DateTimePicker1.Enabled = False
 
         btnSave.Enabled = False
         btnCancel.Enabled = False
     End Sub
+
     Private Sub EnableEditing()
-        txtEmailaddress.Enabled = False   ' <-- ALWAYS READ ONLY
+        txtEmailaddress.Enabled = False   ' email still read-only
         txtContactNum.Enabled = True
         txtLName.Enabled = True
         txtMName.Enabled = True
         txtFname.Enabled = True
         txtAddr.Enabled = True
 
-        mtxtStudId.Enabled = False        ' keep locked
+        mtxtStudId.Enabled = False
 
         cmbSex.Enabled = True
         cmbStatus.Enabled = True
         cmbProgram.Enabled = True
         cmbSection.Enabled = True
 
-        cmbProf.Enabled = False           ' still locked
+        cmbDepartment.Enabled = False     ' auto-filled
+        cmbProf.Enabled = False
 
         DateTimePicker1.Enabled = True
 
@@ -191,6 +225,30 @@ Public Class MyProfileForm
     ' ===================== SAVE PROFILE =====================
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        ' --- normalize + validate contact number ---
+        Dim contactInput As String = txtContactNum.Text.Trim()
+        Dim normalizedContact As String = ""
+
+        If contactInput <> "" Then
+            ' already in +63xxxxxxxxxx format
+            If Regex.IsMatch(contactInput, "^\+63\d{10}$") Then
+                normalizedContact = contactInput
+
+                ' local 09xxxxxxxxx → convert to +63xxxxxxxxxx
+            ElseIf Regex.IsMatch(contactInput, "^0\d{10}$") Then
+                normalizedContact = "+63" & contactInput.Substring(1)
+
+            Else
+                MessageBox.Show(
+                    "Contact number must be in the format +63XXXXXXXXXX " &
+                    "or 0XXXXXXXXXXX (11 digits starting with 0).",
+                    "Invalid Contact Number",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning)
+                Return
+            End If
+        End If
+
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
@@ -217,7 +275,7 @@ Public Class MyProfileForm
                     cmd.Parameters.AddWithValue("@Program", cmbProgram.Text)
                     cmd.Parameters.AddWithValue("@Email", txtEmailaddress.Text)
                     cmd.Parameters.AddWithValue("@Address", txtAddr.Text)
-                    cmd.Parameters.AddWithValue("@Contact", txtContactNum.Text)
+                    cmd.Parameters.AddWithValue("@Contact", normalizedContact)
                     cmd.Parameters.AddWithValue("@Section", cmbSection.Text)
                     cmd.Parameters.AddWithValue("@Status", cmbStatus.Text)
                     cmd.Parameters.AddWithValue("@Sex", cmbSex.Text)
@@ -231,7 +289,7 @@ Public Class MyProfileForm
                                 MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                 DisableEditing()
-                LoadStudentInfo()   ' refresh from DB
+                LoadStudentInfo()
 
             Catch ex As Exception
                 MessageBox.Show("Error saving changes: " & ex.Message)
@@ -247,13 +305,15 @@ Public Class MyProfileForm
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         DisableEditing()
-        LoadStudentInfo()   ' revert to DB values
+        LoadStudentInfo()
     End Sub
+
     Private Sub btnInternship_Click(sender As Object, e As EventArgs) Handles btnInternship.Click
         Dim btnInternshipForm As New StudInternForm(studentIdValue)
         btnInternshipForm.Show()
         Me.Hide()
     End Sub
+
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
         Dim result As DialogResult = MessageBox.Show(
             "Are you sure you want to log out?",

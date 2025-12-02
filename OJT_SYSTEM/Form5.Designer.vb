@@ -66,6 +66,8 @@ Partial Class MyProfileForm
         Label13 = New Label()
         Label3 = New Label()
         lblTotalStudentsTitle = New Label()
+        Label18 = New Label()
+        cmbDepartment = New ComboBox()
         pnlSidebar.SuspendLayout()
         pnlBottomMenu.SuspendLayout()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
@@ -206,6 +208,8 @@ Partial Class MyProfileForm
         ' 
         ' pnlPersonalInfo
         ' 
+        pnlPersonalInfo.Controls.Add(cmbDepartment)
+        pnlPersonalInfo.Controls.Add(Label18)
         pnlPersonalInfo.Controls.Add(cmbProf)
         pnlPersonalInfo.Controls.Add(cmbStatus)
         pnlPersonalInfo.Controls.Add(txtEmailaddress)
@@ -247,7 +251,7 @@ Partial Class MyProfileForm
         ' cmbProf
         ' 
         cmbProf.FormattingEnabled = True
-        cmbProf.Location = New Point(256, 409)
+        cmbProf.Location = New Point(256, 443)
         cmbProf.Name = "cmbProf"
         cmbProf.Size = New Size(226, 28)
         cmbProf.TabIndex = 36
@@ -255,7 +259,7 @@ Partial Class MyProfileForm
         ' cmbStatus
         ' 
         cmbStatus.FormattingEnabled = True
-        cmbStatus.Location = New Point(256, 374)
+        cmbStatus.Location = New Point(256, 409)
         cmbStatus.Name = "cmbStatus"
         cmbStatus.Size = New Size(226, 28)
         cmbStatus.TabIndex = 35
@@ -271,7 +275,7 @@ Partial Class MyProfileForm
         ' 
         Label17.AutoSize = True
         Label17.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label17.Location = New Point(17, 410)
+        Label17.Location = New Point(17, 448)
         Label17.Name = "Label17"
         Label17.Size = New Size(90, 23)
         Label17.TabIndex = 32
@@ -314,7 +318,7 @@ Partial Class MyProfileForm
         ' cmbSection
         ' 
         cmbSection.FormattingEnabled = True
-        cmbSection.Location = New Point(256, 340)
+        cmbSection.Location = New Point(256, 341)
         cmbSection.Name = "cmbSection"
         cmbSection.Size = New Size(226, 28)
         cmbSection.TabIndex = 30
@@ -354,7 +358,7 @@ Partial Class MyProfileForm
         ' 
         Label9.AutoSize = True
         Label9.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(17, 375)
+        Label9.Location = New Point(17, 414)
         Label9.Name = "Label9"
         Label9.Size = New Size(65, 23)
         Label9.TabIndex = 12
@@ -540,6 +544,24 @@ Partial Class MyProfileForm
         lblTotalStudentsTitle.TabIndex = 0
         lblTotalStudentsTitle.Text = "Student ID:"
         ' 
+        ' Label18
+        ' 
+        Label18.AutoSize = True
+        Label18.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label18.Location = New Point(17, 376)
+        Label18.Name = "Label18"
+        Label18.Size = New Size(113, 23)
+        Label18.TabIndex = 37
+        Label18.Text = "Department:"
+        ' 
+        ' cmbDepartment
+        ' 
+        cmbDepartment.FormattingEnabled = True
+        cmbDepartment.Location = New Point(256, 375)
+        cmbDepartment.Name = "cmbDepartment"
+        cmbDepartment.Size = New Size(226, 28)
+        cmbDepartment.TabIndex = 38
+        ' 
         ' MyProfileForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -607,4 +629,6 @@ Partial Class MyProfileForm
     Friend WithEvents Label17 As Label
     Friend WithEvents cmbProf As ComboBox
     Friend WithEvents cmbStatus As ComboBox
+    Friend WithEvents cmbDepartment As ComboBox
+    Friend WithEvents Label18 As Label
 End Class

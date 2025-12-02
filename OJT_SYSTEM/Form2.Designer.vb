@@ -37,15 +37,19 @@ Partial Class StudentForm
         PictureBoxLogo = New PictureBox()
         pnlMain = New Panel()
         pnlActivitiesMain = New Panel()
+        btnReset = New Button()
+        btnSearch = New Button()
+        cmbCourse = New ComboBox()
         btnDeleteStudent = New Button()
         btnAddStudent = New Button()
         mtxtStudentId = New MaskedTextBox()
-        cmbFilter = New ComboBox()
+        cmbSection = New ComboBox()
         btnAddFile = New Button()
         dgvStudents = New RoundedPanel()
         Student_ID = New DataGridViewTextBoxColumn()
         Student_Name = New DataGridViewTextBoxColumn()
         Program = New DataGridViewTextBoxColumn()
+        Section = New DataGridViewTextBoxColumn()
         Department = New DataGridViewTextBoxColumn()
         Company = New DataGridViewTextBoxColumn()
         Status = New DataGridViewTextBoxColumn()
@@ -104,9 +108,9 @@ Partial Class StudentForm
         pnlBottomMenu.Controls.Add(btnLogout)
         pnlBottomMenu.Controls.Add(btnFaculty)
         pnlBottomMenu.Dock = DockStyle.Bottom
-        pnlBottomMenu.Location = New Point(0, 719)
+        pnlBottomMenu.Location = New Point(0, 697)
         pnlBottomMenu.Name = "pnlBottomMenu"
-        pnlBottomMenu.Size = New Size(230, 139)
+        pnlBottomMenu.Size = New Size(230, 161)
         pnlBottomMenu.TabIndex = 5
         ' 
         ' btnLogout
@@ -120,7 +124,7 @@ Partial Class StudentForm
         btnLogout.Location = New Point(42, 75)
         btnLogout.Name = "btnLogout"
         btnLogout.Padding = New Padding(20, 0, 0, 0)
-        btnLogout.Size = New Size(150, 48)
+        btnLogout.Size = New Size(150, 65)
         btnLogout.TabIndex = 1
         btnLogout.Text = "Log Out"
         btnLogout.TextAlign = ContentAlignment.MiddleRight
@@ -136,11 +140,11 @@ Partial Class StudentForm
         btnFaculty.ForeColor = Color.White
         btnFaculty.Image = My.Resources.Resources.Test_Account
         btnFaculty.ImageAlign = ContentAlignment.MiddleLeft
-        btnFaculty.Location = New Point(42, 21)
+        btnFaculty.Location = New Point(42, 3)
         btnFaculty.Name = "btnFaculty"
         btnFaculty.Padding = New Padding(20, 0, 0, 0)
         btnFaculty.RightToLeft = RightToLeft.No
-        btnFaculty.Size = New Size(150, 48)
+        btnFaculty.Size = New Size(150, 66)
         btnFaculty.TabIndex = 0
         btnFaculty.Text = "Faculty"
         btnFaculty.TextAlign = ContentAlignment.MiddleRight
@@ -251,20 +255,50 @@ Partial Class StudentForm
         ' 
         ' pnlActivitiesMain
         ' 
+        pnlActivitiesMain.Controls.Add(btnReset)
+        pnlActivitiesMain.Controls.Add(btnSearch)
+        pnlActivitiesMain.Controls.Add(cmbCourse)
         pnlActivitiesMain.Controls.Add(btnDeleteStudent)
         pnlActivitiesMain.Controls.Add(btnAddStudent)
         pnlActivitiesMain.Controls.Add(mtxtStudentId)
-        pnlActivitiesMain.Controls.Add(cmbFilter)
+        pnlActivitiesMain.Controls.Add(cmbSection)
         pnlActivitiesMain.Controls.Add(btnAddFile)
         pnlActivitiesMain.Controls.Add(dgvStudents)
         pnlActivitiesMain.Location = New Point(24, 117)
         pnlActivitiesMain.Name = "pnlActivitiesMain"
-        pnlActivitiesMain.Size = New Size(1126, 697)
+        pnlActivitiesMain.Size = New Size(1145, 707)
         pnlActivitiesMain.TabIndex = 5
+        ' 
+        ' btnReset
+        ' 
+        btnReset.Location = New Point(964, 11)
+        btnReset.Name = "btnReset"
+        btnReset.Size = New Size(94, 29)
+        btnReset.TabIndex = 14
+        btnReset.Text = "Reset"
+        btnReset.UseVisualStyleBackColor = True
+        ' 
+        ' btnSearch
+        ' 
+        btnSearch.Location = New Point(864, 11)
+        btnSearch.Name = "btnSearch"
+        btnSearch.Size = New Size(94, 29)
+        btnSearch.TabIndex = 13
+        btnSearch.Text = "Search"
+        btnSearch.UseVisualStyleBackColor = True
+        ' 
+        ' cmbCourse
+        ' 
+        cmbCourse.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbCourse.FormattingEnabled = True
+        cmbCourse.Location = New Point(529, 11)
+        cmbCourse.Name = "cmbCourse"
+        cmbCourse.Size = New Size(151, 28)
+        cmbCourse.TabIndex = 12
         ' 
         ' btnDeleteStudent
         ' 
-        btnDeleteStudent.Location = New Point(474, 655)
+        btnDeleteStudent.Location = New Point(399, 660)
         btnDeleteStudent.Name = "btnDeleteStudent"
         btnDeleteStudent.Size = New Size(127, 29)
         btnDeleteStudent.TabIndex = 11
@@ -273,7 +307,7 @@ Partial Class StudentForm
         ' 
         ' btnAddStudent
         ' 
-        btnAddStudent.Location = New Point(338, 655)
+        btnAddStudent.Location = New Point(266, 660)
         btnAddStudent.Name = "btnAddStudent"
         btnAddStudent.Size = New Size(127, 29)
         btnAddStudent.TabIndex = 10
@@ -282,29 +316,29 @@ Partial Class StudentForm
         ' 
         ' mtxtStudentId
         ' 
-        mtxtStudentId.Location = New Point(197, 655)
+        mtxtStudentId.Location = New Point(135, 660)
         mtxtStudentId.Mask = "00-00000"
         mtxtStudentId.Name = "mtxtStudentId"
         mtxtStudentId.Size = New Size(125, 27)
         mtxtStudentId.TabIndex = 9
         mtxtStudentId.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals
         ' 
-        ' cmbFilter
+        ' cmbSection
         ' 
-        cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList
-        cmbFilter.FormattingEnabled = True
-        cmbFilter.Location = New Point(951, 11)
-        cmbFilter.Name = "cmbFilter"
-        cmbFilter.Size = New Size(151, 28)
-        cmbFilter.TabIndex = 8
+        cmbSection.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbSection.FormattingEnabled = True
+        cmbSection.Location = New Point(701, 11)
+        cmbSection.Name = "cmbSection"
+        cmbSection.Size = New Size(151, 28)
+        cmbSection.TabIndex = 8
         ' 
         ' btnAddFile
         ' 
-        btnAddFile.Location = New Point(1019, 650)
+        btnAddFile.Location = New Point(15, 658)
         btnAddFile.Name = "btnAddFile"
-        btnAddFile.Size = New Size(94, 32)
+        btnAddFile.Size = New Size(103, 32)
         btnAddFile.TabIndex = 7
-        btnAddFile.Text = "Add File"
+        btnAddFile.Text = "Upload File"
         btnAddFile.UseVisualStyleBackColor = True
         ' 
         ' dgvStudents
@@ -323,7 +357,7 @@ Partial Class StudentForm
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
         dgvStudents.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvStudents.Columns.AddRange(New DataGridViewColumn() {Student_ID, Student_Name, Program, Department, Company, Status, Supervisor, Rating})
+        dgvStudents.Columns.AddRange(New DataGridViewColumn() {Student_ID, Student_Name, Program, Section, Department, Company, Status, Supervisor, Rating})
         dgvStudents.CornerRadius = 20
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(247), CByte(247), CByte(247))
@@ -341,7 +375,7 @@ Partial Class StudentForm
         dgvStudents.RowHeadersVisible = False
         dgvStudents.RowHeadersWidth = 51
         dgvStudents.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvStudents.Size = New Size(1120, 591)
+        dgvStudents.Size = New Size(1139, 591)
         dgvStudents.TabIndex = 0
         ' 
         ' Student_ID
@@ -364,6 +398,13 @@ Partial Class StudentForm
         Program.MinimumWidth = 6
         Program.Name = "Program"
         Program.Width = 125
+        ' 
+        ' Section
+        ' 
+        Section.HeaderText = "Section"
+        Section.MinimumWidth = 6
+        Section.Name = "Section"
+        Section.Width = 125
         ' 
         ' Department
         ' 
@@ -629,18 +670,22 @@ Partial Class StudentForm
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lblTotalStudentsTitle As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents dgvStudents As RoundedPanel
+    Friend WithEvents btnAddFile As Button
+    Friend WithEvents cmbSection As ComboBox
+    Friend WithEvents btnDeleteStudent As Button
+    Friend WithEvents btnAddStudent As Button
+    Friend WithEvents mtxtStudentId As MaskedTextBox
     Friend WithEvents Student_ID As DataGridViewTextBoxColumn
     Friend WithEvents Student_Name As DataGridViewTextBoxColumn
     Friend WithEvents Program As DataGridViewTextBoxColumn
+    Friend WithEvents Section As DataGridViewTextBoxColumn
     Friend WithEvents Department As DataGridViewTextBoxColumn
     Friend WithEvents Company As DataGridViewTextBoxColumn
     Friend WithEvents Status As DataGridViewTextBoxColumn
     Friend WithEvents Supervisor As DataGridViewTextBoxColumn
     Friend WithEvents Rating As DataGridViewTextBoxColumn
-    Friend WithEvents dgvStudents As RoundedPanel
-    Friend WithEvents btnAddFile As Button
-    Friend WithEvents cmbFilter As ComboBox
-    Friend WithEvents btnDeleteStudent As Button
-    Friend WithEvents btnAddStudent As Button
-    Friend WithEvents mtxtStudentId As MaskedTextBox
+    Friend WithEvents cmbCourse As ComboBox
+    Friend WithEvents btnSearch As Button
+    Friend WithEvents btnReset As Button
 End Class

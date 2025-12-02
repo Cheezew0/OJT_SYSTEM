@@ -23,7 +23,7 @@ Public Class StudentForm
     End Sub
 
     ' ===============================================
-    ' FORM LOAD + FILTER SETUP
+    ' FORM LOAD + COURSE/SECTION FILTER SETUP
     ' ===============================================
     Private Sub StudentForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         btnDashboard.BackColor = ColorTranslator.FromHtml("#1A4F5D")
@@ -37,14 +37,24 @@ Public Class StudentForm
         mtxtStudentId.Mask = "00-00000"
         mtxtStudentId.TextMaskFormat = MaskFormat.IncludeLiterals
 
-        ' Filter
-        cmbFilter.Items.Clear()
-        cmbFilter.Items.Add("All students")
-        cmbFilter.Items.Add("My students")
-        cmbFilter.SelectedIndex = 0
+        ' ----- Course combo -----
+        cmbCourse.Items.Clear()
+        cmbCourse.Items.Add("All courses") ' index 0
+        cmbCourse.Items.Add("BSIT")
+        cmbCourse.Items.Add("BSCS")
+        cmbCourse.SelectedIndex = 0
 
-        ' Initial load = all students
-        LoadStudents(showAll:=True)
+        ' ----- Section combo -----
+        cmbSection.Items.Clear()
+        cmbSection.Items.Add("All sections") ' index 0
+        cmbSection.Items.Add("4A")
+        cmbSection.Items.Add("4B")
+        cmbSection.Items.Add("4C")
+        cmbSection.Items.Add("4D")
+        cmbSection.SelectedIndex = 0
+
+        ' Initial load = ONLY this faculty's students, no extra filters
+        LoadStudents(useFilters:=False)
     End Sub
 
     ' ===============================================
@@ -81,9 +91,8 @@ Public Class StudentForm
                 MessageBox.Show("Student IDs loaded from CSV and saved to database.",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                ' Reload grid based on current filter (All / My students)
-                Dim showAll As Boolean = (cmbFilter.SelectedIndex = 0)
-                LoadStudents(showAll)
+                ' Reload grid (only current faculty, with selected section filter)
+                LoadStudents()
 
             Catch ex As Exception
                 MessageBox.Show("Error reading CSV file: " & ex.Message,
@@ -190,27 +199,41 @@ Public Class StudentForm
     End Sub
 
     ' ===============================================
-    ' LOAD STUDENTS (ALL or ONLY CURRENT FACULTY)
+    ' LOAD STUDENTS (ONLY CURRENT FACULTY + OPTIONAL FILTERS)
     ' ===============================================
-    Private Sub LoadStudents(Optional showAll As Boolean = False)
+    Private Sub LoadStudents(Optional useFilters As Boolean = False)
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
 
-                ' pull everything we need for the grid
+                ' base query: only students of this faculty
                 Dim sql As String =
 "SELECT
     s.student_id,
     CONCAT_WS(' ', s.first_name, s.middle_name, s.last_name) AS full_name,
     s.program,
+    s.section,
     d.department_name,
     co.company_name,
-    s.status,
+    CASE 
+        WHEN sa.student_id IS NULL THEN ''  -- only uploaded by prof, no account yet
+        WHEN (
+            (s.first_name IS NULL OR s.first_name = '') AND
+            (s.last_name  IS NULL OR s.last_name  = '') AND
+            (s.address    IS NULL OR s.address    = '') AND
+            (s.student_contact IS NULL OR s.student_contact = '')
+        ) THEN 'Inactive'                   -- has account but profile not filled
+        ELSE s.status                       -- normal status
+    END AS display_status,
     CONCAT_WS(' ', sup.first_name, sup.last_name) AS supervisor_name,
     g.final_grade_percent
 FROM student s
 LEFT JOIN course c
-    ON c.program_name = s.program
+    ON c.program_name = CASE
+        WHEN s.program = 'BSCS' THEN 'BS Computer Science'
+        WHEN s.program = 'BSIT' THEN 'BS Information Technology'
+        ELSE s.program
+    END
 LEFT JOIN department d
     ON d.department_id = c.department_id
 LEFT JOIN internship i
@@ -220,17 +243,37 @@ LEFT JOIN company co
 LEFT JOIN companycontact sup
     ON sup.supervisor_id = i.supervisor_id
 LEFT JOIN grade g
-    ON g.internship_id = i.internship_id"
+    ON g.internship_id = i.internship_id
+LEFT JOIN student_acc sa
+    ON sa.student_id = s.student_id
+WHERE s.faculty_id = @FacultyId"
 
-                If Not showAll Then
-                    sql &= " WHERE s.faculty_id = @FacultyId"
+                ' ---- optional course/section filters ----
+                Dim courseFilter As String = Nothing
+                Dim sectionFilter As String = Nothing
+
+                If useFilters Then
+                    If cmbCourse.SelectedIndex > 0 Then
+                        courseFilter = cmbCourse.SelectedItem.ToString()  ' BSIT / BSCS
+                        sql &= " AND s.program = @Program"
+                    End If
+
+                    If cmbSection.SelectedIndex > 0 Then
+                        sectionFilter = cmbSection.SelectedItem.ToString() ' 4A / 4B / ...
+                        sql &= " AND s.section = @Section"
+                    End If
                 End If
 
                 sql &= " ORDER BY s.student_id;"
 
                 Using cmd As New MySqlCommand(sql, conn)
-                    If Not showAll Then
-                        cmd.Parameters.AddWithValue("@FacultyId", CurrentFacultyId)
+                    cmd.Parameters.AddWithValue("@FacultyId", CurrentFacultyId)
+
+                    If courseFilter IsNot Nothing Then
+                        cmd.Parameters.AddWithValue("@Program", courseFilter)
+                    End If
+                    If sectionFilter IsNot Nothing Then
+                        cmd.Parameters.AddWithValue("@Section", sectionFilter)
                     End If
 
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
@@ -243,18 +286,25 @@ LEFT JOIN grade g
                             row.Cells(0).Value = reader("student_id").ToString()
                             row.Cells(1).Value = reader("full_name").ToString()
                             row.Cells(2).Value = reader("program").ToString()
-                            row.Cells(3).Value = reader("department_name").ToString()
-                            row.Cells(4).Value = reader("company_name").ToString()
-                            row.Cells(5).Value = reader("status").ToString()
-                            row.Cells(6).Value = reader("supervisor_name").ToString()
+                            row.Cells(3).Value = reader("section").ToString()
+                            row.Cells(4).Value = reader("department_name").ToString()
+                            row.Cells(5).Value = reader("company_name").ToString()
+                            row.Cells(6).Value = reader("display_status").ToString()
+                            row.Cells(7).Value = reader("supervisor_name").ToString()
 
                             If Not IsDBNull(reader("final_grade_percent")) Then
-                                row.Cells(7).Value =
+                                row.Cells(8).Value =
                                     CDec(reader("final_grade_percent")).ToString("0.00")
                             Else
-                                row.Cells(7).Value = ""
+                                row.Cells(8).Value = ""
                             End If
                         End While
+
+                        dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                        dgvStudents.Columns(0).FillWeight = 70   ' ID
+                        dgvStudents.Columns(1).FillWeight = 200  ' Name
+                        dgvStudents.Columns(4).FillWeight = 150  ' Department
+                        dgvStudents.Columns(7).FillWeight = 150  ' Supervisor
                     End Using
                 End Using
 
@@ -265,17 +315,35 @@ LEFT JOIN grade g
         End Using
     End Sub
 
-    ' small helper so old code still works
-    Private Sub LoadStudentsForCurrentFaculty()
-        LoadStudents(False)
+    ' ===============================================
+    ' SEARCH BUTTON  (apply course + section filters)
+    ' ===============================================
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        ' useFilters := True -> LoadStudents will read cmbCourse & cmbSection
+        LoadStudents(useFilters:=True)
     End Sub
 
     ' ===============================================
-    ' FILTER COMBOBOX
+    ' RESET BUTTON (clear filters, show only faculty's students)
     ' ===============================================
-    Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbFilter.SelectedIndexChanged
-        Dim showAll As Boolean = (cmbFilter.SelectedIndex = 0)   ' 0 = All students
-        LoadStudents(showAll)
+    Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
+        cmbCourse.SelectedIndex = 0   ' All courses
+        cmbSection.SelectedIndex = 0  ' All sections
+
+        ' useFilters := False -> only WHERE s.faculty_id = CurrentFacultyId
+        LoadStudents(useFilters:=False)
+    End Sub
+
+    ' old helper now just calls LoadStudents()
+    Private Sub LoadStudentsForCurrentFaculty()
+        LoadStudents()
+    End Sub
+
+    ' ===============================================
+    ' SECTION FILTER COMBOBOX (optional live reload)
+    ' ===============================================
+    Private Sub cmbFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSection.SelectedIndexChanged
+        LoadStudents()
     End Sub
 
     ' ===============================================
@@ -365,8 +433,7 @@ LEFT JOIN grade g
             End If
         End Using
 
-        Dim showAll As Boolean = (cmbFilter.SelectedIndex = 0)
-        LoadStudents(showAll)
+        LoadStudents()
     End Sub
 
     ' ===============================================
@@ -438,8 +505,7 @@ LEFT JOIN grade g
             End Using
         End Using
 
-        Dim showAll As Boolean = (cmbFilter.SelectedIndex = 0)
-        LoadStudents(showAll)
+        LoadStudents()
     End Sub
 
     Private Sub mtxtStudentId_MaskInputRejected(sender As Object, e As MaskInputRejectedEventArgs) Handles mtxtStudentId.MaskInputRejected
