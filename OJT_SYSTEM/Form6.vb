@@ -127,10 +127,8 @@ Public Class StudInternForm
         Try
             Using conn As New MySqlConnection(connString)
                 conn.Open()
-
-                ' -------------------------------------------------
                 ' 2) Ensure a company row exists (create if needed)
-                ' -------------------------------------------------
+
                 If CurrentCompanyId = 0 Then
                     Dim insertCompanySql As String =
                     "INSERT INTO company (company_name, email, address, company_contact) " &
@@ -164,20 +162,7 @@ Public Class StudInternForm
                     End Using
                 End If
 
-                ' Extra safety: make sure company actually exists in DB
-                Dim checkSql As String = "SELECT COUNT(*) FROM company WHERE company_id = @cid;"
-                Using cmdCheck As New MySqlCommand(checkSql, conn)
-                    cmdCheck.Parameters.AddWithValue("@cid", CurrentCompanyId)
-                    Dim count As Integer = CInt(cmdCheck.ExecuteScalar())
-                    If count = 0 Then
-                        MessageBox.Show("Company could not be found; supervisor was not saved.")
-                        Return
-                    End If
-                End Using
-
-                ' -------------------------------------------------
                 ' 3) Insert or update supervisor for this company
-                ' -------------------------------------------------
                 If CurrentSupervisorId > 0 Then
                     ' UPDATE existing supervisor
                     Dim updateSql As String =
@@ -235,16 +220,16 @@ Public Class StudInternForm
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         SetInternFieldsEnabled(True)
         btnSave.Enabled = True
-        btnEdit.Enabled = False           ' optional: prevent double-clicking Edit
+        btnEdit.Enabled = False
     End Sub
 
     Private Sub btnSedit_Click(sender As Object, e As EventArgs) Handles btnSedit.Click
         SetSupervisorFieldsEnabled(True)
         btnSsave.Enabled = True
-        btnSedit.Enabled = False          ' optional
+        btnSedit.Enabled = False
     End Sub
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        ' ----- 1. Basic validation -----
+        ' Basic validation
         If String.IsNullOrWhiteSpace(txtInternCompany.Text) Then
             MessageBox.Show("Please enter a company name.")
             Return
@@ -263,7 +248,7 @@ Public Class StudInternForm
             Return
         End If
 
-        ' We MUST know which student this internship belongs to
+        ' which student this internship belongs to
         If String.IsNullOrWhiteSpace(CurrentStudentId) Then
             MessageBox.Show("Student ID is not set. Cannot save internship.")
             Return
@@ -275,7 +260,7 @@ Public Class StudInternForm
                 Dim tran = conn.BeginTransaction()
 
                 Try
-                    ' ----- 2. Ensure we know the student's faculty_id (FK) -----
+                    ' 2. Ensure student's facultyid 
                     If CurrentFacultyId = 0 Then
                         Dim facultySql As String =
                         "SELECT faculty_id FROM student WHERE student_id = @studentId LIMIT 1;"
@@ -292,7 +277,7 @@ Public Class StudInternForm
                         End Using
                     End If
 
-                    ' ----- 3. Upsert company (create if needed) -----
+                    ' Upsert company
                     If CurrentCompanyId = 0 Then
                         Dim insertCompanySql As String =
                         "INSERT INTO company (company_name, email, address, company_contact) " &
@@ -323,14 +308,14 @@ Public Class StudInternForm
                         End Using
                     End If
 
-                    ' ----- 4. Ensure we have a supervisor (FK is NOT NULL) -----
+                    '  Ensure we have a supervisor
                     If CurrentSupervisorId = 0 Then
                         MessageBox.Show("Please save supervisor information first before saving internship.")
                         tran.Rollback()
                         Return
                     End If
 
-                    ' ----- 5. Upsert internship -----
+                    '  Upsert internship
                     Dim startDate As Date = DateTimePicker1.Value.Date
                     Dim endDate As Date = DateTimePicker2.Value.Date
                     Dim status As String = "Ongoing"   ' or decide based on dates/hours
@@ -513,6 +498,27 @@ Public Class StudInternForm
         Catch ex As Exception
             MessageBox.Show("Error loading internship information: " & ex.Message)
         End Try
+    End Sub
+
+    ' Computes remaining hours
+    Private Sub UpdateRemainingHours()
+        Dim hoursRequired As Integer
+        Dim hoursCompleted As Integer
+
+        Integer.TryParse(TextBox1.Text, hoursRequired)  ' total required hours
+        Integer.TryParse(TextBox2.Text, hoursCompleted) ' hours rendered
+
+        Dim remaining As Integer = hoursRequired - hoursCompleted
+        If remaining < 0 Then remaining = 0
+
+        Label9.Text = remaining.ToString()
+    End Sub
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+        UpdateRemainingHours()
+    End Sub
+
+    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
+        UpdateRemainingHours()
     End Sub
 
 End Class
