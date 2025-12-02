@@ -1,9 +1,10 @@
 ﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports MySql.Data.MySqlClient
+
 Public Class StudInternForm
 
     Private ReadOnly connString As String =
-    "Server=localhost;Database=ojt_management_system;Uid=root;Pwd=;"
+        "Server=localhost;Database=ojt_management_system;Uid=root;Pwd=;"
 
     ' Keys we need to keep while the form is open
     Private CurrentStudentId As String
@@ -17,8 +18,9 @@ Public Class StudInternForm
         InitializeComponent()
         CurrentStudentId = studentId
     End Sub
-    Private Sub btnInternship_Click(sender As Object, e As EventArgs) Handles btnInternship.Click
 
+    Private Sub btnInternship_Click(sender As Object, e As EventArgs) Handles btnInternship.Click
+        ' you can navigate to this form from other forms if needed
     End Sub
 
     Private Sub Form6_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -32,12 +34,21 @@ Public Class StudInternForm
 
         pnlIntern.BackColor = ColorTranslator.FromHtml("#F7F7F7")
         pnlSummary.BackColor = ColorTranslator.FromHtml("#F7F7F7")
-        Panel2.BackColor = ColorTranslator.FromHtml("#F7F7F7")
+        pnlEvalHistory.BackColor = ColorTranslator.FromHtml("#F7F7F7")
 
         SetInternFieldsEnabled(False)
         SetSupervisorFieldsEnabled(False)
         btnSave.Enabled = False
         btnSsave.Enabled = False
+
+        ' style the evaluation history grid
+        StyleDataGridView(dtgEvalHistory)
+
+        ' initialise summary labels
+        lblProfRating.Text = "0"
+        lblSupervisorRating.Text = "0"
+        lblEvalComp.Text = "Evaluations Completed: 0"
+
         LoadInternshipForStudent()
     End Sub
 
@@ -85,11 +96,10 @@ Public Class StudInternForm
     End Function
 
     Private Sub dtgEvalHistory_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgEvalHistory.CellContentClick
-
+        ' you could show more details on click here if you want
     End Sub
 
     Private Sub pnlIntern_Paint(sender As Object, e As PaintEventArgs) Handles pnlIntern.Paint
-
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles pnlSummary.Paint
@@ -114,7 +124,7 @@ Public Class StudInternForm
     Private Sub btnSsave_Click(sender As Object, e As EventArgs) Handles btnSsave.Click
         ' 1) Basic validation
         If String.IsNullOrWhiteSpace(txtSFName.Text) OrElse
-       String.IsNullOrWhiteSpace(txtLName.Text) Then
+           String.IsNullOrWhiteSpace(txtLName.Text) Then
             MessageBox.Show("Please enter the supervisor's first and last name.")
             Return
         End If
@@ -127,12 +137,12 @@ Public Class StudInternForm
         Try
             Using conn As New MySqlConnection(connString)
                 conn.Open()
-                ' 2) Ensure a company row exists (create if needed)
 
+                ' 2) Ensure a company row exists (create if needed)
                 If CurrentCompanyId = 0 Then
                     Dim insertCompanySql As String =
-                    "INSERT INTO company (company_name, email, address, company_contact) " &
-                    "VALUES (@name, @email, @address, @contact);"
+                        "INSERT INTO company (company_name, email, address, company_contact) " &
+                        "VALUES (@name, @email, @address, @contact);"
 
                     Using cmdCompany As New MySqlCommand(insertCompanySql, conn)
                         cmdCompany.Parameters.AddWithValue("@name", txtInternCompany.Text.Trim())
@@ -141,17 +151,16 @@ Public Class StudInternForm
                         cmdCompany.Parameters.AddWithValue("@contact", "") ' no field on form
 
                         cmdCompany.ExecuteNonQuery()
-                        ' LastInsertedId is safer than multi-statement SELECT LAST_INSERT_ID()
                         CurrentCompanyId = CInt(cmdCompany.LastInsertedId)
                     End Using
                 Else
                     ' Optional: keep company info in sync if user edits fields
                     Dim updateCompanySql As String =
-                    "UPDATE company SET " &
-                    " company_name = @name, " &
-                    " email = @email, " &
-                    " address = @address " &
-                    "WHERE company_id = @companyId;"
+                        "UPDATE company SET " &
+                        " company_name = @name, " &
+                        " email = @email, " &
+                        " address = @address " &
+                        "WHERE company_id = @companyId;"
 
                     Using cmdCompany As New MySqlCommand(updateCompanySql, conn)
                         cmdCompany.Parameters.AddWithValue("@name", txtInternCompany.Text.Trim())
@@ -166,13 +175,13 @@ Public Class StudInternForm
                 If CurrentSupervisorId > 0 Then
                     ' UPDATE existing supervisor
                     Dim updateSql As String =
-                    "UPDATE companycontact SET " &
-                    " first_name = @firstName, " &
-                    " last_name = @lastName, " &
-                    " position = @position, " &
-                    " supervisor_email = @email, " &
-                    " supervisor_contact = @contact " &
-                    "WHERE supervisor_id = @supervisorId;"
+                        "UPDATE companycontact SET " &
+                        " first_name = @firstName, " &
+                        " last_name = @lastName, " &
+                        " position = @position, " &
+                        " supervisor_email = @email, " &
+                        " supervisor_contact = @contact " &
+                        "WHERE supervisor_id = @supervisorId;"
 
                     Using cmd As New MySqlCommand(updateSql, conn)
                         cmd.Parameters.AddWithValue("@firstName", txtSFName.Text.Trim())
@@ -186,9 +195,9 @@ Public Class StudInternForm
                 Else
                     ' INSERT new supervisor attached to this company
                     Dim insertSql As String =
-                    "INSERT INTO companycontact " &
-                    " (first_name, last_name, position, supervisor_email, supervisor_contact, company_id) " &
-                    "VALUES (@firstName, @lastName, @position, @email, @contact, @companyId);"
+                        "INSERT INTO companycontact " &
+                        " (first_name, last_name, position, supervisor_email, supervisor_contact, company_id) " &
+                        "VALUES (@firstName, @lastName, @position, @email, @contact, @companyId);"
 
                     Using cmd As New MySqlCommand(insertSql, conn)
                         cmd.Parameters.AddWithValue("@firstName", txtSFName.Text.Trim())
@@ -205,7 +214,7 @@ Public Class StudInternForm
             End Using
 
             MessageBox.Show("Supervisor information saved successfully.", "Saved",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             SetSupervisorFieldsEnabled(False)
             btnSsave.Enabled = False
@@ -215,7 +224,6 @@ Public Class StudInternForm
             MessageBox.Show("Error saving supervisor information: " & ex.Message)
         End Try
     End Sub
-
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         SetInternFieldsEnabled(True)
@@ -228,6 +236,7 @@ Public Class StudInternForm
         btnSsave.Enabled = True
         btnSedit.Enabled = False
     End Sub
+
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         ' Basic validation
         If String.IsNullOrWhiteSpace(txtInternCompany.Text) Then
@@ -263,7 +272,7 @@ Public Class StudInternForm
                     ' 2. Ensure student's facultyid 
                     If CurrentFacultyId = 0 Then
                         Dim facultySql As String =
-                        "SELECT faculty_id FROM student WHERE student_id = @studentId LIMIT 1;"
+                            "SELECT faculty_id FROM student WHERE student_id = @studentId LIMIT 1;"
 
                         Using cmdFaculty As New MySqlCommand(facultySql, conn, tran)
                             cmdFaculty.Parameters.AddWithValue("@studentId", CurrentStudentId)
@@ -280,9 +289,9 @@ Public Class StudInternForm
                     ' Upsert company
                     If CurrentCompanyId = 0 Then
                         Dim insertCompanySql As String =
-                        "INSERT INTO company (company_name, email, address, company_contact) " &
-                        "VALUES (@name, @email, @address, @contact); " &
-                        "SELECT LAST_INSERT_ID();"
+                            "INSERT INTO company (company_name, email, address, company_contact) " &
+                            "VALUES (@name, @email, @address, @contact); " &
+                            "SELECT LAST_INSERT_ID();"
 
                         Using cmdCompany As New MySqlCommand(insertCompanySql, conn, tran)
                             cmdCompany.Parameters.AddWithValue("@name", txtInternCompany.Text.Trim())
@@ -293,11 +302,11 @@ Public Class StudInternForm
                         End Using
                     Else
                         Dim updateCompanySql As String =
-                        "UPDATE company SET " &
-                        " company_name = @name, " &
-                        " email = @email, " &
-                        " address = @address " &
-                        "WHERE company_id = @companyId;"
+                            "UPDATE company SET " &
+                            " company_name = @name, " &
+                            " email = @email, " &
+                            " address = @address " &
+                            "WHERE company_id = @companyId;"
 
                         Using cmdCompany As New MySqlCommand(updateCompanySql, conn, tran)
                             cmdCompany.Parameters.AddWithValue("@name", txtInternCompany.Text.Trim())
@@ -318,19 +327,19 @@ Public Class StudInternForm
                     '  Upsert internship
                     Dim startDate As Date = DateTimePicker1.Value.Date
                     Dim endDate As Date = DateTimePicker2.Value.Date
-                    Dim status As String = "Ongoing"   ' or decide based on dates/hours
+                    Dim status As String = "Ongoing"
 
                     ' Try UPDATE first: internship for this student + company
                     Dim updateInternSql As String =
-                    "UPDATE internship SET " &
-                    " supervisor_id = @supervisorId, " &
-                    " faculty_id = @facultyId, " &
-                    " starting_date = @startDate, " &
-                    " end_date = @endDate, " &
-                    " hours_required = @hoursReq, " &
-                    " hours_completed = @hoursComp, " &
-                    " status = @status " &
-                    "WHERE student_id = @studentId AND company_id = @companyId;"
+                        "UPDATE internship SET " &
+                        " supervisor_id = @supervisorId, " &
+                        " faculty_id = @facultyId, " &
+                        " starting_date = @startDate, " &
+                        " end_date = @endDate, " &
+                        " hours_required = @hoursReq, " &
+                        " hours_completed = @hoursComp, " &
+                        " status = @status " &
+                        "WHERE student_id = @studentId AND company_id = @companyId;"
 
                     Dim rowsAffected As Integer
                     Using cmdIntern As New MySqlCommand(updateInternSql, conn, tran)
@@ -350,11 +359,11 @@ Public Class StudInternForm
                     ' If no row was updated, INSERT a new internship
                     If rowsAffected = 0 Then
                         Dim insertInternSql As String =
-                        "INSERT INTO internship " &
-                        " (student_id, company_id, supervisor_id, faculty_id, " &
-                        "  starting_date, end_date, hours_required, hours_completed, status) " &
-                        "VALUES (@studentId, @companyId, @supervisorId, @facultyId, " &
-                        "        @startDate, @endDate, @hoursReq, @hoursComp, @status);"
+                            "INSERT INTO internship " &
+                            " (student_id, company_id, supervisor_id, faculty_id, " &
+                            "  starting_date, end_date, hours_required, hours_completed, status) " &
+                            "VALUES (@studentId, @companyId, @supervisorId, @facultyId, " &
+                            "        @startDate, @endDate, @hoursReq, @hoursComp, @status);"
 
                         Using cmdIntern As New MySqlCommand(insertInternSql, conn, tran)
                             cmdIntern.Parameters.AddWithValue("@studentId", CurrentStudentId)
@@ -370,7 +379,6 @@ Public Class StudInternForm
                         End Using
                     End If
 
-                    ' ----- 6. Commit -----
                     tran.Commit()
                 Catch
                     tran.Rollback()
@@ -379,7 +387,7 @@ Public Class StudInternForm
             End Using
 
             MessageBox.Show("Internship information saved successfully.", "Saved",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             SetInternFieldsEnabled(False)
             btnSave.Enabled = False
@@ -388,13 +396,10 @@ Public Class StudInternForm
         Catch ex As Exception
             MessageBox.Show("Error saving internship information: " & ex.Message)
         End Try
-        MessageBox.Show("Internship information saved successfully.", "Saved",
-                MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         ' Refresh the UI from database
         LoadInternshipForStudent()
     End Sub
-
 
     Private Sub SetInternFieldsEnabled(enabled As Boolean)
         txtInternCompany.ReadOnly = Not enabled
@@ -416,9 +421,9 @@ Public Class StudInternForm
         txtSContact.ReadOnly = Not enabled
     End Sub
 
-    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
-
+    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles pnlEvalHistory.Paint
     End Sub
+
     Private Sub btnProfile_Click(sender As Object, e As EventArgs) Handles btnProfile.Click
         Dim profileForm As New MyProfileForm(CurrentStudentId)
         profileForm.Show()
@@ -426,7 +431,6 @@ Public Class StudInternForm
     End Sub
 
     Private Sub pnlSidebar_Paint(sender As Object, e As PaintEventArgs) Handles pnlSidebar.Paint
-
     End Sub
 
     Private Sub LoadInternshipForStudent()
@@ -439,24 +443,24 @@ Public Class StudInternForm
                 conn.Open()
 
                 Dim sql As String =
-                "SELECT i.internship_id, i.student_id, i.company_id, i.supervisor_id, i.faculty_id, " &
-                "       i.starting_date, i.end_date, i.hours_required, i.hours_completed, i.status, " &
-                "       c.company_name, c.email AS company_email, c.address AS company_address, " &
-                "       cc.first_name, cc.last_name, cc.position, " &
-                "       cc.supervisor_email, cc.supervisor_contact " &
-                "FROM internship i " &
-                "JOIN company c ON i.company_id = c.company_id " &
-                "JOIN companycontact cc ON i.supervisor_id = cc.supervisor_id " &
-                "WHERE i.student_id = @studentId " &
-                "ORDER BY i.internship_id DESC " &
-                "LIMIT 1;"
+                    "SELECT i.internship_id, i.student_id, i.company_id, i.supervisor_id, i.faculty_id, " &
+                    "       i.starting_date, i.end_date, i.hours_required, i.hours_completed, i.status, " &
+                    "       c.company_name, c.email AS company_email, c.address AS company_address, " &
+                    "       cc.first_name, cc.last_name, cc.position, " &
+                    "       cc.supervisor_email, cc.supervisor_contact " &
+                    "FROM internship i " &
+                    "JOIN company c ON i.company_id = c.company_id " &
+                    "JOIN companycontact cc ON i.supervisor_id = cc.supervisor_id " &
+                    "WHERE i.student_id = @studentId " &
+                    "ORDER BY i.internship_id DESC " &
+                    "LIMIT 1;"
 
                 Using cmd As New MySqlCommand(sql, conn)
                     cmd.Parameters.AddWithValue("@studentId", CurrentStudentId)
 
                     Using reader = cmd.ExecuteReader()
                         If reader.Read() Then
-                            '  store IDs for later saves
+                            ' store IDs for later saves
                             CurrentInternshipId = Convert.ToInt32(reader("internship_id"))
                             CurrentCompanyId = Convert.ToInt32(reader("company_id"))
                             CurrentSupervisorId = Convert.ToInt32(reader("supervisor_id"))
@@ -474,7 +478,6 @@ Public Class StudInternForm
 
                             TextBox1.Text = reader("hours_required").ToString()
                             TextBox2.Text = reader("hours_completed").ToString()
-                            ' You can also show reader("status") somewhere if you have a label.
 
                             ' supervisor UI 
                             txtSFName.Text = reader("first_name").ToString()
@@ -482,6 +485,9 @@ Public Class StudInternForm
                             txtPos.Text = reader("position").ToString()
                             txtSEmail.Text = reader("supervisor_email").ToString()
                             txtSContact.Text = reader("supervisor_contact").ToString()
+                        Else
+                            ' no internship yet
+                            CurrentInternshipId = 0
                         End If
                     End Using
                 End Using
@@ -513,12 +519,80 @@ Public Class StudInternForm
 
         Label9.Text = remaining.ToString()
     End Sub
+
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
         UpdateRemainingHours()
     End Sub
 
     Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
         UpdateRemainingHours()
+    End Sub
+    '  VIEW REPORTS BUTTON
+    '  Uses GRADE TABLE ONLY
+    Private Sub btnViewRpt_Click(sender As Object, e As EventArgs) Handles btnViewRpt.Click
+        If CurrentInternshipId = 0 Then
+            MessageBox.Show("No internship record found to view evaluations.", "No Record",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Exit Sub
+        End If
+
+        Try
+            Using conn As New MySqlConnection(connString)
+                conn.Open()
+
+                Dim sql As String =
+                    "SELECT sup_total_percent, prof_total_percent " &
+                    "FROM grade WHERE internship_id = @internshipId LIMIT 1;"
+
+                Dim supPercent As Decimal = 0D
+                Dim profPercent As Decimal = 0D
+                Dim hasRow As Boolean = False
+
+                Using cmd As New MySqlCommand(sql, conn)
+                    cmd.Parameters.AddWithValue("@internshipId", CurrentInternshipId)
+                    Using reader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            hasRow = True
+                            If Not IsDBNull(reader("sup_total_percent")) Then
+                                supPercent = Convert.ToDecimal(reader("sup_total_percent"))
+                            End If
+                            If Not IsDBNull(reader("prof_total_percent")) Then
+                                profPercent = Convert.ToDecimal(reader("prof_total_percent"))
+                            End If
+                        End If
+                    End Using
+                End Using
+
+                dtgEvalHistory.Rows.Clear()
+                Dim evalCount As Integer = 0
+
+                If Not hasRow Then
+                    MessageBox.Show("There are no evaluations recorded yet for this internship.",
+                                    "No Evaluations", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    ' Professor rating label
+                    lblProfRating.Text = profPercent.ToString("0.00") & "%"
+                    lblSupervisorRating.Text = supPercent.ToString("0.00") & "%"
+
+                    ' Add rows to history grid (latest values from grade table)
+                    If profPercent > 0D Then
+                        dtgEvalHistory.Rows.Add("Latest", profPercent.ToString("0.00") & "%", "Professor")
+                        evalCount += 1
+                    End If
+
+                    If supPercent > 0D Then
+                        dtgEvalHistory.Rows.Add("Latest", supPercent.ToString("0.00") & "%", "Supervisor")
+                        evalCount += 1
+                    End If
+                End If
+
+                lblEvalComp.Text = "Evaluations Completed: " & evalCount.ToString()
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading evaluation report: " & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
 End Class

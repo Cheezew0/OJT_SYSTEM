@@ -1,4 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.IO
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 Public Class EvaluationForm
     Private ReadOnly connectionString As String =
     "server=localhost;user id=root;password=;database=ojt_management_system;"
@@ -555,6 +558,218 @@ Public Class EvaluationForm
         Catch ex As Exception
             MessageBox.Show("Error while saving grade: " & ex.Message, "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnGenReport_Click(sender As Object, e As EventArgs) Handles btnGenReport.Click
+        Try
+            ' --- Basic validation ---
+            If String.IsNullOrWhiteSpace(lblStudID.Text) OrElse lblStudID.Text.Contains("_") Then
+                MessageBox.Show("Please search and load a student before generating a report.",
+                            "No Student", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            If cmbEval.SelectedIndex < 0 Then
+                MessageBox.Show("Please select an evaluator (Professor or Supervisor) before generating a report.",
+                            "No Evaluator", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            If cmbPunc.SelectedIndex < 0 OrElse
+           cmbProfessionalism.SelectedIndex < 0 OrElse
+           cmbSkills.SelectedIndex < 0 OrElse
+           cmbSoftSkills.SelectedIndex < 0 Then
+
+                MessageBox.Show("Please make sure all rating fields (Punctuality, Professionalism, Skills, Soft Skills) are filled in.",
+                            "Incomplete Ratings", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            ' --- Ask where to save the PDF ---
+            Dim sfd As New SaveFileDialog() With {
+            .Filter = "PDF files (*.pdf)|*.pdf",
+            .FileName = $"{lblStudID.Text}_EvaluationReport.pdf"
+        }
+
+            If sfd.ShowDialog() <> DialogResult.OK Then
+                Exit Sub
+            End If
+
+            ' --- Gather data from the form ---
+            Dim studentId As String = lblStudID.Text
+            Dim studentName As String = lblStudName.Text
+            Dim course As String = lblCourse.Text
+            Dim company As String = lblComp.Text
+            Dim supervisor As String = lblSupervisor.Text
+            Dim status As String = lblStatus.Text
+
+            Dim evaluator As String = cmbEval.SelectedItem.ToString()
+            Dim visitDate As String = dtpVisit.Value.ToString("MMMM dd, yyyy")
+
+            ' ratings based on SelectedIndex (0–5)
+            Dim punc As Integer = cmbPunc.SelectedIndex
+            Dim prof As Integer = cmbProfessionalism.SelectedIndex
+            Dim skills As Integer = cmbSkills.SelectedIndex
+            Dim soft As Integer = cmbSoftSkills.SelectedIndex
+
+            Dim totalScore As Integer = punc + prof + skills + soft
+            Dim totalPercent As Decimal = CDec(totalScore) / 20D * 100D
+
+            Dim overallRatingText As String = totalPercent.ToString("0.00") & "%"
+
+            Dim comments As String = txtComm.Text.Trim()
+
+            ' --- Create the PDF document ---
+            Dim doc As New iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 50, 50, 50, 50)
+
+            Using fs As New FileStream(sfd.FileName, FileMode.Create, FileAccess.Write, FileShare.None)
+                Dim writer As iTextSharp.text.pdf.PdfWriter = iTextSharp.text.pdf.PdfWriter.GetInstance(doc, fs)
+                doc.Open()
+
+                ' =======================
+                ' Title
+                ' =======================
+                Dim titleFont As New iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA,
+                16,
+                iTextSharp.text.Font.BOLD
+            )
+
+                Dim header As New iTextSharp.text.Paragraph("Internship Evaluation Report", titleFont)
+                header.Alignment = iTextSharp.text.Element.ALIGN_CENTER
+                header.SpacingAfter = 20.0F
+                doc.Add(header)
+
+                ' =======================
+                ' Student info fonts
+                ' =======================
+                Dim normalFont As New iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA,
+                11,
+                iTextSharp.text.Font.NORMAL
+            )
+
+                Dim boldFont As New iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA,
+                11,
+                iTextSharp.text.Font.BOLD
+            )
+
+                ' Student info
+                Dim studInfo As New iTextSharp.text.Paragraph()
+                studInfo.Add(New iTextSharp.text.Chunk("Student ID: ", boldFont))
+                studInfo.Add(New iTextSharp.text.Chunk(studentId & Environment.NewLine, normalFont))
+
+                studInfo.Add(New iTextSharp.text.Chunk("Student Name: ", boldFont))
+                studInfo.Add(New iTextSharp.text.Chunk(studentName & Environment.NewLine, normalFont))
+
+                studInfo.Add(New iTextSharp.text.Chunk("Course/Program: ", boldFont))
+                studInfo.Add(New iTextSharp.text.Chunk(course & Environment.NewLine, normalFont))
+
+                studInfo.Add(New iTextSharp.text.Chunk("Company: ", boldFont))
+                studInfo.Add(New iTextSharp.text.Chunk(company & Environment.NewLine, normalFont))
+
+                studInfo.Add(New iTextSharp.text.Chunk("Supervisor: ", boldFont))
+                studInfo.Add(New iTextSharp.text.Chunk(supervisor & Environment.NewLine, normalFont))
+
+                studInfo.Add(New iTextSharp.text.Chunk("Status: ", boldFont))
+                studInfo.Add(New iTextSharp.text.Chunk(status & Environment.NewLine, normalFont))
+
+                studInfo.SpacingAfter = 15.0F
+                doc.Add(studInfo)
+
+                ' Evaluator + date
+                Dim evalInfo As New iTextSharp.text.Paragraph()
+                evalInfo.Add(New iTextSharp.text.Chunk("Evaluator: ", boldFont))
+                evalInfo.Add(New iTextSharp.text.Chunk(evaluator & Environment.NewLine, normalFont))
+
+                evalInfo.Add(New iTextSharp.text.Chunk("Date of Visit: ", boldFont))
+                evalInfo.Add(New iTextSharp.text.Chunk(visitDate & Environment.NewLine, normalFont))
+                evalInfo.SpacingAfter = 15.0F
+                doc.Add(evalInfo)
+
+                ' =======================
+                ' Ratings table
+                ' =======================
+                Dim table As New iTextSharp.text.pdf.PdfPTable(3)
+                table.WidthPercentage = 100
+                table.SetWidths(New Single() {50.0F, 25.0F, 25.0F})
+
+                Dim headerCellFont As New iTextSharp.text.Font(
+                iTextSharp.text.Font.FontFamily.HELVETICA,
+                11,
+                iTextSharp.text.Font.BOLD
+            )
+
+                Dim c1 As New iTextSharp.text.pdf.PdfPCell(New iTextSharp.text.Phrase("Criteria", headerCellFont))
+                c1.HorizontalAlignment = iTextSharp.text.Element.ALIGN_CENTER
+                table.AddCell(c1)
+
+                Dim c2 As New iTextSharp.text.pdf.PdfPCell(New iTextSharp.text.Phrase("Rating (0–5)", headerCellFont))
+                c2.HorizontalAlignment = iTextSharp.text.Element.ALIGN_CENTER
+                table.AddCell(c2)
+
+                Dim c3 As New iTextSharp.text.pdf.PdfPCell(New iTextSharp.text.Phrase("Description", headerCellFont))
+                c3.HorizontalAlignment = iTextSharp.text.Element.ALIGN_CENTER
+                table.AddCell(c3)
+
+                ' Helper function: convert index to description text
+                Dim ratingText = Function(idx As Integer) As String
+                                     Select Case idx
+                                         Case 0 : Return "0 - Incomplete"
+                                         Case 1 : Return "1 - Poor"
+                                         Case 2 : Return "2 - Bad"
+                                         Case 3 : Return "3 - Good"
+                                         Case 4 : Return "4 - Very Good"
+                                         Case 5 : Return "5 - Excellent"
+                                         Case Else : Return idx.ToString()
+                                     End Select
+                                 End Function
+
+                table.AddCell("Punctuality")
+                table.AddCell(punc.ToString())
+                table.AddCell(ratingText(punc))
+
+                table.AddCell("Professionalism")
+                table.AddCell(prof.ToString())
+                table.AddCell(ratingText(prof))
+
+                table.AddCell("Skills")
+                table.AddCell(skills.ToString())
+                table.AddCell(ratingText(skills))
+
+                table.AddCell("Soft Skills")
+                table.AddCell(soft.ToString())
+                table.AddCell(ratingText(soft))
+
+                doc.Add(table)
+
+                ' Overall rating
+                Dim overallPara As New iTextSharp.text.Paragraph()
+                overallPara.SpacingBefore = 15.0F
+                overallPara.Add(New iTextSharp.text.Chunk("Overall Rating: ", boldFont))
+                overallPara.Add(New iTextSharp.text.Chunk(overallRatingText & Environment.NewLine, normalFont))
+                doc.Add(overallPara)
+
+                ' Comments (if any)
+                If comments <> "" Then
+                    Dim commPara As New iTextSharp.text.Paragraph()
+                    commPara.SpacingBefore = 10.0F
+                    commPara.Add(New iTextSharp.text.Chunk("Comments: ", boldFont))
+                    commPara.Add(New iTextSharp.text.Chunk(comments, normalFont))
+                    doc.Add(commPara)
+                End If
+
+                doc.Close()
+            End Using
+
+            MessageBox.Show("PDF report generated successfully.", "Report Created",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error generating report: " & ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class

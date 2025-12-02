@@ -35,31 +35,6 @@ Partial Class DashboardForm
         pnlMain = New Panel()
         pnlActivitiesMain = New Panel()
         Label8 = New Label()
-        pnlPending = New Panel()
-        Label21 = New Label()
-        Label22 = New Label()
-        Label23 = New Label()
-        Label24 = New Label()
-        Label6 = New Label()
-        pnlEvalSched = New Panel()
-        Label18 = New Label()
-        Label19 = New Label()
-        Label16 = New Label()
-        Label17 = New Label()
-        Label15 = New Label()
-        Label14 = New Label()
-        Label3 = New Label()
-        Panel1 = New Panel()
-        lblPartnerCompNew = New Label()
-        notifComp = New Label()
-        pnlPcomp = New Panel()
-        Label12 = New Label()
-        Label13 = New Label()
-        Label10 = New Label()
-        Label11 = New Label()
-        Label9 = New Label()
-        Label4 = New Label()
-        Label7 = New Label()
         pnlPartnerComp = New Panel()
         lblPartnerCompCount = New Label()
         PictureBox4 = New PictureBox()
@@ -77,16 +52,15 @@ Partial Class DashboardForm
         PictureBox1 = New PictureBox()
         lblTotalStudentsTitle = New Label()
         Label1 = New Label()
-        BackgroundWorker1 = New ComponentModel.BackgroundWorker()
+        DataGridView1 = New DataGridView()
+        colStudId = New DataGridViewTextBoxColumn()
+        colStatus = New DataGridViewTextBoxColumn()
+        colCompany = New DataGridViewTextBoxColumn()
         pnlSidebar.SuspendLayout()
         pnlBottomMenu.SuspendLayout()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
         pnlMain.SuspendLayout()
         pnlActivitiesMain.SuspendLayout()
-        pnlPending.SuspendLayout()
-        pnlEvalSched.SuspendLayout()
-        Panel1.SuspendLayout()
-        pnlPcomp.SuspendLayout()
         pnlPartnerComp.SuspendLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).BeginInit()
         pnlCompIntern.SuspendLayout()
@@ -95,6 +69,7 @@ Partial Class DashboardForm
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         pnlStudent.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' pnlSidebar
@@ -264,11 +239,8 @@ Partial Class DashboardForm
         ' 
         ' pnlActivitiesMain
         ' 
+        pnlActivitiesMain.Controls.Add(DataGridView1)
         pnlActivitiesMain.Controls.Add(Label8)
-        pnlActivitiesMain.Controls.Add(pnlPending)
-        pnlActivitiesMain.Controls.Add(pnlEvalSched)
-        pnlActivitiesMain.Controls.Add(Panel1)
-        pnlActivitiesMain.Controls.Add(pnlPcomp)
         pnlActivitiesMain.Location = New Point(98, 264)
         pnlActivitiesMain.Name = "pnlActivitiesMain"
         pnlActivitiesMain.Size = New Size(1014, 524)
@@ -283,269 +255,6 @@ Partial Class DashboardForm
         Label8.Size = New Size(243, 25)
         Label8.TabIndex = 4
         Label8.Text = "Activities and Notifications"
-        ' 
-        ' pnlPending
-        ' 
-        pnlPending.BackColor = Color.White
-        pnlPending.Controls.Add(Label21)
-        pnlPending.Controls.Add(Label22)
-        pnlPending.Controls.Add(Label23)
-        pnlPending.Controls.Add(Label24)
-        pnlPending.Controls.Add(Label6)
-        pnlPending.Location = New Point(28, 298)
-        pnlPending.Name = "pnlPending"
-        pnlPending.Size = New Size(383, 195)
-        pnlPending.TabIndex = 3
-        ' 
-        ' Label21
-        ' 
-        Label21.AutoSize = True
-        Label21.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label21.Location = New Point(24, 97)
-        Label21.Name = "Label21"
-        Label21.Size = New Size(17, 23)
-        Label21.TabIndex = 11
-        Label21.Text = "•"
-        ' 
-        ' Label22
-        ' 
-        Label22.AutoSize = True
-        Label22.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label22.Location = New Point(47, 97)
-        Label22.Name = "Label22"
-        Label22.Size = New Size(93, 23)
-        Label22.TabIndex = 10
-        Label22.Text = "Evaluation"
-        ' 
-        ' Label23
-        ' 
-        Label23.AutoSize = True
-        Label23.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label23.Location = New Point(24, 61)
-        Label23.Name = "Label23"
-        Label23.Size = New Size(17, 23)
-        Label23.TabIndex = 9
-        Label23.Text = "•"
-        ' 
-        ' Label24
-        ' 
-        Label24.AutoSize = True
-        Label24.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label24.Location = New Point(47, 61)
-        Label24.Name = "Label24"
-        Label24.Size = New Size(100, 23)
-        Label24.TabIndex = 8
-        Label24.Text = "Evaluations"
-        ' 
-        ' Label6
-        ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(24, 23)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(170, 23)
-        Label6.TabIndex = 2
-        Label6.Text = "Pending Evaluations"
-        ' 
-        ' pnlEvalSched
-        ' 
-        pnlEvalSched.BackColor = Color.White
-        pnlEvalSched.Controls.Add(Label18)
-        pnlEvalSched.Controls.Add(Label19)
-        pnlEvalSched.Controls.Add(Label16)
-        pnlEvalSched.Controls.Add(Label17)
-        pnlEvalSched.Controls.Add(Label15)
-        pnlEvalSched.Controls.Add(Label14)
-        pnlEvalSched.Controls.Add(Label3)
-        pnlEvalSched.Location = New Point(564, 80)
-        pnlEvalSched.Name = "pnlEvalSched"
-        pnlEvalSched.Size = New Size(383, 195)
-        pnlEvalSched.TabIndex = 2
-        ' 
-        ' Label18
-        ' 
-        Label18.AutoSize = True
-        Label18.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label18.Location = New Point(24, 140)
-        Label18.Name = "Label18"
-        Label18.Size = New Size(53, 23)
-        Label18.TabIndex = 8
-        Label18.Text = "Date:"
-        ' 
-        ' Label19
-        ' 
-        Label19.AutoSize = True
-        Label19.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label19.Location = New Point(97, 140)
-        Label19.Name = "Label19"
-        Label19.Size = New Size(83, 23)
-        Label19.TabIndex = 7
-        Label19.Text = "New Eval"
-        ' 
-        ' Label16
-        ' 
-        Label16.AutoSize = True
-        Label16.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label16.Location = New Point(24, 103)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(53, 23)
-        Label16.TabIndex = 6
-        Label16.Text = "Date:"
-        ' 
-        ' Label17
-        ' 
-        Label17.AutoSize = True
-        Label17.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label17.Location = New Point(97, 103)
-        Label17.Name = "Label17"
-        Label17.Size = New Size(83, 23)
-        Label17.TabIndex = 5
-        Label17.Text = "New Eval"
-        ' 
-        ' Label15
-        ' 
-        Label15.AutoSize = True
-        Label15.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label15.Location = New Point(24, 67)
-        Label15.Name = "Label15"
-        Label15.Size = New Size(53, 23)
-        Label15.TabIndex = 4
-        Label15.Text = "Date:"
-        ' 
-        ' Label14
-        ' 
-        Label14.AutoSize = True
-        Label14.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label14.Location = New Point(97, 67)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(83, 23)
-        Label14.TabIndex = 3
-        Label14.Text = "New Eval"
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(24, 23)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(170, 23)
-        Label3.TabIndex = 1
-        Label3.Text = "Evaluation Schedule"
-        ' 
-        ' Panel1
-        ' 
-        Panel1.BackColor = Color.White
-        Panel1.Controls.Add(lblPartnerCompNew)
-        Panel1.Controls.Add(notifComp)
-        Panel1.Location = New Point(564, 298)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(383, 195)
-        Panel1.TabIndex = 1
-        ' 
-        ' lblPartnerCompNew
-        ' 
-        lblPartnerCompNew.AutoSize = True
-        lblPartnerCompNew.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblPartnerCompNew.Location = New Point(24, 61)
-        lblPartnerCompNew.Name = "lblPartnerCompNew"
-        lblPartnerCompNew.Size = New Size(203, 23)
-        lblPartnerCompNew.TabIndex = 2
-        lblPartnerCompNew.Text = "New Partner Companies"
-        ' 
-        ' notifComp
-        ' 
-        notifComp.AutoSize = True
-        notifComp.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        notifComp.Location = New Point(24, 23)
-        notifComp.Name = "notifComp"
-        notifComp.Size = New Size(203, 23)
-        notifComp.TabIndex = 1
-        notifComp.Text = "New Partner Companies"
-        ' 
-        ' pnlPcomp
-        ' 
-        pnlPcomp.BackColor = Color.White
-        pnlPcomp.Controls.Add(Label12)
-        pnlPcomp.Controls.Add(Label13)
-        pnlPcomp.Controls.Add(Label10)
-        pnlPcomp.Controls.Add(Label11)
-        pnlPcomp.Controls.Add(Label9)
-        pnlPcomp.Controls.Add(Label4)
-        pnlPcomp.Controls.Add(Label7)
-        pnlPcomp.Location = New Point(28, 80)
-        pnlPcomp.Name = "pnlPcomp"
-        pnlPcomp.Size = New Size(383, 195)
-        pnlPcomp.TabIndex = 0
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label12.Location = New Point(24, 140)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(17, 23)
-        Label12.TabIndex = 7
-        Label12.Text = "•"
-        ' 
-        ' Label13
-        ' 
-        Label13.AutoSize = True
-        Label13.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label13.Location = New Point(47, 140)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(203, 23)
-        Label13.TabIndex = 6
-        Label13.Text = "New Partner Companies"
-        ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label10.Location = New Point(24, 103)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(17, 23)
-        Label10.TabIndex = 5
-        Label10.Text = "•"
-        ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label11.Location = New Point(47, 103)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(203, 23)
-        Label11.TabIndex = 4
-        Label11.Text = "New Partner Companies"
-        ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(24, 67)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(17, 23)
-        Label9.TabIndex = 3
-        Label9.Text = "•"
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(47, 67)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(203, 23)
-        Label4.TabIndex = 2
-        Label4.Text = "New Partner Companies"
-        ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(24, 23)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(203, 23)
-        Label7.TabIndex = 1
-        Label7.Text = "New Partner Companies"
         ' 
         ' pnlPartnerComp
         ' 
@@ -715,6 +424,37 @@ Partial Class DashboardForm
         Label1.TabIndex = 0
         Label1.Text = "Summary Cards"
         ' 
+        ' DataGridView1
+        ' 
+        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridView1.Columns.AddRange(New DataGridViewColumn() {colStudId, colStatus, colCompany})
+        DataGridView1.Location = New Point(38, 104)
+        DataGridView1.Name = "DataGridView1"
+        DataGridView1.RowHeadersWidth = 51
+        DataGridView1.Size = New Size(931, 276)
+        DataGridView1.TabIndex = 5
+        ' 
+        ' colStudId
+        ' 
+        colStudId.HeaderText = "Student ID"
+        colStudId.MinimumWidth = 6
+        colStudId.Name = "colStudId"
+        colStudId.Width = 125
+        ' 
+        ' colStatus
+        ' 
+        colStatus.HeaderText = "Status"
+        colStatus.MinimumWidth = 6
+        colStatus.Name = "colStatus"
+        colStatus.Width = 125
+        ' 
+        ' colCompany
+        ' 
+        colCompany.HeaderText = "Company"
+        colCompany.MinimumWidth = 6
+        colCompany.Name = "colCompany"
+        colCompany.Width = 125
+        ' 
         ' DashboardForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -733,14 +473,6 @@ Partial Class DashboardForm
         pnlMain.PerformLayout()
         pnlActivitiesMain.ResumeLayout(False)
         pnlActivitiesMain.PerformLayout()
-        pnlPending.ResumeLayout(False)
-        pnlPending.PerformLayout()
-        pnlEvalSched.ResumeLayout(False)
-        pnlEvalSched.PerformLayout()
-        Panel1.ResumeLayout(False)
-        Panel1.PerformLayout()
-        pnlPcomp.ResumeLayout(False)
-        pnlPcomp.PerformLayout()
         pnlPartnerComp.ResumeLayout(False)
         pnlPartnerComp.PerformLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).EndInit()
@@ -753,6 +485,7 @@ Partial Class DashboardForm
         pnlStudent.ResumeLayout(False)
         pnlStudent.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -784,32 +517,10 @@ Partial Class DashboardForm
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents lblPartnerComp As Label
     Friend WithEvents pnlActivitiesMain As Panel
-    Friend WithEvents pnlPcomp As Panel
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents notifComp As Label
-    Friend WithEvents pnlPending As Panel
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents pnlEvalSched As Panel
-    Friend WithEvents Label4 As Label
-    Friend WithEvents lblPartnerCompNew As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label22 As Label
-    Friend WithEvents Label23 As Label
-    Friend WithEvents Label24 As Label
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents colStudId As DataGridViewTextBoxColumn
+    Friend WithEvents colStatus As DataGridViewTextBoxColumn
+    Friend WithEvents colCompany As DataGridViewTextBoxColumn
 
 End Class

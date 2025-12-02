@@ -34,6 +34,7 @@ Partial Class EvaluationForm
         PictureBoxLogo = New PictureBox()
         pnlMain = New Panel()
         pnlEval = New Panel()
+        btnGenReport = New Button()
         pnlRating = New Panel()
         lblRating = New Label()
         Label18 = New Label()
@@ -76,6 +77,7 @@ Partial Class EvaluationForm
         PictureBox2 = New PictureBox()
         lblActiveStud = New Label()
         Label1 = New Label()
+        Panel1 = New Panel()
         pnlSidebar.SuspendLayout()
         pnlBottomMenu.SuspendLayout()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
@@ -241,6 +243,7 @@ Partial Class EvaluationForm
         ' 
         ' pnlMain
         ' 
+        pnlMain.Controls.Add(Panel1)
         pnlMain.Controls.Add(pnlEval)
         pnlMain.Controls.Add(pnlStudInfo)
         pnlMain.Controls.Add(pnlsearch)
@@ -253,6 +256,7 @@ Partial Class EvaluationForm
         ' 
         ' pnlEval
         ' 
+        pnlEval.Controls.Add(btnGenReport)
         pnlEval.Controls.Add(pnlRating)
         pnlEval.Controls.Add(btnSaveEval)
         pnlEval.Controls.Add(txtComm)
@@ -274,6 +278,15 @@ Partial Class EvaluationForm
         pnlEval.Name = "pnlEval"
         pnlEval.Size = New Size(722, 367)
         pnlEval.TabIndex = 13
+        ' 
+        ' btnGenReport
+        ' 
+        btnGenReport.Location = New Point(551, 309)
+        btnGenReport.Name = "btnGenReport"
+        btnGenReport.Size = New Size(140, 30)
+        btnGenReport.TabIndex = 19
+        btnGenReport.Text = "Generate Report"
+        btnGenReport.UseVisualStyleBackColor = True
         ' 
         ' pnlRating
         ' 
@@ -306,7 +319,7 @@ Partial Class EvaluationForm
         ' btnSaveEval
         ' 
         btnSaveEval.BackColor = Color.Red
-        btnSaveEval.Location = New Point(455, 307)
+        btnSaveEval.Location = New Point(444, 307)
         btnSaveEval.Name = "btnSaveEval"
         btnSaveEval.Size = New Size(103, 35)
         btnSaveEval.TabIndex = 16
@@ -433,9 +446,9 @@ Partial Class EvaluationForm
         Label9.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         Label9.Location = New Point(47, 126)
         Label9.Name = "Label9"
-        Label9.Size = New Size(96, 20)
+        Label9.Size = New Size(139, 20)
         Label9.TabIndex = 2
-        Label9.Text = "Date of Visit:"
+        Label9.Text = "Date of Evaluation:"
         ' 
         ' Label2
         ' 
@@ -472,9 +485,9 @@ Partial Class EvaluationForm
         lblStatus.AutoSize = True
         lblStatus.Location = New Point(186, 317)
         lblStatus.Name = "lblStatus"
-        lblStatus.Size = New Size(49, 20)
+        lblStatus.Size = New Size(63, 20)
         lblStatus.TabIndex = 24
-        lblStatus.Text = "Status"
+        lblStatus.Text = "_________"
         ' 
         ' Label8
         ' 
@@ -491,9 +504,9 @@ Partial Class EvaluationForm
         lblComp.AutoSize = True
         lblComp.Location = New Point(185, 222)
         lblComp.Name = "lblComp"
-        lblComp.Size = New Size(72, 20)
+        lblComp.Size = New Size(63, 20)
         lblComp.TabIndex = 22
-        lblComp.Text = "Company"
+        lblComp.Text = "_________"
         ' 
         ' Label16
         ' 
@@ -510,9 +523,9 @@ Partial Class EvaluationForm
         lblSupervisor.AutoSize = True
         lblSupervisor.Location = New Point(185, 269)
         lblSupervisor.Name = "lblSupervisor"
-        lblSupervisor.Size = New Size(78, 20)
+        lblSupervisor.Size = New Size(63, 20)
         lblSupervisor.TabIndex = 14
-        lblSupervisor.Text = "Supervisor"
+        lblSupervisor.Text = "_________"
         ' 
         ' Label12
         ' 
@@ -529,9 +542,9 @@ Partial Class EvaluationForm
         lblCourse.AutoSize = True
         lblCourse.Location = New Point(185, 174)
         lblCourse.Name = "lblCourse"
-        lblCourse.Size = New Size(57, 20)
+        lblCourse.Size = New Size(63, 20)
         lblCourse.TabIndex = 6
-        lblCourse.Text = "Course:"
+        lblCourse.Text = "_________"
         ' 
         ' Label6
         ' 
@@ -548,9 +561,9 @@ Partial Class EvaluationForm
         lblStudName.AutoSize = True
         lblStudName.Location = New Point(185, 126)
         lblStudName.Name = "lblStudName"
-        lblStudName.Size = New Size(104, 20)
+        lblStudName.Size = New Size(63, 20)
         lblStudName.TabIndex = 4
-        lblStudName.Text = "Student Name"
+        lblStudName.Text = "_________"
         ' 
         ' Label5
         ' 
@@ -567,9 +580,9 @@ Partial Class EvaluationForm
         lblStudID.AutoSize = True
         lblStudID.Location = New Point(185, 78)
         lblStudID.Name = "lblStudID"
-        lblStudID.Size = New Size(79, 20)
+        lblStudID.Size = New Size(63, 20)
         lblStudID.TabIndex = 2
-        lblStudID.Text = "Student ID"
+        lblStudID.Text = "_________"
         ' 
         ' Label4
         ' 
@@ -677,6 +690,13 @@ Partial Class EvaluationForm
         Label1.TabIndex = 6
         Label1.Text = "Evaluation Log"
         ' 
+        ' Panel1
+        ' 
+        Panel1.Location = New Point(30, 587)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(700, 134)
+        Panel1.TabIndex = 14
+        ' 
         ' EvaluationForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -759,4 +779,6 @@ Partial Class EvaluationForm
     Friend WithEvents pnlRating As Panel
     Private WithEvents Label18 As Label
     Friend WithEvents lblRating As Label
+    Friend WithEvents btnGenReport As Button
+    Friend WithEvents Panel1 As Panel
 End Class

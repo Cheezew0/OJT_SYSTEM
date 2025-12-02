@@ -15,30 +15,35 @@ Public Class InternForm
             conn.Open()
 
             Dim query As String =
-        "SELECT 
-            s.student_id,
-            CONCAT(s.first_name, ' ', s.last_name) AS student_name,
-            s.program,
-            s.email_address,
+            "
+            SELECT 
+                s.student_id,
+                CONCAT(s.first_name, ' ', s.last_name) AS student_name,
+                s.program,
+                s.email_address,
 
-            i.starting_date,
-            i.end_date,
-            i.hours_required,
-            i.hours_completed,
-            i.status,
+                i.starting_date,
+                i.end_date,
+                i.hours_required,
+                i.hours_completed,
+                i.status,
 
-            c.company_name,
-            c.address AS company_address,
+                c.company_name,
+                c.address AS company_address,
 
-            cc.first_name AS sup_fname,
-            cc.last_name AS sup_lname
-         FROM internship i
-         INNER JOIN student s ON i.student_id = s.student_id
-         INNER JOIN company c ON i.company_id = c.company_id
-         INNER JOIN companycontact cc ON i.supervisor_id = cc.supervisor_id
-         WHERE i.student_id = @studentId
-           AND i.faculty_id = @facultyId
-         LIMIT 1;"
+                cc.first_name AS sup_fname,
+                cc.last_name AS sup_lname
+            FROM student s
+            LEFT JOIN internship i 
+                ON i.student_id = s.student_id
+               AND i.faculty_id = @facultyId
+            LEFT JOIN company c 
+                ON i.company_id = c.company_id
+            LEFT JOIN companycontact cc 
+                ON i.supervisor_id = cc.supervisor_id
+            WHERE s.student_id = @studentId
+            LIMIT 1;
+            "
 
             Using cmd As New MySqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@studentId", studentId)
@@ -46,33 +51,35 @@ Public Class InternForm
 
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
-                        ' ===== STUDENT INFO =====
+                        ' Always show student info
                         lblStudID.Text = reader("student_id").ToString()
                         lblStudName.Text = reader("student_name").ToString()
                         lblCourse.Text = reader("program").ToString()
                         lblEmail.Text = reader("email_address").ToString()
 
-                        ' ===== INTERNSHIP INFO =====
-                        lblStartdate.Text = CDate(reader("starting_date")).ToShortDateString()
-                        lblEndDate.Text = CDate(reader("end_date")).ToShortDateString()
-                        lblReqHrs.Text = reader("hours_required").ToString()
-                        lblStatus.Text = reader("status").ToString()
-
-                        ' ===== COMPANY INFO =====
-                        lblCompany.Text = reader("company_name").ToString()
-                        lblAddress.Text = reader("company_address").ToString()
-
-                        ' ===== SUPERVISOR INFO =====
-                        lblSupervisor.Text = reader("sup_fname").ToString() & " " &
-                                         reader("sup_lname").ToString()
+                        ' Check if internship exists
+                        If IsDBNull(reader("starting_date")) Then
+                            ' No internship record
+                            lblCompany.Text = "-"
+                            lblStatus.Text = "No internship assigned"
+                            lblStartdate.Text = "-"
+                            lblEndDate.Text = "-"
+                            lblReqHrs.Text = "-"
+                            lblStartdate.Text = "-"
+                            lblSupervisor.Text = "-"
+                        Else
+                            ' Internship exists
+                            lblCompany.Text = reader("company_name").ToString()
+                            lblStatus.Text = reader("status").ToString()
+                            lblStartdate.Text = reader("starting_date").ToString()
+                            lblEndDate.Text = reader("end_date").ToString()
+                            lblReqHrs.Text = reader("hours_required").ToString()
+                            lblStartdate.Text = reader("hours_completed").ToString()
+                            lblSupervisor.Text = reader("sup_fname").ToString() & " " & reader("sup_lname").ToString()
+                        End If
                     Else
-                        ClearStudentInfo()
-                        MessageBox.Show(
-                        "No internship record found for this student ID under your supervision.",
-                        "Not Found",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    )
+                        MessageBox.Show("Student ID does not exist.",
+                                        "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     End If
                 End Using
             End Using

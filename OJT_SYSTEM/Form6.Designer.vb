@@ -45,13 +45,15 @@ Partial Class StudInternForm
         Label14 = New Label()
         txtSFName = New TextBox()
         Label13 = New Label()
-        Panel2 = New Panel()
+        pnlEvalHistory = New Panel()
         dtgEvalHistory = New DataGridView()
         colDate = New DataGridViewTextBoxColumn()
         colScore = New DataGridViewTextBoxColumn()
         colEvaluator = New DataGridViewTextBoxColumn()
         Label12 = New Label()
         pnlSummary = New Panel()
+        lblSupervisorRating = New Label()
+        Label19 = New Label()
         lblProfRating = New Label()
         lblEvalComp = New Label()
         btnViewRpt = New Button()
@@ -76,14 +78,12 @@ Partial Class StudInternForm
         Label3 = New Label()
         txtInternCompany = New TextBox()
         Label2 = New Label()
-        Label19 = New Label()
-        lblSupervisorRating = New Label()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
         pnlBottomMenu.SuspendLayout()
         pnlSidebar.SuspendLayout()
         pnlMain.SuspendLayout()
         pnlSupervisor.SuspendLayout()
-        Panel2.SuspendLayout()
+        pnlEvalHistory.SuspendLayout()
         CType(dtgEvalHistory, ComponentModel.ISupportInitialize).BeginInit()
         pnlSummary.SuspendLayout()
         pnlIntern.SuspendLayout()
@@ -213,7 +213,7 @@ Partial Class StudInternForm
         ' pnlMain
         ' 
         pnlMain.Controls.Add(pnlSupervisor)
-        pnlMain.Controls.Add(Panel2)
+        pnlMain.Controls.Add(pnlEvalHistory)
         pnlMain.Controls.Add(pnlSummary)
         pnlMain.Controls.Add(pnlIntern)
         pnlMain.Controls.Add(Label1)
@@ -345,14 +345,14 @@ Partial Class StudInternForm
         Label13.TabIndex = 11
         Label13.Text = "Supervisor First Name:"
         ' 
-        ' Panel2
+        ' pnlEvalHistory
         ' 
-        Panel2.Controls.Add(dtgEvalHistory)
-        Panel2.Controls.Add(Label12)
-        Panel2.Location = New Point(285, 568)
-        Panel2.Name = "Panel2"
-        Panel2.Size = New Size(824, 261)
-        Panel2.TabIndex = 9
+        pnlEvalHistory.Controls.Add(dtgEvalHistory)
+        pnlEvalHistory.Controls.Add(Label12)
+        pnlEvalHistory.Location = New Point(285, 568)
+        pnlEvalHistory.Name = "pnlEvalHistory"
+        pnlEvalHistory.Size = New Size(824, 261)
+        pnlEvalHistory.TabIndex = 9
         ' 
         ' dtgEvalHistory
         ' 
@@ -406,6 +406,26 @@ Partial Class StudInternForm
         pnlSummary.Name = "pnlSummary"
         pnlSummary.Size = New Size(251, 261)
         pnlSummary.TabIndex = 8
+        ' 
+        ' lblSupervisorRating
+        ' 
+        lblSupervisorRating.AutoSize = True
+        lblSupervisorRating.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblSupervisorRating.Location = New Point(198, 98)
+        lblSupervisorRating.Name = "lblSupervisorRating"
+        lblSupervisorRating.Size = New Size(22, 25)
+        lblSupervisorRating.TabIndex = 19
+        lblSupervisorRating.Text = "0"
+        ' 
+        ' Label19
+        ' 
+        Label19.AutoSize = True
+        Label19.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label19.Location = New Point(19, 98)
+        Label19.Name = "Label19"
+        Label19.Size = New Size(156, 25)
+        Label19.TabIndex = 18
+        Label19.Text = "Supervisor Rating:"
         ' 
         ' lblProfRating
         ' 
@@ -532,9 +552,9 @@ Partial Class StudInternForm
         Label8.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label8.Location = New Point(611, 181)
         Label8.Name = "Label8"
-        Label8.Size = New Size(155, 25)
+        Label8.Size = New Size(164, 25)
         Label8.TabIndex = 12
-        Label8.Text = "Time Remaining:"
+        Label8.Text = "Hours Remaining:"
         ' 
         ' TextBox2
         ' 
@@ -638,26 +658,6 @@ Partial Class StudInternForm
         Label2.TabIndex = 0
         Label2.Text = "Internship Company:"
         ' 
-        ' Label19
-        ' 
-        Label19.AutoSize = True
-        Label19.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label19.Location = New Point(19, 98)
-        Label19.Name = "Label19"
-        Label19.Size = New Size(156, 25)
-        Label19.TabIndex = 18
-        Label19.Text = "Supervisor Rating:"
-        ' 
-        ' lblSupervisorRating
-        ' 
-        lblSupervisorRating.AutoSize = True
-        lblSupervisorRating.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lblSupervisorRating.Location = New Point(198, 98)
-        lblSupervisorRating.Name = "lblSupervisorRating"
-        lblSupervisorRating.Size = New Size(22, 25)
-        lblSupervisorRating.TabIndex = 19
-        lblSupervisorRating.Text = "0"
-        ' 
         ' StudInternForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -675,8 +675,8 @@ Partial Class StudInternForm
         pnlMain.PerformLayout()
         pnlSupervisor.ResumeLayout(False)
         pnlSupervisor.PerformLayout()
-        Panel2.ResumeLayout(False)
-        Panel2.PerformLayout()
+        pnlEvalHistory.ResumeLayout(False)
+        pnlEvalHistory.PerformLayout()
         CType(dtgEvalHistory, ComponentModel.ISupportInitialize).EndInit()
         pnlSummary.ResumeLayout(False)
         pnlSummary.PerformLayout()
@@ -712,7 +712,7 @@ Partial Class StudInternForm
     Friend WithEvents btnViewRpt As Button
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents pnlEvalHistory As Panel
     Friend WithEvents Label12 As Label
     Friend WithEvents lblProfRating As Label
     Friend WithEvents lblEvalComp As Label

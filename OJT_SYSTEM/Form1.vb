@@ -72,11 +72,11 @@ Public Class DashboardForm
         pnlActivitiesMain.BackColor = ColorTranslator.FromHtml("#f7f7f7")
     End Sub
 
-    Private Sub pnlAct1_Paint(sender As Object, e As PaintEventArgs) Handles pnlPcomp.Paint
+    Private Sub pnlAct1_Paint(sender As Object, e As PaintEventArgs)
 
     End Sub
 
-    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles notifComp.Click
+    Private Sub Label4_Click(sender As Object, e As EventArgs)
 
     End Sub
 
