@@ -49,9 +49,6 @@ Public Class MyProfileForm
         LoadStudentInfo()
         DisableEditing()
     End Sub
-
-    ' ===================== UI HELPERS =====================
-
     Private Function RoundCorners(myPanel As Panel, radius As Integer) As Region
         Dim path As New GraphicsPath()
         path.StartFigure()
