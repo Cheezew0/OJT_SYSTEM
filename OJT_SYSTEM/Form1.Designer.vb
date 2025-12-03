@@ -34,6 +34,7 @@ Partial Class DashboardForm
         PictureBoxLogo = New PictureBox()
         pnlMain = New Panel()
         pnlActivitiesMain = New Panel()
+        dtgDashboard = New DataGridView()
         Label8 = New Label()
         pnlPartnerComp = New Panel()
         lblPartnerCompCount = New Label()
@@ -52,15 +53,16 @@ Partial Class DashboardForm
         PictureBox1 = New PictureBox()
         lblTotalStudentsTitle = New Label()
         Label1 = New Label()
-        DataGridView1 = New DataGridView()
         colStudId = New DataGridViewTextBoxColumn()
         colStatus = New DataGridViewTextBoxColumn()
+        colCompIntern = New DataGridViewTextBoxColumn()
         colCompany = New DataGridViewTextBoxColumn()
         pnlSidebar.SuspendLayout()
         pnlBottomMenu.SuspendLayout()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
         pnlMain.SuspendLayout()
         pnlActivitiesMain.SuspendLayout()
+        CType(dtgDashboard, ComponentModel.ISupportInitialize).BeginInit()
         pnlPartnerComp.SuspendLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).BeginInit()
         pnlCompIntern.SuspendLayout()
@@ -69,7 +71,6 @@ Partial Class DashboardForm
         CType(PictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         pnlStudent.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' pnlSidebar
@@ -239,12 +240,22 @@ Partial Class DashboardForm
         ' 
         ' pnlActivitiesMain
         ' 
-        pnlActivitiesMain.Controls.Add(DataGridView1)
+        pnlActivitiesMain.Controls.Add(dtgDashboard)
         pnlActivitiesMain.Controls.Add(Label8)
         pnlActivitiesMain.Location = New Point(98, 264)
         pnlActivitiesMain.Name = "pnlActivitiesMain"
         pnlActivitiesMain.Size = New Size(1014, 524)
         pnlActivitiesMain.TabIndex = 5
+        ' 
+        ' dtgDashboard
+        ' 
+        dtgDashboard.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dtgDashboard.Columns.AddRange(New DataGridViewColumn() {colStudId, colStatus, colCompIntern, colCompany})
+        dtgDashboard.Location = New Point(38, 104)
+        dtgDashboard.Name = "dtgDashboard"
+        dtgDashboard.RowHeadersWidth = 51
+        dtgDashboard.Size = New Size(931, 276)
+        dtgDashboard.TabIndex = 5
         ' 
         ' Label8
         ' 
@@ -424,16 +435,6 @@ Partial Class DashboardForm
         Label1.TabIndex = 0
         Label1.Text = "Summary Cards"
         ' 
-        ' DataGridView1
-        ' 
-        DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Columns.AddRange(New DataGridViewColumn() {colStudId, colStatus, colCompany})
-        DataGridView1.Location = New Point(38, 104)
-        DataGridView1.Name = "DataGridView1"
-        DataGridView1.RowHeadersWidth = 51
-        DataGridView1.Size = New Size(931, 276)
-        DataGridView1.TabIndex = 5
-        ' 
         ' colStudId
         ' 
         colStudId.HeaderText = "Student ID"
@@ -443,10 +444,17 @@ Partial Class DashboardForm
         ' 
         ' colStatus
         ' 
-        colStatus.HeaderText = "Status"
+        colStatus.HeaderText = "Active Students"
         colStatus.MinimumWidth = 6
         colStatus.Name = "colStatus"
         colStatus.Width = 125
+        ' 
+        ' colCompIntern
+        ' 
+        colCompIntern.HeaderText = "Completed"
+        colCompIntern.MinimumWidth = 6
+        colCompIntern.Name = "colCompIntern"
+        colCompIntern.Width = 125
         ' 
         ' colCompany
         ' 
@@ -473,6 +481,7 @@ Partial Class DashboardForm
         pnlMain.PerformLayout()
         pnlActivitiesMain.ResumeLayout(False)
         pnlActivitiesMain.PerformLayout()
+        CType(dtgDashboard, ComponentModel.ISupportInitialize).EndInit()
         pnlPartnerComp.ResumeLayout(False)
         pnlPartnerComp.PerformLayout()
         CType(PictureBox4, ComponentModel.ISupportInitialize).EndInit()
@@ -485,7 +494,6 @@ Partial Class DashboardForm
         pnlStudent.ResumeLayout(False)
         pnlStudent.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -518,9 +526,10 @@ Partial Class DashboardForm
     Friend WithEvents lblPartnerComp As Label
     Friend WithEvents pnlActivitiesMain As Panel
     Friend WithEvents Label8 As Label
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dtgDashboard As DataGridView
     Friend WithEvents colStudId As DataGridViewTextBoxColumn
     Friend WithEvents colStatus As DataGridViewTextBoxColumn
+    Friend WithEvents colCompIntern As DataGridViewTextBoxColumn
     Friend WithEvents colCompany As DataGridViewTextBoxColumn
 
 End Class
