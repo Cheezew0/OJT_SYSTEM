@@ -35,15 +35,19 @@ Partial Class DashboardForm
         pnlMain = New Panel()
         pnlActivitiesMain = New Panel()
         dtgDashboard = New DataGridView()
+        colStudId = New DataGridViewTextBoxColumn()
+        colStatus = New DataGridViewTextBoxColumn()
+        colCompIntern = New DataGridViewTextBoxColumn()
+        colCompany = New DataGridViewTextBoxColumn()
         Label8 = New Label()
         pnlPartnerComp = New Panel()
         lblPartnerCompCount = New Label()
         PictureBox4 = New PictureBox()
         lblPartnerComp = New Label()
         pnlCompIntern = New Panel()
-        Label2 = New Label()
-        PictureBox3 = New PictureBox()
         lblCompIntern = New Label()
+        PictureBox3 = New PictureBox()
+        label = New Label()
         pnlActiveStud = New Panel()
         lblActStudCount = New Label()
         PictureBox2 = New PictureBox()
@@ -53,10 +57,6 @@ Partial Class DashboardForm
         PictureBox1 = New PictureBox()
         lblTotalStudentsTitle = New Label()
         Label1 = New Label()
-        colStudId = New DataGridViewTextBoxColumn()
-        colStatus = New DataGridViewTextBoxColumn()
-        colCompIntern = New DataGridViewTextBoxColumn()
-        colCompany = New DataGridViewTextBoxColumn()
         pnlSidebar.SuspendLayout()
         pnlBottomMenu.SuspendLayout()
         CType(PictureBoxLogo, ComponentModel.ISupportInitialize).BeginInit()
@@ -251,11 +251,39 @@ Partial Class DashboardForm
         ' 
         dtgDashboard.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dtgDashboard.Columns.AddRange(New DataGridViewColumn() {colStudId, colStatus, colCompIntern, colCompany})
-        dtgDashboard.Location = New Point(38, 104)
+        dtgDashboard.Location = New Point(28, 72)
         dtgDashboard.Name = "dtgDashboard"
         dtgDashboard.RowHeadersWidth = 51
-        dtgDashboard.Size = New Size(931, 276)
+        dtgDashboard.Size = New Size(952, 418)
         dtgDashboard.TabIndex = 5
+        ' 
+        ' colStudId
+        ' 
+        colStudId.HeaderText = "Student ID"
+        colStudId.MinimumWidth = 6
+        colStudId.Name = "colStudId"
+        colStudId.Width = 125
+        ' 
+        ' colStatus
+        ' 
+        colStatus.HeaderText = "Active Students"
+        colStatus.MinimumWidth = 6
+        colStatus.Name = "colStatus"
+        colStatus.Width = 125
+        ' 
+        ' colCompIntern
+        ' 
+        colCompIntern.HeaderText = "Completed Internship"
+        colCompIntern.MinimumWidth = 6
+        colCompIntern.Name = "colCompIntern"
+        colCompIntern.Width = 125
+        ' 
+        ' colCompany
+        ' 
+        colCompany.HeaderText = "Company"
+        colCompany.MinimumWidth = 6
+        colCompany.Name = "colCompany"
+        colCompany.Width = 125
         ' 
         ' Label8
         ' 
@@ -308,23 +336,23 @@ Partial Class DashboardForm
         ' 
         ' pnlCompIntern
         ' 
-        pnlCompIntern.Controls.Add(Label2)
-        pnlCompIntern.Controls.Add(PictureBox3)
         pnlCompIntern.Controls.Add(lblCompIntern)
+        pnlCompIntern.Controls.Add(PictureBox3)
+        pnlCompIntern.Controls.Add(label)
         pnlCompIntern.Location = New Point(624, 142)
         pnlCompIntern.Name = "pnlCompIntern"
         pnlCompIntern.Size = New Size(230, 99)
         pnlCompIntern.TabIndex = 3
         ' 
-        ' Label2
+        ' lblCompIntern
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(152, 37)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(35, 41)
-        Label2.TabIndex = 8
-        Label2.Text = "0"
+        lblCompIntern.AutoSize = True
+        lblCompIntern.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblCompIntern.Location = New Point(152, 37)
+        lblCompIntern.Name = "lblCompIntern"
+        lblCompIntern.Size = New Size(35, 41)
+        lblCompIntern.TabIndex = 8
+        lblCompIntern.Text = "0"
         ' 
         ' PictureBox3
         ' 
@@ -335,15 +363,15 @@ Partial Class DashboardForm
         PictureBox3.TabIndex = 7
         PictureBox3.TabStop = False
         ' 
-        ' lblCompIntern
+        ' label
         ' 
-        lblCompIntern.AutoSize = True
-        lblCompIntern.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblCompIntern.Location = New Point(21, 14)
-        lblCompIntern.Name = "lblCompIntern"
-        lblCompIntern.Size = New Size(192, 23)
-        lblCompIntern.TabIndex = 6
-        lblCompIntern.Text = "Completed Internships"
+        label.AutoSize = True
+        label.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        label.Location = New Point(21, 14)
+        label.Name = "label"
+        label.Size = New Size(192, 23)
+        label.TabIndex = 6
+        label.Text = "Completed Internships"
         ' 
         ' pnlActiveStud
         ' 
@@ -435,34 +463,6 @@ Partial Class DashboardForm
         Label1.TabIndex = 0
         Label1.Text = "Summary Cards"
         ' 
-        ' colStudId
-        ' 
-        colStudId.HeaderText = "Student ID"
-        colStudId.MinimumWidth = 6
-        colStudId.Name = "colStudId"
-        colStudId.Width = 125
-        ' 
-        ' colStatus
-        ' 
-        colStatus.HeaderText = "Active Students"
-        colStatus.MinimumWidth = 6
-        colStatus.Name = "colStatus"
-        colStatus.Width = 125
-        ' 
-        ' colCompIntern
-        ' 
-        colCompIntern.HeaderText = "Completed"
-        colCompIntern.MinimumWidth = 6
-        colCompIntern.Name = "colCompIntern"
-        colCompIntern.Width = 125
-        ' 
-        ' colCompany
-        ' 
-        colCompany.HeaderText = "Company"
-        colCompany.MinimumWidth = 6
-        colCompany.Name = "colCompany"
-        colCompany.Width = 125
-        ' 
         ' DashboardForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -518,9 +518,9 @@ Partial Class DashboardForm
     Friend WithEvents lblActStudCount As Label
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents lblActiveStud As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents lblCompIntern As Label
+    Friend WithEvents PictureBox3 As PictureBox
+    Friend WithEvents label As Label
     Friend WithEvents lblPartnerCompCount As Label
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents lblPartnerComp As Label
