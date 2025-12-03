@@ -1,9 +1,23 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class FrmStudentPortal
+
+    ' flag for current state of password visibility
+    Private passwordVisible As Boolean = False
+
     Private Sub FrmStudentPortal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        pnlStudentLogIn.BackColor = ColorTranslator.FromHtml("#1A4F5D")
+        pnlStudentLogIn.BackColor = ColorTranslator.FromHtml("#E6F2F4")
         Me.BackColor = ColorTranslator.FromHtml("#E6F2F4")
+
+        ' ---- password textbox default: HIDDEN ----
+        txtBoxPassword.UseSystemPasswordChar = True
+
+        ' optional: make eye icon look nice
+        picEye.SizeMode = PictureBoxSizeMode.Zoom
+        picEye.Cursor = Cursors.Hand
+
+        ' default icon = "hide" (closed eye)
+        picEye.Image = My.Resources.hide
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
@@ -20,17 +34,11 @@ Public Class FrmStudentPortal
         Dim email As String = txtBoxEmail.Text.Trim()
         Dim password As String = txtBoxPassword.Text.Trim()
 
-        ' ----------------------------------
-        ' BASIC INPUT VALIDATION
-        ' ----------------------------------
         If email = "" OrElse password = "" Then
             MessageBox.Show("Please enter both email and password.")
             Exit Sub
         End If
 
-        ' ----------------------------------
-        ' DATABASE VALIDATION
-        ' ----------------------------------
         Dim connectionString As String = "Server=localhost;Database=ojt_management_system;Uid=root;Pwd=;"
 
         Using conn As New MySqlConnection(connectionString)
@@ -39,9 +47,9 @@ Public Class FrmStudentPortal
 
                 Dim sql As String =
                     "SELECT student_id 
-                 FROM student_acc 
-                 WHERE email = @Email AND password = @Password 
-                 LIMIT 1;"
+                     FROM student_acc 
+                     WHERE email = @Email AND password = @Password 
+                     LIMIT 1;"
 
                 Using cmd As New MySqlCommand(sql, conn)
                     cmd.Parameters.AddWithValue("@Email", email)
@@ -54,11 +62,9 @@ Public Class FrmStudentPortal
 
                         MessageBox.Show("Login Successful! Welcome, Student " & studentId)
 
-
                         Dim profile As New MyProfileForm(studentId)
                         profile.Show()
                         Me.Hide()
-
                     Else
                         MessageBox.Show("Incorrect email or password.",
                                         "Access Denied",
@@ -82,4 +88,19 @@ Public Class FrmStudentPortal
         createAcc.Show()
         Me.Hide()
     End Sub
+
+    ' ================== SHOW / HIDE PASSWORD ==================
+    Private Sub picEye_Click(sender As Object, e As EventArgs) Handles picEye.Click
+        passwordVisible = Not passwordVisible
+
+        If passwordVisible Then
+            ' show password
+            txtBoxPassword.UseSystemPasswordChar = False
+            picEye.Image = My.Resources.view
+        Else
+            txtBoxPassword.UseSystemPasswordChar = True
+            picEye.Image = My.Resources.hide
+        End If
+    End Sub
+
 End Class

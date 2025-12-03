@@ -9,7 +9,7 @@ Public Class FrmFacultyLogIn
         "Server=localhost;Database=ojt_management_system;Uid=root;Pwd=;"
 
     Private Sub FrmFacultyLogIn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.BackColor = ColorTranslator.FromHtml("#1A4F5D")
+        Me.BackColor = ColorTranslator.FromHtml("#E6F2F4")
 
         ' hide password by default
         TextBox1.UseSystemPasswordChar = True

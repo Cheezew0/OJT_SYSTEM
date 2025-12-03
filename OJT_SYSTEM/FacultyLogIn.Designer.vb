@@ -31,15 +31,17 @@ Partial Class FrmFacultyLogIn
         lblPassword = New Label()
         btnBack = New Button()
         picEye = New PictureBox()
+        picLogo = New PictureBox()
         CType(picEye, ComponentModel.ISupportInitialize).BeginInit()
+        CType(picLogo, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' lblFacultyLogIn
         ' 
         lblFacultyLogIn.AutoSize = True
         lblFacultyLogIn.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblFacultyLogIn.ForeColor = Color.White
-        lblFacultyLogIn.Location = New Point(224, 72)
+        lblFacultyLogIn.ForeColor = Color.Black
+        lblFacultyLogIn.Location = New Point(238, 117)
         lblFacultyLogIn.Name = "lblFacultyLogIn"
         lblFacultyLogIn.Size = New Size(285, 54)
         lblFacultyLogIn.TabIndex = 1
@@ -47,13 +49,14 @@ Partial Class FrmFacultyLogIn
         ' 
         ' btnLogIn
         ' 
+        btnLogIn.BackColor = Color.MediumTurquoise
         btnLogIn.Font = New Font("Segoe UI Semibold", 16.2F, FontStyle.Bold)
-        btnLogIn.Location = New Point(269, 497)
+        btnLogIn.Location = New Point(279, 502)
         btnLogIn.Name = "btnLogIn"
         btnLogIn.Size = New Size(131, 51)
         btnLogIn.TabIndex = 2
         btnLogIn.Text = "Log In"
-        btnLogIn.UseVisualStyleBackColor = True
+        btnLogIn.UseVisualStyleBackColor = False
         ' 
         ' txtBoxEmail
         ' 
@@ -75,7 +78,7 @@ Partial Class FrmFacultyLogIn
         ' 
         lblEmail.AutoSize = True
         lblEmail.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblEmail.ForeColor = Color.White
+        lblEmail.ForeColor = Color.Black
         lblEmail.Location = New Point(145, 260)
         lblEmail.Name = "lblEmail"
         lblEmail.Size = New Size(76, 31)
@@ -86,7 +89,7 @@ Partial Class FrmFacultyLogIn
         ' 
         lblPassword.AutoSize = True
         lblPassword.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
-        lblPassword.ForeColor = Color.White
+        lblPassword.ForeColor = Color.Black
         lblPassword.Location = New Point(145, 369)
         lblPassword.Name = "lblPassword"
         lblPassword.Size = New Size(118, 31)
@@ -95,29 +98,42 @@ Partial Class FrmFacultyLogIn
         ' 
         ' btnBack
         ' 
+        btnBack.BackColor = Color.IndianRed
         btnBack.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnBack.Location = New Point(12, 12)
+        btnBack.Location = New Point(656, 12)
         btnBack.Name = "btnBack"
         btnBack.Size = New Size(82, 37)
         btnBack.TabIndex = 7
         btnBack.Text = "Back"
-        btnBack.UseVisualStyleBackColor = True
+        btnBack.UseVisualStyleBackColor = False
         ' 
         ' picEye
         ' 
         picEye.BackColor = SystemColors.Window
-        picEye.Location = New Point(525, 362)
+        picEye.Location = New Point(525, 369)
         picEye.Name = "picEye"
-        picEye.Size = New Size(39, 38)
+        picEye.Size = New Size(39, 31)
         picEye.SizeMode = PictureBoxSizeMode.Zoom
         picEye.TabIndex = 8
         picEye.TabStop = False
+        ' 
+        ' picLogo
+        ' 
+        picLogo.BackColor = Color.Transparent
+        picLogo.Image = CType(resources.GetObject("picLogo.Image"), Image)
+        picLogo.Location = New Point(12, 12)
+        picLogo.Name = "picLogo"
+        picLogo.Size = New Size(168, 147)
+        picLogo.SizeMode = PictureBoxSizeMode.Zoom
+        picLogo.TabIndex = 9
+        picLogo.TabStop = False
         ' 
         ' FrmFacultyLogIn
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(750, 673)
+        Controls.Add(picLogo)
         Controls.Add(picEye)
         Controls.Add(btnBack)
         Controls.Add(lblPassword)
@@ -131,6 +147,7 @@ Partial Class FrmFacultyLogIn
         StartPosition = FormStartPosition.CenterScreen
         Text = "Faculty Log In"
         CType(picEye, ComponentModel.ISupportInitialize).EndInit()
+        CType(picLogo, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -144,4 +161,5 @@ Partial Class FrmFacultyLogIn
     Friend WithEvents btnBack As Button
     Friend WithEvents btnLogIn As Button
     Friend WithEvents picEye As PictureBox
+    Friend WithEvents picLogo As PictureBox
 End Class

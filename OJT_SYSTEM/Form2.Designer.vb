@@ -23,9 +23,9 @@ Partial Class StudentForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StudentForm))
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As DataGridViewCellStyle = New DataGridViewCellStyle()
         pnlSidebar = New Panel()
         pnlBottomMenu = New Panel()
         btnLogout = New Button()
@@ -271,55 +271,62 @@ Partial Class StudentForm
         ' 
         ' btnReset
         ' 
-        btnReset.Location = New Point(964, 11)
+        btnReset.BackColor = Color.IndianRed
+        btnReset.Location = New Point(1039, 11)
         btnReset.Name = "btnReset"
-        btnReset.Size = New Size(94, 29)
+        btnReset.Size = New Size(94, 36)
         btnReset.TabIndex = 14
         btnReset.Text = "Reset"
-        btnReset.UseVisualStyleBackColor = True
+        btnReset.UseVisualStyleBackColor = False
         ' 
         ' btnSearch
         ' 
-        btnSearch.Location = New Point(864, 11)
+        btnSearch.BackColor = Color.PaleTurquoise
+        btnSearch.Location = New Point(939, 11)
         btnSearch.Name = "btnSearch"
-        btnSearch.Size = New Size(94, 29)
+        btnSearch.Size = New Size(94, 36)
         btnSearch.TabIndex = 13
         btnSearch.Text = "Search"
-        btnSearch.UseVisualStyleBackColor = True
+        btnSearch.UseVisualStyleBackColor = False
         ' 
         ' cmbCourse
         ' 
         cmbCourse.DropDownStyle = ComboBoxStyle.DropDownList
         cmbCourse.FormattingEnabled = True
-        cmbCourse.Location = New Point(529, 11)
+        cmbCourse.Location = New Point(621, 16)
         cmbCourse.Name = "cmbCourse"
         cmbCourse.Size = New Size(151, 28)
         cmbCourse.TabIndex = 12
         ' 
         ' btnDeleteStudent
         ' 
-        btnDeleteStudent.Location = New Point(399, 660)
+        btnDeleteStudent.BackColor = Color.IndianRed
+        btnDeleteStudent.ForeColor = SystemColors.ControlText
+        btnDeleteStudent.Location = New Point(417, 653)
         btnDeleteStudent.Name = "btnDeleteStudent"
-        btnDeleteStudent.Size = New Size(127, 29)
+        btnDeleteStudent.Size = New Size(119, 43)
         btnDeleteStudent.TabIndex = 11
         btnDeleteStudent.Text = "Delete Student"
-        btnDeleteStudent.UseVisualStyleBackColor = True
+        btnDeleteStudent.UseVisualStyleBackColor = False
         ' 
         ' btnAddStudent
         ' 
-        btnAddStudent.Location = New Point(266, 660)
+        btnAddStudent.BackColor = Color.MediumTurquoise
+        btnAddStudent.ForeColor = SystemColors.ControlText
+        btnAddStudent.Location = New Point(284, 652)
         btnAddStudent.Name = "btnAddStudent"
-        btnAddStudent.Size = New Size(127, 29)
+        btnAddStudent.Size = New Size(127, 44)
         btnAddStudent.TabIndex = 10
         btnAddStudent.Text = "Add Student"
-        btnAddStudent.UseVisualStyleBackColor = True
+        btnAddStudent.UseVisualStyleBackColor = False
         ' 
         ' mtxtStudentId
         ' 
-        mtxtStudentId.Location = New Point(135, 660)
+        mtxtStudentId.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        mtxtStudentId.Location = New Point(143, 660)
         mtxtStudentId.Mask = "00-00000"
         mtxtStudentId.Name = "mtxtStudentId"
-        mtxtStudentId.Size = New Size(125, 27)
+        mtxtStudentId.Size = New Size(125, 31)
         mtxtStudentId.TabIndex = 9
         mtxtStudentId.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals
         ' 
@@ -327,47 +334,48 @@ Partial Class StudentForm
         ' 
         cmbSection.DropDownStyle = ComboBoxStyle.DropDownList
         cmbSection.FormattingEnabled = True
-        cmbSection.Location = New Point(701, 11)
+        cmbSection.Location = New Point(778, 16)
         cmbSection.Name = "cmbSection"
         cmbSection.Size = New Size(151, 28)
         cmbSection.TabIndex = 8
         ' 
         ' btnAddFile
         ' 
-        btnAddFile.Location = New Point(15, 658)
+        btnAddFile.BackColor = Color.PaleTurquoise
+        btnAddFile.Location = New Point(18, 651)
         btnAddFile.Name = "btnAddFile"
-        btnAddFile.Size = New Size(103, 32)
+        btnAddFile.Size = New Size(112, 46)
         btnAddFile.TabIndex = 7
         btnAddFile.Text = "Upload File"
-        btnAddFile.UseVisualStyleBackColor = True
+        btnAddFile.UseVisualStyleBackColor = False
         ' 
         ' dgvStudents
         ' 
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(255))
-        DataGridViewCellStyle1.ForeColor = Color.Black
-        dgvStudents.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.BackColor = Color.FromArgb(CByte(255), CByte(255), CByte(255))
+        DataGridViewCellStyle7.ForeColor = Color.Black
+        dgvStudents.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         dgvStudents.BorderStyle = BorderStyle.None
         dgvStudents.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(26), CByte(79), CByte(93))
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold)
-        DataGridViewCellStyle2.ForeColor = Color.White
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        dgvStudents.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = Color.FromArgb(CByte(26), CByte(79), CByte(93))
+        DataGridViewCellStyle8.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold)
+        DataGridViewCellStyle8.ForeColor = Color.White
+        DataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = DataGridViewTriState.True
+        dgvStudents.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvStudents.Columns.AddRange(New DataGridViewColumn() {Student_ID, Student_Name, Program, Section, Department, Company, Status, Supervisor, Rating})
         dgvStudents.CornerRadius = 20
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(247), CByte(247), CByte(247))
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9.0F)
-        DataGridViewCellStyle3.ForeColor = Color.Black
-        DataGridViewCellStyle3.Padding = New Padding(5)
-        DataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(CByte(183), CByte(192), CByte(217))
-        DataGridViewCellStyle3.SelectionForeColor = Color.Black
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
-        dgvStudents.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = Color.FromArgb(CByte(247), CByte(247), CByte(247))
+        DataGridViewCellStyle9.Font = New Font("Segoe UI", 9.0F)
+        DataGridViewCellStyle9.ForeColor = Color.Black
+        DataGridViewCellStyle9.Padding = New Padding(5)
+        DataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(CByte(183), CByte(192), CByte(217))
+        DataGridViewCellStyle9.SelectionForeColor = Color.Black
+        DataGridViewCellStyle9.WrapMode = DataGridViewTriState.False
+        dgvStudents.DefaultCellStyle = DataGridViewCellStyle9
         dgvStudents.EnableHeadersVisualStyles = False
         dgvStudents.GridColor = Color.Gray
         dgvStudents.Location = New Point(3, 53)

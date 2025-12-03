@@ -63,6 +63,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property ChatGPT_Image_Nov_24__2025__06_43_15_PM() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ChatGPT Image Nov 24, 2025, 06_43_15 PM", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Education() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Education", resourceCulture)

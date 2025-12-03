@@ -25,6 +25,8 @@ Partial Class FrmStudentPortal
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmStudentPortal))
         lblStudentLogIn = New Label()
         pnlStudentLogIn = New Panel()
+        picEye = New PictureBox()
+        picLogo = New PictureBox()
         btnCreate = New Button()
         btnBack = New Button()
         btnLogIn = New Button()
@@ -33,13 +35,15 @@ Partial Class FrmStudentPortal
         lblEmail = New Label()
         txtBoxEmail = New TextBox()
         pnlStudentLogIn.SuspendLayout()
+        CType(picEye, ComponentModel.ISupportInitialize).BeginInit()
+        CType(picLogo, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' lblStudentLogIn
         ' 
         lblStudentLogIn.AutoSize = True
         lblStudentLogIn.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblStudentLogIn.ForeColor = Color.White
+        lblStudentLogIn.ForeColor = Color.Black
         lblStudentLogIn.Location = New Point(146, 83)
         lblStudentLogIn.Name = "lblStudentLogIn"
         lblStudentLogIn.Size = New Size(299, 54)
@@ -48,6 +52,8 @@ Partial Class FrmStudentPortal
         ' 
         ' pnlStudentLogIn
         ' 
+        pnlStudentLogIn.Controls.Add(picEye)
+        pnlStudentLogIn.Controls.Add(picLogo)
         pnlStudentLogIn.Controls.Add(btnCreate)
         pnlStudentLogIn.Controls.Add(btnBack)
         pnlStudentLogIn.Controls.Add(btnLogIn)
@@ -62,35 +68,60 @@ Partial Class FrmStudentPortal
         pnlStudentLogIn.Size = New Size(615, 673)
         pnlStudentLogIn.TabIndex = 1
         ' 
+        ' picEye
+        ' 
+        picEye.BackColor = SystemColors.Window
+        picEye.Location = New Point(434, 370)
+        picEye.Name = "picEye"
+        picEye.Size = New Size(44, 33)
+        picEye.SizeMode = PictureBoxSizeMode.Zoom
+        picEye.TabIndex = 19
+        picEye.TabStop = False
+        ' 
+        ' picLogo
+        ' 
+        picLogo.BackColor = Color.Transparent
+        picLogo.Image = CType(resources.GetObject("picLogo.Image"), Image)
+        picLogo.Location = New Point(451, 0)
+        picLogo.Name = "picLogo"
+        picLogo.Size = New Size(164, 147)
+        picLogo.SizeMode = PictureBoxSizeMode.Zoom
+        picLogo.TabIndex = 18
+        picLogo.TabStop = False
+        ' 
         ' btnCreate
         ' 
-        btnCreate.Font = New Font("Segoe UI", 10.8F)
-        btnCreate.Location = New Point(329, 502)
+        btnCreate.BackColor = Color.FromArgb(CByte(128), CByte(255), CByte(128))
+        btnCreate.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnCreate.ForeColor = Color.Black
+        btnCreate.Location = New Point(187, 551)
         btnCreate.Name = "btnCreate"
-        btnCreate.Size = New Size(135, 37)
+        btnCreate.Size = New Size(258, 56)
         btnCreate.TabIndex = 7
-        btnCreate.Text = "Create Account"
-        btnCreate.UseVisualStyleBackColor = True
+        btnCreate.Text = "Create an Account"
+        btnCreate.UseVisualStyleBackColor = False
         ' 
         ' btnBack
         ' 
+        btnBack.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(128))
         btnBack.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         btnBack.Location = New Point(12, 12)
         btnBack.Name = "btnBack"
         btnBack.Size = New Size(82, 37)
         btnBack.TabIndex = 6
         btnBack.Text = "Back"
-        btnBack.UseVisualStyleBackColor = True
+        btnBack.UseVisualStyleBackColor = False
         ' 
         ' btnLogIn
         ' 
-        btnLogIn.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        btnLogIn.Location = New Point(137, 502)
+        btnLogIn.BackColor = Color.DarkTurquoise
+        btnLogIn.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        btnLogIn.Location = New Point(187, 466)
         btnLogIn.Name = "btnLogIn"
-        btnLogIn.Size = New Size(113, 37)
+        btnLogIn.Size = New Size(258, 58)
         btnLogIn.TabIndex = 5
         btnLogIn.Text = "Log In"
-        btnLogIn.UseVisualStyleBackColor = True
+        btnLogIn.UseVisualStyleBackColor = False
         ' 
         ' txtBoxPassword
         ' 
@@ -104,7 +135,7 @@ Partial Class FrmStudentPortal
         ' 
         lblPassword.AutoSize = True
         lblPassword.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold)
-        lblPassword.ForeColor = Color.White
+        lblPassword.ForeColor = Color.Black
         lblPassword.Location = New Point(64, 370)
         lblPassword.Name = "lblPassword"
         lblPassword.Size = New Size(118, 31)
@@ -115,7 +146,7 @@ Partial Class FrmStudentPortal
         ' 
         lblEmail.AutoSize = True
         lblEmail.Font = New Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblEmail.ForeColor = Color.White
+        lblEmail.ForeColor = Color.Black
         lblEmail.Location = New Point(64, 227)
         lblEmail.Name = "lblEmail"
         lblEmail.Size = New Size(76, 31)
@@ -142,6 +173,8 @@ Partial Class FrmStudentPortal
         Text = "Student Portal"
         pnlStudentLogIn.ResumeLayout(False)
         pnlStudentLogIn.PerformLayout()
+        CType(picEye, ComponentModel.ISupportInitialize).EndInit()
+        CType(picLogo, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -154,4 +187,6 @@ Partial Class FrmStudentPortal
     Friend WithEvents btnLogIn As Button
     Friend WithEvents btnBack As Button
     Friend WithEvents btnCreate As Button
+    Friend WithEvents picLogo As PictureBox
+    Friend WithEvents picEye As PictureBox
 End Class

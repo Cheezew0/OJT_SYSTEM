@@ -22,6 +22,7 @@ Partial Class CreateAccountFrm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CreateAccountFrm))
         pnlCreate = New Panel()
         picConfirmEye = New PictureBox()
         picPassEye = New PictureBox()
@@ -37,13 +38,17 @@ Partial Class CreateAccountFrm
         lblEmail2 = New Label()
         LblStudentID = New Label()
         lblStudentSignUp = New Label()
+        picLogo = New PictureBox()
         pnlCreate.SuspendLayout()
         CType(picConfirmEye, ComponentModel.ISupportInitialize).BeginInit()
         CType(picPassEye, ComponentModel.ISupportInitialize).BeginInit()
+        CType(picLogo, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' pnlCreate
         ' 
+        pnlCreate.Controls.Add(lblStudentSignUp)
+        pnlCreate.Controls.Add(picLogo)
         pnlCreate.Controls.Add(picConfirmEye)
         pnlCreate.Controls.Add(picPassEye)
         pnlCreate.Controls.Add(lblPasswordMatch)
@@ -57,7 +62,6 @@ Partial Class CreateAccountFrm
         pnlCreate.Controls.Add(lblPassword2)
         pnlCreate.Controls.Add(lblEmail2)
         pnlCreate.Controls.Add(LblStudentID)
-        pnlCreate.Controls.Add(lblStudentSignUp)
         pnlCreate.Dock = DockStyle.Right
         pnlCreate.Location = New Point(-3, 0)
         pnlCreate.Name = "pnlCreate"
@@ -126,7 +130,7 @@ Partial Class CreateAccountFrm
         ' 
         btnBack2.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(128))
         btnBack2.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnBack2.Location = New Point(15, 12)
+        btnBack2.Location = New Point(547, 12)
         btnBack2.Name = "btnBack2"
         btnBack2.Size = New Size(82, 44)
         btnBack2.TabIndex = 10
@@ -200,6 +204,17 @@ Partial Class CreateAccountFrm
         lblStudentSignUp.TabIndex = 0
         lblStudentSignUp.Text = "CREATE ACCOUNT"
         ' 
+        ' picLogo
+        ' 
+        picLogo.BackColor = Color.Transparent
+        picLogo.Image = CType(resources.GetObject("picLogo.Image"), Image)
+        picLogo.Location = New Point(3, 12)
+        picLogo.Name = "picLogo"
+        picLogo.Size = New Size(147, 120)
+        picLogo.SizeMode = PictureBoxSizeMode.Zoom
+        picLogo.TabIndex = 17
+        picLogo.TabStop = False
+        ' 
         ' CreateAccountFrm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -212,6 +227,7 @@ Partial Class CreateAccountFrm
         pnlCreate.PerformLayout()
         CType(picConfirmEye, ComponentModel.ISupportInitialize).EndInit()
         CType(picPassEye, ComponentModel.ISupportInitialize).EndInit()
+        CType(picLogo, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -230,4 +246,5 @@ Partial Class CreateAccountFrm
     Friend WithEvents lblPasswordMatch As Label
     Friend WithEvents picPassEye As PictureBox
     Friend WithEvents picConfirmEye As PictureBox
+    Friend WithEvents picLogo As PictureBox
 End Class
