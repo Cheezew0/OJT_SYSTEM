@@ -509,7 +509,7 @@ WHERE s.faculty_id = @FacultyId"
     End Sub
 
     Private Sub mtxtStudentId_MaskInputRejected(sender As Object, e As MaskInputRejectedEventArgs) Handles mtxtStudentId.MaskInputRejected
-        ' optional tooltip if you want
+
     End Sub
 
     Private Sub btnInternships_Click(sender As Object, e As EventArgs) Handles btnInternships.Click
