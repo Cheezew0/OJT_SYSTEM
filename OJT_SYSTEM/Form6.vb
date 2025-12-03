@@ -124,7 +124,7 @@ Public Class StudInternForm
     Private Sub btnSsave_Click(sender As Object, e As EventArgs) Handles btnSsave.Click
         ' 1) Basic validation
         If String.IsNullOrWhiteSpace(txtSFName.Text) OrElse
-           String.IsNullOrWhiteSpace(txtLName.Text) Then
+       String.IsNullOrWhiteSpace(txtLName.Text) Then
             MessageBox.Show("Please enter the supervisor's first and last name.")
             Return
         End If
@@ -137,84 +137,121 @@ Public Class StudInternForm
         Try
             Using conn As New MySqlConnection(connString)
                 conn.Open()
+                Dim tran = conn.BeginTransaction()
 
-                ' 2) Ensure a company row exists (create if needed)
-                If CurrentCompanyId = 0 Then
-                    Dim insertCompanySql As String =
+                Try
+                    ' ------------------------------------------------
+                    ' 2) ENSURE A VALID COMPANY ROW (UPSERT + VERIFY)
+                    ' ------------------------------------------------
+                    ' If we think we already have a company id, check it really exists.
+                    Dim mustInsertCompany As Boolean = (CurrentCompanyId = 0)
+
+                    If Not mustInsertCompany Then
+                        Dim checkCompanySql As String =
+                        "SELECT COUNT(*) FROM company WHERE company_id = @id;"
+
+                        Using checkCmd As New MySqlCommand(checkCompanySql, conn, tran)
+                            checkCmd.Parameters.AddWithValue("@id", CurrentCompanyId)
+                            Dim cnt As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+                            If cnt = 0 Then
+                                ' Our stored id is stale / invalid → treat as new company.
+                                mustInsertCompany = True
+                            End If
+                        End Using
+                    End If
+
+                    If mustInsertCompany Then
+                        ' INSERT new company
+                        Dim insertCompanySql As String =
                         "INSERT INTO company (company_name, email, address, company_contact) " &
                         "VALUES (@name, @email, @address, @contact);"
 
-                    Using cmdCompany As New MySqlCommand(insertCompanySql, conn)
-                        cmdCompany.Parameters.AddWithValue("@name", txtInternCompany.Text.Trim())
-                        cmdCompany.Parameters.AddWithValue("@email", txtCompEmail.Text.Trim())
-                        cmdCompany.Parameters.AddWithValue("@address", txtCompAddr.Text.Trim())
-                        cmdCompany.Parameters.AddWithValue("@contact", "") ' no field on form
+                        Using cmdCompany As New MySqlCommand(insertCompanySql, conn, tran)
+                            cmdCompany.Parameters.AddWithValue("@name", txtInternCompany.Text.Trim())
+                            cmdCompany.Parameters.AddWithValue("@email", txtCompEmail.Text.Trim())
+                            cmdCompany.Parameters.AddWithValue("@address", txtCompAddr.Text.Trim())
+                            cmdCompany.Parameters.AddWithValue("@contact", "") ' no field on form
 
-                        cmdCompany.ExecuteNonQuery()
-                        CurrentCompanyId = CInt(cmdCompany.LastInsertedId)
-                    End Using
-                Else
-                    ' Optional: keep company info in sync if user edits fields
-                    Dim updateCompanySql As String =
+                            cmdCompany.ExecuteNonQuery()
+                            CurrentCompanyId = CInt(cmdCompany.LastInsertedId)
+                        End Using
+                    Else
+                        ' UPDATE existing company
+                        Dim updateCompanySql As String =
                         "UPDATE company SET " &
                         " company_name = @name, " &
                         " email = @email, " &
                         " address = @address " &
                         "WHERE company_id = @companyId;"
 
-                    Using cmdCompany As New MySqlCommand(updateCompanySql, conn)
-                        cmdCompany.Parameters.AddWithValue("@name", txtInternCompany.Text.Trim())
-                        cmdCompany.Parameters.AddWithValue("@email", txtCompEmail.Text.Trim())
-                        cmdCompany.Parameters.AddWithValue("@address", txtCompAddr.Text.Trim())
-                        cmdCompany.Parameters.AddWithValue("@companyId", CurrentCompanyId)
-                        cmdCompany.ExecuteNonQuery()
-                    End Using
-                End If
+                        Using cmdCompany As New MySqlCommand(updateCompanySql, conn, tran)
+                            cmdCompany.Parameters.AddWithValue("@name", txtInternCompany.Text.Trim())
+                            cmdCompany.Parameters.AddWithValue("@email", txtCompEmail.Text.Trim())
+                            cmdCompany.Parameters.AddWithValue("@address", txtCompAddr.Text.Trim())
+                            cmdCompany.Parameters.AddWithValue("@companyId", CurrentCompanyId)
+                            cmdCompany.ExecuteNonQuery()
+                        End Using
+                    End If
 
-                ' 3) Insert or update supervisor for this company
-                If CurrentSupervisorId > 0 Then
-                    ' UPDATE existing supervisor
-                    Dim updateSql As String =
+                    ' SAFETY: if we *still* don't have a valid id, stop.
+                    If CurrentCompanyId <= 0 Then
+                        Throw New ApplicationException("Failed to determine a valid company ID before saving supervisor.")
+                    End If
+
+                    ' ------------------------------------------------
+                    ' 3) INSERT OR UPDATE SUPERVISOR FOR THIS COMPANY
+                    ' ------------------------------------------------
+                    If CurrentSupervisorId > 0 Then
+                        ' UPDATE existing supervisor
+                        Dim updateSql As String =
                         "UPDATE companycontact SET " &
                         " first_name = @firstName, " &
                         " last_name = @lastName, " &
                         " position = @position, " &
                         " supervisor_email = @email, " &
-                        " supervisor_contact = @contact " &
+                        " supervisor_contact = @contact, " &
+                        " company_id = @companyId " &       ' keep fk in sync
                         "WHERE supervisor_id = @supervisorId;"
 
-                    Using cmd As New MySqlCommand(updateSql, conn)
-                        cmd.Parameters.AddWithValue("@firstName", txtSFName.Text.Trim())
-                        cmd.Parameters.AddWithValue("@lastName", txtLName.Text.Trim())
-                        cmd.Parameters.AddWithValue("@position", txtPos.Text.Trim())
-                        cmd.Parameters.AddWithValue("@email", txtSEmail.Text.Trim())
-                        cmd.Parameters.AddWithValue("@contact", txtSContact.Text.Trim())
-                        cmd.Parameters.AddWithValue("@supervisorId", CurrentSupervisorId)
-                        cmd.ExecuteNonQuery()
-                    End Using
-                Else
-                    ' INSERT new supervisor attached to this company
-                    Dim insertSql As String =
+                        Using cmd As New MySqlCommand(updateSql, conn, tran)
+                            cmd.Parameters.AddWithValue("@firstName", txtSFName.Text.Trim())
+                            cmd.Parameters.AddWithValue("@lastName", txtLName.Text.Trim())
+                            cmd.Parameters.AddWithValue("@position", txtPos.Text.Trim())
+                            cmd.Parameters.AddWithValue("@email", txtSEmail.Text.Trim())
+                            cmd.Parameters.AddWithValue("@contact", txtSContact.Text.Trim())
+                            cmd.Parameters.AddWithValue("@companyId", CurrentCompanyId)
+                            cmd.Parameters.AddWithValue("@supervisorId", CurrentSupervisorId)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                    Else
+                        ' INSERT new supervisor attached to this company
+                        Dim insertSql As String =
                         "INSERT INTO companycontact " &
                         " (first_name, last_name, position, supervisor_email, supervisor_contact, company_id) " &
                         "VALUES (@firstName, @lastName, @position, @email, @contact, @companyId);"
 
-                    Using cmd As New MySqlCommand(insertSql, conn)
-                        cmd.Parameters.AddWithValue("@firstName", txtSFName.Text.Trim())
-                        cmd.Parameters.AddWithValue("@lastName", txtLName.Text.Trim())
-                        cmd.Parameters.AddWithValue("@position", txtPos.Text.Trim())
-                        cmd.Parameters.AddWithValue("@email", txtSEmail.Text.Trim())
-                        cmd.Parameters.AddWithValue("@contact", txtSContact.Text.Trim())
-                        cmd.Parameters.AddWithValue("@companyId", CurrentCompanyId)
+                        Using cmd As New MySqlCommand(insertSql, conn, tran)
+                            cmd.Parameters.AddWithValue("@firstName", txtSFName.Text.Trim())
+                            cmd.Parameters.AddWithValue("@lastName", txtLName.Text.Trim())
+                            cmd.Parameters.AddWithValue("@position", txtPos.Text.Trim())
+                            cmd.Parameters.AddWithValue("@email", txtSEmail.Text.Trim())
+                            cmd.Parameters.AddWithValue("@contact", txtSContact.Text.Trim())
+                            cmd.Parameters.AddWithValue("@companyId", CurrentCompanyId)
 
-                        cmd.ExecuteNonQuery()
-                        CurrentSupervisorId = CInt(cmd.LastInsertedId)
-                    End Using
-                End If
+                            cmd.ExecuteNonQuery()
+                            CurrentSupervisorId = CInt(cmd.LastInsertedId)
+                        End Using
+                    End If
+
+                    tran.Commit()
+                Catch
+                    tran.Rollback()
+                    Throw
+                End Try
             End Using
 
             MessageBox.Show("Supervisor information saved successfully.", "Saved",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             SetSupervisorFieldsEnabled(False)
             btnSsave.Enabled = False
@@ -224,6 +261,7 @@ Public Class StudInternForm
             MessageBox.Show("Error saving supervisor information: " & ex.Message)
         End Try
     End Sub
+
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         SetInternFieldsEnabled(True)

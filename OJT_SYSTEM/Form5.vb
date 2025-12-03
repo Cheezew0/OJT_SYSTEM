@@ -29,7 +29,16 @@ Public Class MyProfileForm
 
         cmbSex.Items.AddRange(New String() {"Male", "Female", "Other"})
         cmbStatus.Items.AddRange(New String() {"Active", "Inactive", "Graduated"})
-        cmbProgram.Items.AddRange(New String() {"BSIT", "BSCS"})
+        cmbProgram.Items.AddRange(New String() {
+            "BSIT",
+            "BSCS",
+            "BSBA",
+            "BSA",
+            "BSN",
+            "BSCE",
+            "BSCpE"
+        })
+
         cmbSection.Items.AddRange(New String() {"4A", "4B", "4C", "4D"})
 
         ' 🔹 Department combo (read-only, auto from course)
@@ -40,9 +49,6 @@ Public Class MyProfileForm
         LoadStudentInfo()
         DisableEditing()
     End Sub
-
-    ' ===================== UI HELPERS =====================
-
     Private Function RoundCorners(myPanel As Panel, radius As Integer) As Region
         Dim path As New GraphicsPath()
         path.StartFigure()
@@ -165,14 +171,33 @@ Public Class MyProfileForm
 
     Private Sub UpdateDepartmentFromProgram()
         Select Case cmbProgram.Text
+
+        ' Existing
             Case "BSCS"
                 cmbDepartment.Text = "Computer Science"
+
             Case "BSIT"
                 cmbDepartment.Text = "Information Technology"
+
+        ' New programs and departments
+            Case "BSBA", "BS Business Administration"
+                cmbDepartment.Text = "Business Administration"
+
+            Case "BSA", "BS Accountancy"
+                cmbDepartment.Text = "Accountancy"
+
+            Case "BSN", "BS Nursing"
+                cmbDepartment.Text = "Nursing"
+
+            Case "BSCE", "BS Civil Engineering",
+             "BSCpE", "BS Computer Engineering"
+                cmbDepartment.Text = "Engineering"
+
             Case Else
                 cmbDepartment.Text = ""
         End Select
     End Sub
+
 
     ' ===================== ENABLE / DISABLE EDITING =====================
 
