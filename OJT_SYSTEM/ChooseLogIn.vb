@@ -15,6 +15,7 @@ Public Class FrmChooseLogin
         Me.Hide()
     End Sub
 
+
     Private Sub FacultyLogin_Click(sender As Object, e As EventArgs) Handles FacultyLogin.Click
         Dim FacultyLogin As New FrmFacultyLogIn
         FacultyLogin.Show()
