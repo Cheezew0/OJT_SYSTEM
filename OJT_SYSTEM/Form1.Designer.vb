@@ -459,9 +459,9 @@ Partial Class DashboardForm
         Label1.Font = New Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.Location = New Point(98, 62)
         Label1.Name = "Label1"
-        Label1.Size = New Size(296, 50)
+        Label1.Size = New Size(388, 50)
         Label1.TabIndex = 0
-        Label1.Text = "Summary Cards"
+        Label1.Text = "Summary Dashboard"
         ' 
         ' DashboardForm
         ' 
